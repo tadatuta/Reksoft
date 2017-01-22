@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reksoft Recognition</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta id="viewportId" name="viewport" content="width=device-width">
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script data-main="assets/js/requirejs-config" src="bower_components/requirejs/require.js"></script>
+</head>
+<body>
+
+<!--
+1 npm install express (типа веб-cервер)
+2 npm install nodemon (чтоб при изменении файлов автоматически изменения подтягивались)
+3 node "node_modules/nodemon/bin/nodemon.js" server.js - запустить (или nodemon server.js если глобально установлен).
+Перейти в барузере на localhost:3000/#current или localhost:3000/index.html
+-->
+
+<div id="content" class="">
+    <!-- //TODO вынести отдельной вьюшкой -->
+    <div class="canvas-container" style="position: relative; user-select: none;">
+        <canvas id="c" width="320" height="320" style=""></canvas>
+    </div>
+
+</div>
+
+</body>
+</html>

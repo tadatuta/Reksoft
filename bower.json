@@ -1,0 +1,24 @@
+{
+  "name": "reksoft_recognition",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Viktoria"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "backbone": "^1.3.3",
+    "requirejs": "^2.3.2",
+    "text": "requirejs-text#^2.0.15"
+  }
+}
