@@ -1,17 +1,18 @@
 define([], function () {
 
-    var CirculatingImg = function (canvas, width, height, src, left, top) {
+    var CirculatingImg = function (canvas, width, height, srcArc, srcCirc, left, top, scaleIndex) {
        // var def = new $.Deferred;
         var self = this;
+        this.scaleIndex = scaleIndex;
 
-        fabric.Image.fromURL(src, function (circle) {
+        fabric.Image.fromURL(srcArc, function (circle) {
             self.circle = circle;
-            circle.scale(0.6);
+            circle.scale(0.6 * scaleIndex);
             //def.resolve();
 
             canvas.add(circle.set({
-                left: width - 400,
-                top: height / 2 + 100,
+                left: left,
+                top: top,
                 originX: "center",
                 originY: "center",
                 opacity: 100
@@ -19,12 +20,12 @@ define([], function () {
 
         });
 
-        fabric.Image.fromURL('../assets/img/circleRightCircle.png', function (arc) {
+        fabric.Image.fromURL(srcCirc, function (arc) {
             self.arc = arc;
-            arc.scale(0.6);
+            arc.scale(0.6 * scaleIndex);
             canvas.add(arc.set({
-                left: width - 400,
-                top: height / 2 + 100,
+                left: left,
+                top: top,
                 originX: "center",
                 originY: "center",
                 opacity: 100

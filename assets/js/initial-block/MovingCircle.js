@@ -1,10 +1,11 @@
 define([], function () {
 
     var MovingCircle = fabric.util.createClass(fabric.Circle, {
-        initialize: function (initObj, top, canvas) {
+        initialize: function (initObj, top, canvas, scaleIndex) {
             this.callSuper('initialize', initObj);
             this.showTop = top;
-			this.canvas = canvas;
+            this.canvas = canvas;
+            this.scaleIndex = scaleIndex;
         },
 
         toString: function () {
@@ -12,8 +13,8 @@ define([], function () {
         },
 
         moveTop: function () {
-            var self=this;
-            this.animate('top', self.getTop() - 50, {
+            var self = this;
+            this.animate('top', self.getTop() - 50 * self.scaleIndex, {
                 duration: 5000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {
@@ -23,8 +24,8 @@ define([], function () {
         },
 
         moveBack: function () {
-            var self=this;
-            this.animate('top', self.getTop() + 50, {
+            var self = this;
+            this.animate('top', self.getTop() + 50 * self.scaleIndex, {
                 duration: 5000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {
@@ -33,8 +34,8 @@ define([], function () {
             });
         },
 
-        slideToPosition: function(){
-			var self = this;
+        slideToPosition: function () {
+            var self = this;
             var def = $.Deferred();
             this.animate({
                 'top': this.showTop,
@@ -42,9 +43,9 @@ define([], function () {
             }, {
                 duration: 1000,
                 easing: fabric.util.ease.easeOutBounce,
-				onChange: function (angle) {
-					//self.canvas.renderAll(); //хватает прорисовки от LeftCircles
-				},
+                onChange: function (angle) {
+                    //self.canvas.renderAll(); //хватает прорисовки от LeftCircles
+                },
                 onComplete: function () {
                     def.resolve();
                 }
