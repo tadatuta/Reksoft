@@ -1,6 +1,6 @@
 define([], function () {
 
-    var TriangleCrossCircles = function (canvas, width, height, left, top, firstState, intervalBeforeNextState, isBlinking) {
+    var TriangleCrossCircles = function (canvas, width, height, left, top, firstState, intervalBeforeNextState, isBlinking, scaleIndex) {
         var self = this;
         this.width = width;
         this.height = height;
@@ -10,6 +10,7 @@ define([], function () {
         this.left = left;
         this.top = top;
         this.isBlinking = isBlinking;
+		this.scaleIndex = scaleIndex;
         var def1 = new $.Deferred;
         var def2 = new $.Deferred;
         var def3 = new $.Deferred;
@@ -47,9 +48,7 @@ define([], function () {
             curObj = this.circle;
         }
 
-
-        var imgWidth = curObj.getOriginalSize().width;
-        var imgHeight = curObj.getOriginalSize().height;
+		curObj.scale(this.scaleIndex * 0.8);
         this.canvas.add(curObj.set({
             left: self.left,
             top: self.top,

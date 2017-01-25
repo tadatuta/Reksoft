@@ -31,7 +31,6 @@ define(["assets/js/initial-block/MovingCircle.js",
             var reksoftImagePadding;
             var canvas;
 			var paddingFromLogoToHorLine = 25;
-            //var dimentionsList = ["desktop_sm", "desktop_md", "desktop_lg"];
 
             var init = function () {
                 fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
@@ -80,7 +79,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                         addIeroglifsLeft();
                         addIeroglifsRight();
                         addMouse();
-                        if (getResolution() != "desktop_sm") {
+                        if (getResolution() != "desktop_sm1") {
                             addTriangleCrossCircles();
                         }
                         setTimeout(function () {
@@ -92,22 +91,32 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var getResolution = function () {
-                if (width >= 1280 && width < 1600) {
-                    return "desktop_sm";
-                } else if (width >= 1900 && width < 2048) {
-                    return "desktop_lg";
-                }
+                if (width >= 1280 && width < 1360) {
+                    return "desktop_sm1";
+				} else if (width >= 1360 && width <= 1600) {
+					return "desktop_sm2";
+				} else if (width > 1600 && width < 1920) {
+					return "desktop_md1";
+                } else if (width >= 1900 && width <= 2048) {
+                    return "desktop_lg1";
+                }  else if (width > 2048) {
+					return "desktop_lg2";
+				}
             };
 
-            var setScaleIndexOnLoad = function () {
-                if (getResolution() == "desktop_lg") {
-                    scaleIndex = 1;
-                } else if (getResolution() == "desktop_sm") {
-                    scaleIndex = 0.75;
-                } else {
-                    scaleIndex = 1.1;
-                }
-            };
+			var setScaleIndexOnLoad = function () {
+				var resolutionType = getResolution();
+
+				if (resolutionType == "desktop_sm1" || resolutionType == "desktop_sm2") {
+					scaleIndex = 0.75;
+				} else if (resolutionType == "desktop_md1") {
+					scaleIndex = 0.85;
+				} else if (resolutionType == "desktop_lg1") {
+					scaleIndex = 1;
+				} else if (resolutionType == "desktop_lg2") {
+					scaleIndex = 1.2;
+				}
+			};
 
             var evaluateScaleDependedVars = function () {
 
@@ -481,13 +490,13 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var addTriangleCrossCircles = function () {
-                var left = width / 2 + 400;
-                var top = height / 2 + 20;
-                var triangleCrossCircles = new TriangleCrossCircles(canvas, width, height, left, top, 0, 8000, true);
-                var triangleCrossCircles2 = new TriangleCrossCircles(canvas, width, height, left, top + 30, 1, 21000, false);
-                var triangleCrossCircles3 = new TriangleCrossCircles(canvas, width, height, left, top + 60, 2, 33000, true);
-                var triangleCrossCircles4 = new TriangleCrossCircles(canvas, width, height, left, top + 90, 0, 25000, false);
-                var triangleCrossCircles5 = new TriangleCrossCircles(canvas, width, height, left, top + 120, 1, 30000, true);
+				var left = width / 2 + 390 * scaleIndex;
+				var top = height / 2 + 20 * scaleIndex;
+                var triangleCrossCircles = new TriangleCrossCircles(canvas, width, height, left, top, 0, 8000, true, scaleIndex);
+                var triangleCrossCircles2 = new TriangleCrossCircles(canvas, width, height, left, top + 30* scaleIndex, 1, 21000, false, scaleIndex);
+                var triangleCrossCircles3 = new TriangleCrossCircles(canvas, width, height, left, top + 60* scaleIndex, 2, 33000, true, scaleIndex);
+                var triangleCrossCircles4 = new TriangleCrossCircles(canvas, width, height, left, top + 90* scaleIndex, 0, 25000, false, scaleIndex);
+                var triangleCrossCircles5 = new TriangleCrossCircles(canvas, width, height, left, top + 120* scaleIndex, 1, 30000, true, scaleIndex);
             };
 
             var addSquaresGroup = function () {
@@ -500,13 +509,13 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var addRightCircle = function () {
-                var left = width / 1.26;
+                var left = width / 1.23;
                 var top = height / 2 + 100 * scaleIndex;
 
                 var rightCircle = new fabric.Circle({
                     radius: 120 * scaleIndex,
                     fill: '',
-                    stroke: '#F1737A',//#F1737A
+                    stroke: '#F1737A',
                     strokeWidth: 1,
                     top: top,
                     left: width,
