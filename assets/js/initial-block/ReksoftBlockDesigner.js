@@ -119,7 +119,6 @@ define(["assets/js/initial-block/MovingCircle.js",
 			};
 
             var evaluateScaleDependedVars = function () {
-
                 var logoScaleIndex = 0.65;
                 radiusPlus = 200 * scaleIndex;
                 orbitRadiusBase = 75 * scaleIndex;
@@ -509,7 +508,10 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var addRightCircle = function () {
-                var left = width / 1.23;
+                var left = width / 1.26;
+				if(getResolution() != "desktop_sm1") {
+					left = width / 1.23;
+				}
                 var top = height / 2 + 100 * scaleIndex;
 
                 var rightCircle = new fabric.Circle({
