@@ -30,6 +30,7 @@ define(["assets/js/initial-block/MovingCircle.js",
             var orbitRadiusBase;
             var reksoftImagePadding;
             var canvas;
+			var paddingFromLogoToHorLine = 25;
             //var dimentionsList = ["desktop_sm", "desktop_md", "desktop_lg"];
 
             var init = function () {
@@ -70,6 +71,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                         addLittleCirclesInCenter();
                         addSticksAroundCenterCircle();
                         addNoise();
+                        addSquaresGroup();
                         addLeftCircles();
                         addRightCircle();
                         addLittleTopImg();
@@ -80,7 +82,6 @@ define(["assets/js/initial-block/MovingCircle.js",
                         addMouse();
                         if (getResolution() != "desktop_sm") {
                             addTriangleCrossCircles();
-                            addSquaresGroup();
                         }
                         setTimeout(function () {
                             addPlanets();
@@ -109,11 +110,12 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var evaluateScaleDependedVars = function () {
+
                 var logoScaleIndex = 0.65;
                 radiusPlus = 200 * scaleIndex;
                 orbitRadiusBase = 75 * scaleIndex;
                 reksoftImagePadding = 20 * scaleIndex;
-                reksoftImgHeight = 240 * logoScaleIndex;
+                reksoftImgHeight = 240 * logoScaleIndex * scaleIndex;
             };
 
             var setNewCanvasSize = function () {
@@ -134,7 +136,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var y1;
                 var xIntersectionWithScreenTop;
                 var duration = 500;
-                var paddingFromLogoToHorLine = 25;
+
 
                 var fullScreenLines = new FullScreenLines({
                     canvas: canvas,
@@ -326,21 +328,22 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var angle = 125;
                 var length = 1;
                 var x1 = width / 2;
-                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - 10 * scaleIndex;
+                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex;
                 var x2 = x1 + length * Math.cos(Math.PI * angle / 180.0);
                 var y2 = y1 + length * Math.sin(Math.PI * angle / 180.0);
-                var xIntersection = getLinesIntersectionByTwoCoord(x1, y1, x2, y2, height - height / 5);
-                var ierLeft = xIntersection + 35;
-                var ierTop = height - height / 4;
+                var xIntersection = getLinesIntersectionByTwoCoord(x1, y1, x2, y2, height - height / 3.3);
+                var ierLeft = xIntersection + 10 * scaleIndex;
+                var ierTop = height - height / 3.3;
 
                 fabric.Image.fromURL('../assets/img/ieroglifsBase.png', function (img) {
-                    img.scale(0.8);
+                    img.scale(0.8 * scaleIndex);
                     canvas.add(img.set({
-                        left: ierLeft, //width / 3 + 110
+                        left: ierLeft ,
                         top: ierTop,
-                        originX: "center",
-                        originY: "center",
-                        opacity: 0
+                        originX: "left",
+                        originY: "top",
+                        opacity: 0,
+						angle: (angle-90)
                     }));
                     //плавное появление
                     img.animate('opacity', 100, {
@@ -352,32 +355,32 @@ define(["assets/js/initial-block/MovingCircle.js",
 
                 });
 
-                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs1.png', 4000, ierLeft, ierTop);
-                var blinkingImg1 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs3.png', 5000, ierLeft, ierTop);
-                var blinkingImg2 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs4.png', 7000, ierLeft, ierTop);
+                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs1.png', 4000, ierLeft, ierTop, scaleIndex, angle);
+                var blinkingImg1 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs3.png', 5000, ierLeft, ierTop, scaleIndex, angle);
+                var blinkingImg2 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs4.png', 7000, ierLeft, ierTop, scaleIndex, angle);
             };
 
             var addIeroglifsRight = function () {
-
                 //x1,y1,x2,y2,yLine2
                 var angle = 55;
                 var length = 1;
                 var x1 = width / 2;
-                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - 10 * scaleIndex;
+                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex;
                 var x2 = x1 + length * Math.cos(Math.PI * angle / 180.0);
                 var y2 = y1 + length * Math.sin(Math.PI * angle / 180.0);
-                var xIntersection = getLinesIntersectionByTwoCoord(x1, y1, x2, y2, height - height / 5);
-                var ierLeft = xIntersection - 45;
-                var ierTop = height - height / 3.6;
+                var xIntersection = getLinesIntersectionByTwoCoord(x1, y1, x2, y2, height - height / 3.4);
+                var ierLeft = xIntersection - 15 * scaleIndex;
+                var ierTop = height - height / 3.4;
 
                 fabric.Image.fromURL('../assets/img/ieroglifs2Base.png', function (img) {
-                    img.scale(0.8);
+                    img.scale(0.8 * scaleIndex);
                     canvas.add(img.set({
                         left: ierLeft,
                         top: ierTop,
-                        originX: "center",
-                        originY: "center",
-                        opacity: 0
+						originX: "left",
+						originY: "top",
+                        opacity: 0,
+						angle: (angle-90)
                     }));
                     //плавное появление
                     img.animate('opacity', 100, {
@@ -389,8 +392,7 @@ define(["assets/js/initial-block/MovingCircle.js",
 
                 });
 
-                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs21.png', 6000, ierLeft, ierTop);
-
+                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs21.png', 6000, ierLeft, ierTop, scaleIndex, angle);
             };
 
             var addMountainCircles = function () {
@@ -489,7 +491,7 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var addSquaresGroup = function () {
-                var squaresGroup = new SquaresGroup(canvas, width, height);
+                var squaresGroup = new SquaresGroup(canvas, width, height, scaleIndex);
             };
 
             var addLeftCircles = function () {

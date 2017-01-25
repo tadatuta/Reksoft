@@ -1,6 +1,6 @@
 define([], function () {
 
-	var BlinkingImg = function (canvas, width, height, src, intervalBeforeNextState, left, top) {
+	var BlinkingImg = function (canvas, width, height, src, intervalBeforeNextState, left, top, scaleIndex, angle) {
 		this.intervalBeforeNextState = intervalBeforeNextState;
 		this.canvas = canvas;
 		var def = new $.Deferred;
@@ -8,15 +8,16 @@ define([], function () {
 
 		fabric.Image.fromURL(src, function (img) {
 			self.img = img;
-			img.scale(0.8);
+			img.scale(0.8 * scaleIndex);
 			def.resolve();
 
 			canvas.add(img.set({
 				left: left,
 				top: top,
-				originX: "center",
-				originY: "center",
-				opacity: 0
+				originX: "left",
+				originY: "top",
+				opacity: 0,
+				angle: (angle-90)
 			}));
 			//плавное появление
 			img.animate('opacity', 100, {

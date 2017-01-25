@@ -1,11 +1,11 @@
 define(["assets/js/initial-block/blinkingSquare.js"], function (BlinkingSquare) {
 
-    var SquaresGroup = function (canvas, width, height) {
+    var SquaresGroup = function (canvas, width, height, scaleIndex) {
         this.animDuration = 500;
-        this.movePathLength = 100;
+        this.movePathLength = 100*scaleIndex;
         this.timeBeforeNextAnim = 500;
         this.numberOfItems = 4;
-        var baseLeftOffset = 170;
+        var baseLeftOffset = 150*scaleIndex;
         var squares = [];
         var square;
         var self = this;
@@ -14,8 +14,8 @@ define(["assets/js/initial-block/blinkingSquare.js"], function (BlinkingSquare) 
             square =  new BlinkingSquare({
                 left: width,
                 top: canvas.getHeight() / 2 - 8,
-                width: 10,
-                height: 10,
+                width: 10 * scaleIndex,
+                height: 10 * scaleIndex,
                 fill: '#F1737A',
                 index: 1,
                 hasBorders: false,
@@ -24,7 +24,7 @@ define(["assets/js/initial-block/blinkingSquare.js"], function (BlinkingSquare) 
             canvas.add(square);
             squares.push(square);
 
-            this.slideToPosition(square, width - baseLeftOffset + 20*j);
+            this.slideToPosition(square, width - baseLeftOffset + 20*j*scaleIndex);
         }
 
         squares[0].intervalBeforeNextState = 7000;
