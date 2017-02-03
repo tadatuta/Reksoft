@@ -1,11 +1,13 @@
 define([], function () {
 
-    var SticksAroundCircle = function (canvas, width, height, imgSrc, angle, duration, mscaleIndex, reksoftImgHeight) {
+    var SticksAroundCircle = function (canvas, width, height, imgSrc, startAngle, angleTo, angleBack, duration, mscaleIndex, reksoftImgHeight) {
         var self = this;
         //var def1 = new $.Deferred;
         this.imgSrc = imgSrc;
-        this.angle = angle;
         this.duration = duration;
+		this.startAngle = startAngle;
+		this.angleTo = angleTo;
+		this.angleBack = angleBack;
 
         fabric.Image.fromURL(this.imgSrc, function (img) {
             var imgWidth = img.getOriginalSize().width * mscaleIndex;
@@ -16,7 +18,8 @@ define([], function () {
                 top: height / 2 - reksoftImgHeight/2,
                 originX: "center",
                 originY: "center",
-                opacity: 100
+                opacity: 1,
+				angle: startAngle
             }));
 
             self.img = img;
@@ -32,7 +35,7 @@ define([], function () {
     SticksAroundCircle.prototype.animateTwoDirection = function () {
         var self = this;
 
-        this.img.animate('angle', this.angle, {
+        this.img.animate('angle', this.angleTo, {
             duration: this.duration,
             easing: fabric.util.ease.easeInOutExpo,
             onComplete: function () {
@@ -44,7 +47,7 @@ define([], function () {
     SticksAroundCircle.prototype.animateBack = function () {
         var self = this;
 
-        this.img.animate('angle', -this.angle, {
+        this.img.animate('angle', -this.angleBack, {
             duration: this.duration,
             easing: fabric.util.ease.easeInOutExpo,
             onComplete: function () {

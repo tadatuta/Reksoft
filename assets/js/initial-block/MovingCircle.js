@@ -1,11 +1,12 @@
 define([], function () {
 
     var MovingCircle = fabric.util.createClass(fabric.Circle, {
-        initialize: function (initObj, top, canvas, scaleIndex) {
+        initialize: function (initObj, top, canvas, scaleIndex, opacity) {
             this.callSuper('initialize', initObj);
             this.showTop = top;
             this.canvas = canvas;
             this.scaleIndex = scaleIndex;
+			this.opacity = opacity;
         },
 
         toString: function () {
@@ -39,7 +40,7 @@ define([], function () {
             var def = $.Deferred();
             this.animate({
                 'top': this.showTop,
-                'opacity': 1
+                'opacity': this.opacity
             }, {
                 duration: 1000,
                 easing: fabric.util.ease.easeOutBounce,

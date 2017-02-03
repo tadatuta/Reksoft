@@ -143,8 +143,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var x1;
                 var y1;
                 var xIntersectionWithScreenTop;
-                var duration = 500;
-
+                var duration = 450;
 
                 var fullScreenLines = new FullScreenLines({
                     canvas: canvas,
@@ -162,7 +161,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     xIntersectionWithScreenTop = getLinesIntersectionByTwoCoord(x1, y1, x1 + length * Math.cos(Math.PI * angle / 180.0),
                         y1 + length * Math.sin(Math.PI * angle / 180.0), 0);
                     fullScreenLines.drawAnimatedDiagonalLine(angle, xIntersectionWithScreenTop, 0);
-                }, duration - 100);
+                }, duration - 200);
 
                 setTimeout(function () {
                     angle = 57;
@@ -171,7 +170,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     xIntersectionWithScreenTop = getLinesIntersectionByTwoCoord(x1, y1, x1 + length * Math.cos(Math.PI * angle / 180.0),
                         y1 + length * Math.sin(Math.PI * angle / 180.0), 0);
                     fullScreenLines.drawAnimatedDiagonalLine(angle, xIntersectionWithScreenTop, 0);
-                }, (duration - 100) * 2);
+                }, (duration - 200) * 2);
 
             };
 
@@ -198,13 +197,13 @@ define(["assets/js/initial-block/MovingCircle.js",
                             'top': logoTop,
                             opacity: 1
                         }, {
-                            duration: 500,
+                            duration: 450,
                             onChange: canvas.renderAll.bind(canvas)
                         });
                     });
                     $(window).trigger("logo-loaded");
 
-                }, 1200);
+                }, 1000);
             };
 
             var addNoise = function () {
@@ -278,16 +277,16 @@ define(["assets/js/initial-block/MovingCircle.js",
                     index: 2,
                     originX: "center",
                     originY: "center"
-                }, 500, 4000);
+                }, 500, 1000);
                 canvas.add(movingMouseCircle);
                 setTimeout(function () {
                     movingMouseCircle.animateTopAndBack();
-                }, 4000);
+                }, 2000);
             };
 
             var addLittleCirclesInCenter = function () {
                 var def = new $.Deferred;
-                var baseDelay = 20000; //время между началом движения обратно и повторного движения
+                var baseDelay = 15000; //время между началом движения обратно и повторного движения
                 var delayAnimationOnStart = 5000;//после загрузки через 5с. начинается анимация
                 var circle;
                 fabric.Image.fromURL('../assets/img/littleCenterCircle.png', function (icircle) {
@@ -415,7 +414,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     fill: '#00C7C0',
                     index: 2,
                     opacity: 0.3
-                }, showTop, canvas, scaleIndex);
+                }, showTop, canvas, scaleIndex, 0.7);
                 canvas.add(movingCircle1);
                 $.when(movingCircle1.slideToPosition()).done(function () {
                     movingCircle1.moveTop();
@@ -429,7 +428,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     fill: '#00C7C0',
                     index: 2,
                     opacity: 0.3
-                }, showTop, canvas, scaleIndex);
+                }, showTop, canvas, scaleIndex, 0.4);
                 canvas.add(movingCircle2);
                 $.when(movingCircle2.slideToPosition()).done(function () {
                     movingCircle2.moveBack();
@@ -442,7 +441,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     fill: '#00C7C0',
                     index: 2,
                     opacity: 0.3
-                }, showTop, canvas, scaleIndex);
+                }, showTop, canvas, scaleIndex, 1);
                 canvas.add(movingCircle3);
                 $.when(movingCircle3.slideToPosition()).done(function () {
                     movingCircle3.moveTop();
@@ -455,7 +454,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     fill: '#00C7C0',
                     index: 2,
                     opacity: 0.3
-                }, showTop, canvas, scaleIndex);
+                }, showTop, canvas, scaleIndex, 0.8);
                 canvas.add(movingCircle4);
                 $.when(movingCircle4.slideToPosition()).done(function () {
                     movingCircle4.moveBack();
@@ -473,11 +472,11 @@ define(["assets/js/initial-block/MovingCircle.js",
                         top: height / 2 - reksoftImgHeight / 2,
                         originX: "center",
                         originY: "center",
-                        opacity: 100
+                        opacity: 1
                     }));
                 });
-                var sticksAroundCircle = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle.png', 15, 2000, mscaleIndex, reksoftImgHeight);
-                var sticksAroundCircle2 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle2.png', -15, 2000, mscaleIndex, reksoftImgHeight);
+                var sticksAroundCircle = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle.png', -15, 10, 15, 2000, mscaleIndex, reksoftImgHeight);
+                var sticksAroundCircle2 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle2.png', 12, -5, -12, 2000, mscaleIndex, reksoftImgHeight);
 
                 setTimeout(function () {
                     sticksAroundCircle.animateTwoDirection();
