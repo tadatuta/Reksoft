@@ -11,10 +11,11 @@ define(["assets/js/initial-block/MovingCircle.js",
         "assets/js/initial-block/leftCircles.js",
         "assets/js/initial-block/zigzags.js",
         "assets/js/initial-block/squaresGroup.js",
-        "assets/js/initial-block/cloud.js"],
+        "assets/js/initial-block/cloud.js",
+        "assets/js/initial-block/rotatingImg.js"],
     function (MovingCircle, TriangleCrossCircles, SticksAroundCircle, MovingArc, BlinkingImg,
               CirculatingImg, MovingLittleCircle, MovingMouseCircle, RotatingObject, FullScreenLines, LeftCircles,
-              Zigzags, SquaresGroup, Cloud) {
+              Zigzags, SquaresGroup, Cloud, RotatingImg) {
 
         var ReksoftBlockDesigner = (function () {
 
@@ -289,7 +290,9 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var baseDelay = 15000; //время между началом движения обратно и повторного движения
                 var delayAnimationOnStart = 5000;//после загрузки через 5с. начинается анимация
                 var circle;
-                fabric.Image.fromURL('../assets/img/littleCenterCircle.png', function (icircle) {
+                //fabric.Image.fromURL('../assets/img/littleCenterCircle.svg', function (icircle) {
+                fabric.loadSVGFromURL('../assets/img/littleCenterCircle.svg', function(objects, options) {
+                    var icircle = fabric.util.groupSVGElements(objects, options);
                     icircle.scale(1.53 * scaleIndex);
                     circle = icircle;
                     def.resolve();
@@ -342,7 +345,9 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var ierLeft = xIntersection + 10 * scaleIndex;
                 var ierTop = height - height / 3.3;
 
-                fabric.Image.fromURL('../assets/img/ieroglifsBase.png', function (img) {
+                //fabric.Image.fromURL('../assets/img/ieroglifsBase.svg', function (img) {
+                fabric.loadSVGFromURL('../assets/img/ieroglifsBase.svg', function(objects, options) {
+                    var img = fabric.util.groupSVGElements(objects, options);
                     img.scale(0.8 * scaleIndex);
                     canvas.add(img.set({
                         left: ierLeft ,
@@ -362,9 +367,9 @@ define(["assets/js/initial-block/MovingCircle.js",
 
                 });
 
-                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs1.png', 4000, ierLeft, ierTop, scaleIndex, angle);
-                var blinkingImg1 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs3.png', 5000, ierLeft, ierTop, scaleIndex, angle);
-                var blinkingImg2 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs4.png', 7000, ierLeft, ierTop, scaleIndex, angle);
+                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs1.svg', 4000, ierLeft, ierTop, scaleIndex, angle);
+                var blinkingImg1 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs3.svg', 5000, ierLeft, ierTop, scaleIndex, angle);
+                var blinkingImg2 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs4.svg', 7000, ierLeft, ierTop, scaleIndex, angle);
             };
 
             var addIeroglifsRight = function () {
@@ -379,7 +384,9 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var ierLeft = xIntersection - 15 * scaleIndex;
                 var ierTop = height - height / 3.4;
 
-                fabric.Image.fromURL('../assets/img/ieroglifs2Base.png', function (img) {
+                //fabric.Image.fromURL('../assets/img/ieroglifs2Base.svg', function (img) {
+                fabric.loadSVGFromURL('../assets/img/ieroglifs2Base.svg', function(objects, options) {
+                    var img = fabric.util.groupSVGElements(objects, options);
                     img.scale(0.8 * scaleIndex);
                     canvas.add(img.set({
                         left: ierLeft,
@@ -399,7 +406,7 @@ define(["assets/js/initial-block/MovingCircle.js",
 
                 });
 
-                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs21.png', 6000, ierLeft, ierTop, scaleIndex, angle);
+                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs21.svg', 6000, ierLeft, ierTop, scaleIndex, angle);
             };
 
             var addMountainCircles = function () {
@@ -463,9 +470,10 @@ define(["assets/js/initial-block/MovingCircle.js",
 
             var addSticksAroundCenterCircle = function () {
                 var mscaleIndex = 0.65 * scaleIndex;
-                fabric.Image.fromURL('../assets/img/aroundCircle0.png', function (img) {
-                    var imgWidth = img.getOriginalSize().width * mscaleIndex;
-                    var imgHeight = img.getOriginalSize().height * mscaleIndex;
+                fabric.loadSVGFromURL('../assets/img/aroundCircle0.svg', function(objects, options) {
+                    var img = fabric.util.groupSVGElements(objects, options);
+                    var imgWidth = img.width * mscaleIndex;
+                    var imgHeight = img.height * mscaleIndex;
                     img.scale(mscaleIndex);
                     canvas.add(img.set({
                         left: width / 2,
@@ -475,8 +483,8 @@ define(["assets/js/initial-block/MovingCircle.js",
                         opacity: 1
                     }));
                 });
-                var sticksAroundCircle = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle.png', -15, 10, 15, 2000, mscaleIndex, reksoftImgHeight);
-                var sticksAroundCircle2 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle2.png', 12, -5, -12, 2000, mscaleIndex, reksoftImgHeight);
+                var sticksAroundCircle = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle.svg', -15, 10, 15, 2000, mscaleIndex, reksoftImgHeight);
+                var sticksAroundCircle2 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle2.svg', 12, -5, -12, 2000, mscaleIndex, reksoftImgHeight);
 
                 setTimeout(function () {
                     sticksAroundCircle.animateTwoDirection();
@@ -530,8 +538,8 @@ define(["assets/js/initial-block/MovingCircle.js",
                     duration: 1000,
                     easing: fabric.util.ease.easeOutBounce,
                     onComplete: function () {
-                        var circulatingImgs = new CirculatingImg(canvas, width, height, '../assets/img/arcRightCircle.png',
-                            '../assets/img/circleRightCircle.png', left, top, scaleIndex);
+                        var circulatingImgs = new CirculatingImg(canvas, width, height, '../assets/img/arcRightCircle.svg',
+                            '../assets/img/circleRightCircle.svg', left, top, scaleIndex);
                         setTimeout(function () {
                             circulatingImgs.animateCircle();
                         }, 4000);
@@ -567,7 +575,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     width: width,
                     url: '../assets/img/cloud_green1.svg',
                     imgScaleParam: 0.7,
-                    imgLeft: 130,
+                    imgLeft: 430,
                     imgTop: height * 0.1,
                     animationSpeed: 300000,
                     scaleIndex: scaleIndex,
@@ -578,7 +586,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     width: width,
                     url: '../assets/img/cloud_green2.svg',
                     imgScaleParam: 0.6,
-                    imgLeft: 40,
+                    imgLeft: 240,
                     imgTop: height * 0.2,
                     animationSpeed: 180000,
                     scaleIndex: scaleIndex,
@@ -589,7 +597,7 @@ define(["assets/js/initial-block/MovingCircle.js",
                     width: width,
                     url: '../assets/img/cloud_pale1.svg',
                     imgScaleParam: 0.7,
-                    imgLeft: 20,
+                    imgLeft: 220,
                     imgTop: height * 0.15,
                     animationSpeed: 500000,
                     scaleIndex: scaleIndex,
@@ -601,18 +609,19 @@ define(["assets/js/initial-block/MovingCircle.js",
                     width: width,
                     url: '../assets/img/cloud_pale1.svg',
                     imgScaleParam: 1.4,
-                    imgLeft: width / 2 + 200,
+                    imgLeft: width / 2 + 400,
                     imgTop: height * 0.15,
                     animationSpeed: 500000,
                     scaleIndex: scaleIndex,
-                    linear: linear
+                    linear: linear,
+                    angle: -180
                 });
                 var cloudR2 = new Cloud({
                     canvas: canvas,
                     width: width,
                     url: '../assets/img/cloud_pale1.svg',
                     imgScaleParam: 1.1,
-                    imgLeft: width / 2 + 500,
+                    imgLeft: width / 2 + 600,
                     imgTop: height * 0.1,
                     animationSpeed: 300000,
                     scaleIndex: scaleIndex,
@@ -621,9 +630,9 @@ define(["assets/js/initial-block/MovingCircle.js",
                 var cloudR3 = new Cloud({
                     canvas: canvas,
                     width: width,
-                    url: '../assets/img/cloud_green1.svg',
-                    imgScaleParam: 1.6,
-                    imgLeft: width / 2 + 400,
+                    url: '../assets/img/cloud_green3.svg',
+                    imgScaleParam: 0.6,
+                    imgLeft: width / 2 + 700,
                     imgTop: height * 0.2,
                     animationSpeed: 180000,
                     scaleIndex: scaleIndex,
@@ -756,27 +765,40 @@ define(["assets/js/initial-block/MovingCircle.js",
             };
 
             var addPlanets = function () {
-                var planet0 = new RotatingObject({
-                    left: (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
-                    top: canvas.getHeight() / 2,
-                    width: 18,
-                    height: 12,
-                    opacity: 0,
-                    fill: '#005C53',
-                    index: 1,
-                    hasBorders: false,
-                    hasControls: false
-                }, linear, 3000);
-                canvas.add(planet0);
+                //var planet0;
+                //var def = new $.Deferred;
 
-                //плавное появление
-                planet0.animate('opacity', 1, {
-                    duration: 500,
-                    easing: linear,
-                    onComplete: function () {
-                    }
+                /*fabric.loadSVGFromURL('../assets/img/Reksoft-logo.svg', function (img, options) {
+                    canvas.add(img.set({
+                        left: left,
+                        top: top,
+                        originX: "center",
+                        originY: "center",
+                        opacity: 0
+                    }));
+
+                    //плавное появление
+                    img.animate('opacity', 1, {
+                        duration: 500,
+                        easing: linear,
+                        onComplete: function () {
+                        }
+                    });
+
+                    self.rotate();
+                });*/
+
+                var planetLoader = new RotatingImg(
+                    canvas,
+                    (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
+                    canvas.getHeight() / 2,
+                    linear, 3000);
+
+
+
+                $.when(planetLoader.loadImg()).done(function () {
+                    animatePlanet(planetLoader.getImg(), 1);
                 });
-                animatePlanet(planet0, 1);
 
                 var planet1 = new fabric.Circle({
                     left: (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),

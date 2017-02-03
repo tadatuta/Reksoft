@@ -5,7 +5,9 @@ define([], function () {
         var self = this;
         this.scaleIndex = scaleIndex;
 
-        fabric.Image.fromURL(srcArc, function (circle) {
+        //fabric.Image.fromURL(srcArc, function (circle) {
+        fabric.loadSVGFromURL(srcArc, function(objects, options) {
+            var circle = fabric.util.groupSVGElements(objects, options);
             self.circle = circle;
             circle.scale(0.6 * scaleIndex);
             //def.resolve();
@@ -20,7 +22,9 @@ define([], function () {
 
         });
 
-        fabric.Image.fromURL(srcCirc, function (arc) {
+        //fabric.Image.fromURL(srcCirc, function (arc) {
+        fabric.loadSVGFromURL(srcCirc, function(objects, options) {
+            var arc = fabric.util.groupSVGElements(objects, options);
             self.arc = arc;
             arc.scale(0.6 * scaleIndex);
             canvas.add(arc.set({

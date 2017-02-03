@@ -9,9 +9,10 @@ define([], function () {
 		this.angleTo = angleTo;
 		this.angleBack = angleBack;
 
-        fabric.Image.fromURL(this.imgSrc, function (img) {
-            var imgWidth = img.getOriginalSize().width * mscaleIndex;
-            var imgHeight = img.getOriginalSize().height * mscaleIndex;
+        fabric.loadSVGFromURL(this.imgSrc, function(objects, options) {
+            var img = fabric.util.groupSVGElements(objects, options);
+            var imgWidth = img.width * mscaleIndex;
+            var imgHeight = img.height * mscaleIndex;
             img.scale(mscaleIndex);
             canvas.add(img.set({
                 left: width / 2 ,

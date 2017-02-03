@@ -11,8 +11,9 @@ define([], function () {
 			self.settings.canvas.add(cloudImg.set({
 				left: self.settings.imgLeft,
 				top: self.settings.imgTop,
-				originX: "left",
-				originY: "top"
+				originX: "center",
+				originY: "center",
+				angle: self.settings.angle
 			}));
 			self.cloudImg = cloudImg;
 		});

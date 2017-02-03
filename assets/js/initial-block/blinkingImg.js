@@ -1,14 +1,17 @@
 define([], function () {
 
-	var BlinkingImg = function (canvas, width, height, src, intervalBeforeNextState, left, top, scaleIndex, angle) {
+	var BlinkingImg = function (canvas, width, height, src, intervalBeforeNextState, left, top, scaleIndex, angle, specScale) {
 		this.intervalBeforeNextState = intervalBeforeNextState;
 		this.canvas = canvas;
 		var def = new $.Deferred;
 		var self = this;
+		if(!specScale) specScale = 0.8;
 
-		fabric.Image.fromURL(src, function (img) {
+		//fabric.Image.fromURL(src, function (img) {
+		fabric.loadSVGFromURL(src, function(objects, options) {
+			var img = fabric.util.groupSVGElements(objects, options);
 			self.img = img;
-			img.scale(0.8 * scaleIndex);
+			img.scale(specScale * scaleIndex);
 			def.resolve();
 
 			canvas.add(img.set({
