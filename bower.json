@@ -19,6 +19,8 @@
     "bootstrap": "^3.3.7",
     "backbone": "^1.3.3",
     "requirejs": "^2.3.2",
-    "text": "requirejs-text#^2.0.15"
+    "text": "requirejs-text#^2.0.15",
+    "fabric.js": "fabric#^1.7.3",
+    "device.js": "devicejs#^0.2.7"
   }
 }
