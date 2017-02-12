@@ -15,21 +15,18 @@ define([], function () {
         var def2 = new $.Deferred;
         var def3 = new $.Deferred;
 
-        //fabric.Image.fromURL('../assets/img/cross.svg', function (cross) {
         fabric.loadSVGFromURL('../assets/img/cross.svg', function(objects, options) {
             var cross = fabric.util.groupSVGElements(objects, options);
             self.cross = cross;
             def1.resolve();
         });
 
-        //fabric.Image.fromURL('../assets/img/circle.svg', function (circle) {
         fabric.loadSVGFromURL('../assets/img/circle.svg', function(objects, options) {
             var circle = fabric.util.groupSVGElements(objects, options);
             self.circle = circle;
             def2.resolve();
         });
 
-        //fabric.Image.fromURL('../assets/img/triangle.svg', function (triangle) {
         fabric.loadSVGFromURL('../assets/img/triangle.svg', function(objects, options) {
             var triangle = fabric.util.groupSVGElements(objects, options);
             self.triangle = triangle;
@@ -47,14 +44,10 @@ define([], function () {
         var curObj;
         if (this.state == 0) {
             curObj = this.cross;
-            //curObj.scale(this.scaleIndex * 0.8);
-            //self.left = self.left + 3;
         } else if (this.state == 1) {
             curObj = this.triangle;
-            //curObj.scale(this.scaleIndex * 0.8);
         } else {
             curObj = this.circle;
-            //curObj.scale(this.scaleIndex * 0.8);
         }
 
 		curObj.scale(this.scaleIndex * 0.8);
