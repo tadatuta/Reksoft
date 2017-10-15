@@ -7,6 +7,10 @@ define([
         // Кэшируем html-шаблон
         template : _.template( tpl ),
         className: "unit2",
+        events : {
+            /*'click .to-next-slide-text' : 'nextSlideClick',
+            'click .next_slide_text' : 'nextSlideClick'*/
+        },
         initialize : function( options ) {
 
         },
