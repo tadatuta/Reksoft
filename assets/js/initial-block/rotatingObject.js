@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
 	var RotatingObject = fabric.util.createClass(fabric.Rect, {
 		initialize: function (initObj, linearEasing, duration) {

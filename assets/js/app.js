@@ -1,16 +1,13 @@
-require( [ "bootstrap", "device", "fabric" ], function() {
-    // Проверим подгрузилась ли вместе с "bootstrap" его зависимость - jQuery
-    // console.info( "jQuery exists: " + (typeof jQuery == "function" ? true : false ) );    
-});
-
-
-require( [ "initial-block/initialBlockVIew", 
-          "we-like-block/weLikeView", 
-          "our-client-right/view", 
-          "spektr/view", 
-          "people/view", 
-          "find-yourself/view", 
-          "bootstrap" ], function( 
+require( [
+    "initial-block/initialBlockVIew",
+    "we-like-block/weLikeView",
+    "our-client-right/view",
+    "spektr/view",
+    "people/view",
+    "find-yourself/view",
+    "bootstrap",
+    "device"
+], function(
          MainView, 
          WeLikeView, 
          ClientRightView, 
@@ -21,10 +18,10 @@ require( [ "initial-block/initialBlockVIew",
     $("#content").append( mainView.render().$el );
     
     var weLikeView = new WeLikeView();
-    $("body").append( weLikeView.render().$el ); 
+    $("body").append( weLikeView.render().$el );
     
     var clientRightView = new ClientRightView();
-    $("body").append( clientRightView.render().$el ); 
+    $("body").append( clientRightView.render().$el );
     
     var spektrView = new SpektrView();
     $("body").append( spektrView.render().$el ); 

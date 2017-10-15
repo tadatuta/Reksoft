@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var MovingMouseCircle = fabric.util.createClass(fabric.Circle, {
         initialize: function (array, duration, interval) {

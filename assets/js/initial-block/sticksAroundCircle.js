@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var SticksAroundCircle = function (canvas, width, height, imgSrc, startAngle, angleTo, angleBack, duration, mscaleIndex, reksoftImgHeight) {
         var self = this;

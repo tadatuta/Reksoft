@@ -1,4 +1,4 @@
-define(["assets/js/initial-block/movingLine.js"], function (MovingLine) {
+define(["fabric", "assets/js/initial-block/movingLine.js"], function (fabric, MovingLine) {
 
     var LeftCircles = function (canvas, width, height, src, showLeft, scaleIndex) {
         var self = this;

@@ -21,6 +21,8 @@
     "requirejs": "^2.3.2",
     "text": "requirejs-text#^2.0.15",
     "fabric.js": "fabric#^1.7.3",
-    "device.js": "devicejs#^0.2.7"
+    "device.js": "devicejs#^0.2.7",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^4.0.1"
   }
 }

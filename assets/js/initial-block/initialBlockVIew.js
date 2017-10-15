@@ -1,6 +1,8 @@
 define([
     "backbone",    
-    "text!../initial-block/initialBlockTemplate.html", "initial-block/ReksoftBlockDesigner","fabric"
+    "text!../initial-block/initialBlockTemplate.html",
+    "initial-block/ReksoftBlockDesigner",
+    "fabric"
 ], function( Backbone, tpl, ReksoftBlockDesigner, fabric ) {
 
     var view = Backbone.View.extend({

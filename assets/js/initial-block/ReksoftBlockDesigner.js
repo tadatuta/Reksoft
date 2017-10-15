@@ -1,4 +1,4 @@
-define(["assets/js/initial-block/MovingCircle.js",
+define(['fabric', "assets/js/initial-block/MovingCircle.js",
         "assets/js/initial-block/triangleCrossCircles.js",
         "assets/js/initial-block/sticksAroundCircle.js",
         "assets/js/initial-block/movingArc.js",
@@ -13,7 +13,7 @@ define(["assets/js/initial-block/MovingCircle.js",
         "assets/js/initial-block/squaresGroup.js",
         "assets/js/initial-block/cloud.js",
         "assets/js/initial-block/rotatingImg.js"],
-    function (MovingCircle, TriangleCrossCircles, SticksAroundCircle, MovingArc, BlinkingImg,
+    function (fabric, MovingCircle, TriangleCrossCircles, SticksAroundCircle, MovingArc, BlinkingImg,
               CirculatingImg, MovingLittleCircle, MovingMouseCircle, RotatingObject, FullScreenLines, LeftCircles,
               Zigzags, SquaresGroup, Cloud, RotatingImg) {
 

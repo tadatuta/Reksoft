@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var MovingArc = fabric.util.createClass(fabric.Circle, {
         initialize: function (initObj) {

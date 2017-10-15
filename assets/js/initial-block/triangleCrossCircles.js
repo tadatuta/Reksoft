@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var TriangleCrossCircles = function (canvas, width, height, left, top, firstState, intervalBeforeNextState, isBlinking, scaleIndex) {
         var self = this;

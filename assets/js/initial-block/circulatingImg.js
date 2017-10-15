@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var CirculatingImg = function (canvas, width, height, srcArc, srcCirc, left, top, scaleIndex) {
        // var def = new $.Deferred;
