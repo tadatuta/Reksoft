@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 	//canvas, width, url, imgScaleParam, imgLeft, imgTop, animationSpeed, scaleIndex, linear
 	var Cloud = function (settings) {
 		var self = this;

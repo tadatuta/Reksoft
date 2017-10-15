@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
 	var FullScreenLines = function (settings) {
 		this.settings = settings;

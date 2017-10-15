@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
 	var RotatingImg = function (canvas, left, top, linearEasing, duration) {
 		this.canvas = canvas;

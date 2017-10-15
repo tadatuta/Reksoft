@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var BlinkingSquare = fabric.util.createClass(fabric.Rect, {
         initialize: function (initObj) {

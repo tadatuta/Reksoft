@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var Zigzags = function (canvas, width) {
         var self = this;

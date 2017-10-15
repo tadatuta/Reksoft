@@ -1,4 +1,4 @@
-define(["assets/js/initial-block/blinkingSquare.js"], function (BlinkingSquare) {
+define(['fabric', "assets/js/initial-block/blinkingSquare.js"], function (fabric, BlinkingSquare) {
 
     var SquaresGroup = function (canvas, width, height, scaleIndex) {
         this.animDuration = 500;

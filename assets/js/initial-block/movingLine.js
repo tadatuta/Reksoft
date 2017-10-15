@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var MovingLine = fabric.util.createClass(fabric.Line, {
         initialize: function (array, obj, duration, interval, scaleIndex) {

@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
     var MovingLittleCircle = function (canvas, width, height, circle, startAngle, delayTo, delayBack, baseDelay, reksoftImgHeight) {
         this.delayTo = delayTo;

@@ -1,4 +1,4 @@
-define([], function () {
+define(['fabric'], function (fabric) {
 
 	var BlinkingImg = function (canvas, width, height, src, intervalBeforeNextState, left, top, scaleIndex, angle, specScale) {
 		this.intervalBeforeNextState = intervalBeforeNextState;

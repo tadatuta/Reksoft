@@ -160,36 +160,3 @@
         <div class="line line-3"></div>
     </div>
 </div>
-
-<!-- Swiper JS -->
-<script src="/assets/js/our-client-right/swiper.min.js"></script>
-
-<!-- Initialize Swiper -->
-<script>
-    if (device.desktop()) {
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 3,
-            slidesPerColumn: 2,
-            paginationClickable: true,
-            spaceBetween: 65
-        });
-    } else if (device.tablet()) {
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 2,
-            slidesPerColumn: 2,
-            paginationClickable: true,
-            spaceBetween: 25
-        });
-    } else if (device.mobile()) {
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 1,
-            slidesPerColumn: 1,
-            paginationClickable: true,
-            spaceBetween: 10
-        });
-    }
-
-</script>

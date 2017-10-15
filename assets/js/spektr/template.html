@@ -101,27 +101,3 @@
     </div>
 </div>
 
-<!-- slick slider -->
-<script src="/assets/js/spektr/slick.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        var windowHeight = $(window).height();
-        $('.unit5').height(windowHeight);
-        $('.single-item').slick({
-            dots: false,
-            infinite: false,
-            arrows: false,
-            slidesToShow: 1,
-            adaptiveHeight: true
-        });
-
-        $(".to-next-slide-text").click(function(e) { // Added a '.'
-            $('.single-item').slick('slickNext');
-        });
-
-        $(".next_slide_text").click(function(e) { // Added a '.'
-            $('.single-item').slick('slickNext');
-        });
-    });
-</script>
