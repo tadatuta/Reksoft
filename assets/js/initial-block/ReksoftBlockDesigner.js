@@ -50,37 +50,42 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
             };
 
             var _reinit = function () {
-                if (!$("html").hasClass("tablet")) return;
+                if (!$("html").hasClass("tablet") && !$("html").hasClass("mobile")) return;
                 canvas.clear();
+                setScaleIndexOnLoad();
                 setNewCanvasSize();
-                setScaleIndexOrientationChange();
                 evaluateScaleDependedVars();
-                addlogo();
                 addLines();
-                addSquaresGroup();
+                addlogo();
+                addClounds();
             };
 
             var _bindUIEvents = function () {
                 window.addEventListener('resize', function () {
-                    //_reinit();
+                    _reinit();
                 });
 
                 $(window).on("logo-loaded", function () {
                     setTimeout(function () {
+                        var resolution = getResolution();
                         drawCircles();
                         addLittleCirclesInCenter();
                         addSticksAroundCenterCircle();
                         addNoise();
                         addSquaresGroup();
-                        addLeftCircles();
-                        addRightCircle();
+                        if (resolution != "mobile_vert" && resolution != "mobile_hor") {
+                            addLeftCircles();
+                            addRightCircle();
+                            addZigzags();
+                        }
                         addLittleTopImg();
-                        addZigzags();
                         addMountainCircles();
                         addIeroglifsLeft();
                         addIeroglifsRight();
                         addMouse();
-                        if (getResolution() != "desktop_sm1") {
+                        if (resolution != "desktop_sm1" &&
+                            resolution != "tablet_hor"
+                            && resolution != "tablet_vert") {
                             addTriangleCrossCircles();
                         }
                         setTimeout(function () {
@@ -92,7 +97,15 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
             };
 
             var getResolution = function () {
-                if (width >= 1280 && width < 1360) {
+                if (width < 560) {
+                    return "mobile_vert";
+                } else if (width >= 560 && width < 760) {
+                    return "mobile_hor";
+                } else if (width >= 760 && width < 1024) {
+                    return "tablet_vert";
+                } else if (width >= 1024 && width < 1280) {
+                    return "tablet_hor";
+                } else if (width >= 1280 && width < 1360) {
                     return "desktop_sm1";
 				} else if (width >= 1360 && width <= 1600) {
 					return "desktop_sm2";
@@ -107,8 +120,15 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
 
 			var setScaleIndexOnLoad = function () {
 				var resolutionType = getResolution();
-
-				if (resolutionType == "desktop_sm1" || resolutionType == "desktop_sm2") {
+                if (resolutionType == "mobile_vert") {
+                    scaleIndex = 0.5;
+                } else if (resolutionType == "mobile_hor") {
+                    scaleIndex = 0.4;
+                } else if (resolutionType == "tablet_vert") {
+                    scaleIndex = 0.5;
+                } else if (resolutionType == "tablet_hor") {
+                    scaleIndex = 0.6;
+                } else if (resolutionType == "desktop_sm1" || resolutionType == "desktop_sm2") {
 					scaleIndex = 0.75;
 				} else if (resolutionType == "desktop_md1") {
 					scaleIndex = 0.85;
@@ -116,7 +136,9 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
 					scaleIndex = 1;
 				} else if (resolutionType == "desktop_lg2") {
 					scaleIndex = 1.2;
-				}
+				} /* else {
+                    scaleIndex = 0.4;
+                }*/
 			};
 
             var evaluateScaleDependedVars = function () {
@@ -560,14 +582,14 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                 return (-b + yLine2) / k;
             };
 
-            var setScaleIndexOrientationChange = function () {
+            /* var setScaleIndexOrientationChange = function () {
                 //в этот момент еще старый класс ориентации
                 if ($("html").hasClass("desktop") || ($("html").hasClass("tablet") && !$("html").hasClass("landscape"))) {
                     scaleIndex = 1;
                 } else {
                     scaleIndex = 1.1;
                 }
-            };
+            };*/
 
             var addClounds = function () {
                 var cloudL1 = new Cloud({
