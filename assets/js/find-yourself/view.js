@@ -6,7 +6,6 @@ define([
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
         template : _.template( tpl ),
-        className: "unit6",
         initialize : function( options ) {
         },
 
