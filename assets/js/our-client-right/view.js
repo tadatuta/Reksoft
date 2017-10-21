@@ -4,6 +4,8 @@ define([
     "swiper",
     "device"
 ], function( Backbone, tpl, Swiper, device ) {
+	
+	var unit3DocWidth = $( document ).width();
 
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
@@ -18,13 +20,21 @@ define([
             this.$el.empty().append( this.template() );
             var windowWidth = window.innerWidth;
             setTimeout(function(){
-                if(device.desktop()) {
+                if(device.desktop() && unit3DocWidth > 1260) {
                     var swiper = new Swiper('.swiper-container', {
                         pagination: '.swiper-pagination',
                         slidesPerView: 3,
                         slidesPerColumn: 2,
                         paginationClickable: true,
                         spaceBetween: 65
+                    });
+                } else if (device.desktop() && unit3DocWidth < 1260) {
+                    var swiper = new Swiper('.swiper-container', {
+                        pagination: '.swiper-pagination',
+                        slidesPerView: 2,
+                        slidesPerColumn: 2,
+                        paginationClickable: true,
+                        spaceBetween: 25
                     });
                 } else if (device.tablet()) {
                     var swiper = new Swiper('.swiper-container', {
