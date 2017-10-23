@@ -31,7 +31,7 @@
   position: relative;
   cursor: pointer;
   margin: 1.4vh auto 1.1vh;
-  background-image: url(/assets/img/to_prev_slide_black.svg);
+  background-image: url(/assets/img/to_prev_slide_black.png);
   background-repeat: no-repeat;
 }
 
