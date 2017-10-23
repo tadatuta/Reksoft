@@ -6,7 +6,7 @@ define([
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
         template : _.template( tpl ),
-        className: "unit2",
+        className: "unit",
         events : {
             /*'click .to-next-slide-text' : 'nextSlideClick',
             'click .next_slide_text' : 'nextSlideClick'*/
