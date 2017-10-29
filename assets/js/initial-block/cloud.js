@@ -23,6 +23,9 @@ define(['fabric'], function (fabric) {
 	Cloud.prototype.animate = function () {
 		this.cloudImg.animate('left', '-=' + this.settings.width, {
 			duration: this.settings.animationSpeed,
+			onChange: this.settings.shouldCanvasRerenderOnChange
+				? this.settings.canvas.renderAll.bind(this.settings.canvas)
+				: undefined,
 			easing: this.settings.linear
 		});
 	};

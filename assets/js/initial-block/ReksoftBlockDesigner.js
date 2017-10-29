@@ -12,10 +12,12 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
         "assets/js/initial-block/zigzags.js",
         "assets/js/initial-block/squaresGroup.js",
         "assets/js/initial-block/cloud.js",
-        "assets/js/initial-block/rotatingImg.js"],
+        "assets/js/initial-block/rotatingImg.js",
+        "assets/js/animation/commonAnimation.js"
+],
     function (fabric, MovingCircle, TriangleCrossCircles, SticksAroundCircle, MovingArc, BlinkingImg,
               CirculatingImg, MovingLittleCircle, MovingMouseCircle, RotatingObject, FullScreenLines, LeftCircles,
-              Zigzags, SquaresGroup, Cloud, RotatingImg) {
+              Zigzags, SquaresGroup, Cloud, RotatingImg, CommonAnimation) {
 
         var ReksoftBlockDesigner = (function () {
 
@@ -37,10 +39,10 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                 fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
                 fabric.Object.prototype.objectCaching = false; //TURN OFF Cache!!!
                 //fabric.Object.prototype.noScaleCache = true; //- не помогает
-                canvas = this.__canvas = new fabric.StaticCanvas('c', { //StaticCanvas
+                canvas = new fabric.StaticCanvas('c1', { //StaticCanvas
                     selection: false
                 });
-                setScaleIndexOnLoad();
+                scaleIndex = CommonAnimation.setScaleIndexOnLoad(width);
                 evaluateScaleDependedVars();
                 setNewCanvasSize();
                 addLines();
@@ -52,7 +54,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
             var _reinit = function () {
                 if (!$("html").hasClass("tablet") && !$("html").hasClass("mobile")) return;
                 canvas.clear();
-                setScaleIndexOnLoad();
+                scaleIndex = CommonAnimation.setScaleIndexOnLoad(width);
                 setNewCanvasSize();
                 evaluateScaleDependedVars();
                 addLines();
@@ -67,7 +69,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
 
                 $(window).on("logo-loaded", function () {
                     setTimeout(function () {
-                        var resolution = getResolution();
+                        var resolution = CommonAnimation.getResolution();
                         drawCircles();
                         addLittleCirclesInCenter();
                         addSticksAroundCenterCircle();
@@ -95,51 +97,6 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
 
                 });
             };
-
-            var getResolution = function () {
-                if (width < 560) {
-                    return "mobile_vert";
-                } else if (width >= 560 && width < 760) {
-                    return "mobile_hor";
-                } else if (width >= 760 && width < 1024) {
-                    return "tablet_vert";
-                } else if (width >= 1024 && width < 1280) {
-                    return "tablet_hor";
-                } else if (width >= 1280 && width < 1360) {
-                    return "desktop_sm1";
-				} else if (width >= 1360 && width <= 1600) {
-					return "desktop_sm2";
-				} else if (width > 1600 && width < 1920) {
-					return "desktop_md1";
-                } else if (width >= 1900 && width <= 2048) {
-                    return "desktop_lg1";
-                }  else if (width > 2048) {
-					return "desktop_lg2";
-				}
-            };
-
-			var setScaleIndexOnLoad = function () {
-				var resolutionType = getResolution();
-                if (resolutionType == "mobile_vert") {
-                    scaleIndex = 0.5;
-                } else if (resolutionType == "mobile_hor") {
-                    scaleIndex = 0.4;
-                } else if (resolutionType == "tablet_vert") {
-                    scaleIndex = 0.5;
-                } else if (resolutionType == "tablet_hor") {
-                    scaleIndex = 0.6;
-                } else if (resolutionType == "desktop_sm1" || resolutionType == "desktop_sm2") {
-					scaleIndex = 0.75;
-				} else if (resolutionType == "desktop_md1") {
-					scaleIndex = 0.85;
-				} else if (resolutionType == "desktop_lg1") {
-					scaleIndex = 1;
-				} else if (resolutionType == "desktop_lg2") {
-					scaleIndex = 1.2;
-				} /* else {
-                    scaleIndex = 0.4;
-                }*/
-			};
 
             var evaluateScaleDependedVars = function () {
                 var logoScaleIndex = 0.65;
@@ -538,7 +495,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
 
             var addRightCircle = function () {
                 var left = width / 1.26;
-				if(getResolution() != "desktop_sm1") {
+				if(CommonAnimation.getResolution() != "desktop_sm1") {
 					left = width / 1.23;
 				}
                 var top = height / 2 + 100 * scaleIndex;
@@ -560,7 +517,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     duration: 1000,
                     easing: fabric.util.ease.easeOutBounce,
                     onComplete: function () {
-                        var circulatingImgs = new CirculatingImg(canvas, width, height, '../assets/img/arcRightCircle.svg',
+                       var circulatingImgs = new CirculatingImg(canvas, '../assets/img/arcRightCircle.svg',
                             '../assets/img/circleRightCircle.svg', left, top, scaleIndex);
                         setTimeout(function () {
                             circulatingImgs.animateCircle();
@@ -601,7 +558,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     imgTop: height * 0.1,
                     animationSpeed: 300000,
                     scaleIndex: scaleIndex,
-                    linear: linear
+                    linear: CommonAnimation.linear
                 });
                 var cloudL2 = new Cloud({
                     canvas: canvas,
@@ -612,7 +569,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     imgTop: height * 0.2,
                     animationSpeed: 180000,
                     scaleIndex: scaleIndex,
-                    linear: linear
+                    linear: CommonAnimation.linear
                 });
                 var cloudL3 = new Cloud({
                     canvas: canvas,
@@ -623,7 +580,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     imgTop: height * 0.15,
                     animationSpeed: 500000,
                     scaleIndex: scaleIndex,
-                    linear: linear
+                    linear: CommonAnimation.linear
                 });
                 //right
                 var cloudR1 = new Cloud({
@@ -635,7 +592,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     imgTop: height * 0.15,
                     animationSpeed: 500000,
                     scaleIndex: scaleIndex,
-                    linear: linear,
+                    linear: CommonAnimation.linear,
                     angle: -180
                 });
                 var cloudR2 = new Cloud({
@@ -647,7 +604,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     imgTop: height * 0.1,
                     animationSpeed: 300000,
                     scaleIndex: scaleIndex,
-                    linear: linear
+                    linear: CommonAnimation.linear
                 });
                 var cloudR3 = new Cloud({
                     canvas: canvas,
@@ -658,20 +615,8 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     imgTop: height * 0.2,
                     animationSpeed: 180000,
                     scaleIndex: scaleIndex,
-                    linear: linear
+                    linear: CommonAnimation.linear
                 });
-
-                //addAnimatedCloud('../assets/img/cloud_green1.svg', 0.7, 130, height*0.1, 300000);
-                //addAnimatedCloud('../assets/img/cloud_green2.svg', 0.6, 40, height*0.2, 180000);
-                //addAnimatedCloud('../assets/img/cloud_pale1.svg', 0.7, 20, height*0.15, 500000);
-                //right*/
-                //addAnimatedCloud('../assets/img/cloud_pale1.svg', 1.4, width/2 + 200, height*0.15, 500000);
-                //addAnimatedCloud('../assets/img/cloud_pale1.svg', 1.1, width/2 + 500, height*0.1, 300000);
-                //addAnimatedCloud('../assets/img/cloud_green1.svg', 1.6, width/2 + 400, height*0.2, 180000);
-            };
-
-            var linear = function (t, b, c, d) {
-                return c * t / d + b;
             };
 
             var drawArcs = function () {
@@ -693,7 +638,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                 canvas.add(movingArcBottom);
                 movingArcBottom.animate('opacity', 0.5, {
                     duration: 1000,
-                    easing: linear,
+                    easing: CommonAnimation.linear,
                     onComplete: function () {
                     }
                 });
@@ -717,7 +662,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                 canvas.add(movingArcBottom2);
                 movingArcBottom2.animate('opacity', 0.5, {
                     duration: 1000,
-                    easing: linear,
+                    easing: CommonAnimation.linear,
                     onComplete: function () {
                     }
                 });
@@ -741,7 +686,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                 canvas.add(movingArcBottom3);
                 movingArcBottom3.animate('opacity', 0.5, {
                     duration: 1000,
-                    easing: linear,
+                    easing: CommonAnimation.linear,
                     onComplete: function () {
                     }
                 });
@@ -780,7 +725,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
 
                 orbit.animate('opacity', opacityL[i], {
                     duration: 1000,
-                    easing: linear,
+                    easing: CommonAnimation.linear,
                     onComplete: function () {
                     }
                 });
@@ -814,7 +759,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     canvas,
                     (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
                     canvas.getHeight() / 2,
-                    linear, 3000);
+                    CommonAnimation.linear, 3000);
 
 
 
@@ -835,7 +780,7 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                 animatePlanet(planet1, 2);
                 planet1.animate('opacity', 1, {
                     duration: 500,
-                    easing: linear,
+                    easing: CommonAnimation.linear,
                     onComplete: function () {
                     }
                 });
@@ -850,13 +795,13 @@ define(['fabric', "assets/js/initial-block/MovingCircle.js",
                     opacity: 0,
                     hasBorders: false,
                     hasControls: false
-                }, linear, 2000);
+                }, CommonAnimation.linear, 2000);
 
                 canvas.add(planet2);
 
                 planet2.animate('opacity', 1, {
                     duration: 500,
-                    easing: linear,
+                    easing: CommonAnimation.linear,
                     onComplete: function () {
                     }
                 });

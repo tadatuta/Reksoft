@@ -5,20 +5,25 @@ require( [
     "spektr/view",
     "people/view",
     "find-yourself/view",
-    "bootstrap",
-    "device"
+    'fabric',
 ], function(
          MainView, 
          WeLikeView, 
          ClientRightView, 
          SpektrView,
          PeopleView,
-         FindYourselfView) {
+         FindYourselfView,
+         fabric
+) {
     var mainView = new MainView();
     $("#content").append( mainView.render().$el );
-    
+
     var weLikeView = new WeLikeView();
-    $("body").append( weLikeView.render().$el );
+    $("body").append( weLikeView.render().$el);
+    var weLikeCanvas = new fabric.StaticCanvas('weLikeCircle', {
+     selection: false
+    });
+    weLikeView.setAnimation(weLikeCanvas);
     
     var clientRightView = new ClientRightView();
     $("body").append( clientRightView.render().$el );
