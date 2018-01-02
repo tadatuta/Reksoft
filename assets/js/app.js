@@ -6,6 +6,7 @@ require( [
     "people/view",
     "find-yourself/view",
     'fabric',
+    'scrollify',
 ], function(
          MainView, 
          WeLikeView, 
@@ -13,28 +14,36 @@ require( [
          SpektrView,
          PeopleView,
          FindYourselfView,
-         fabric
+         fabric,
+         scrollify
 ) {
     var mainView = new MainView();
-    $("#content").append( mainView.render().$el );
+    $("#firstSlide").append( mainView.render().$el );
 
     var weLikeView = new WeLikeView();
-    $("body").append( weLikeView.render().$el);
+    $("body").append(weLikeView.render().$el);
     var weLikeCanvas = new fabric.StaticCanvas('weLikeCircle', {
-     selection: false
+        selection: false
     });
     weLikeView.setAnimation(weLikeCanvas);
-    
+
     var clientRightView = new ClientRightView();
-    $("body").append( clientRightView.render().$el );
-    
+    $("body").append(clientRightView.render().$el);
+    clientRightView.swiperInit();
+
     var spektrView = new SpektrView();
-    $("body").append( spektrView.render().$el ); 
-    
+    $("body").append(spektrView.render().$el);
+    spektrView.slickInit();
+
     var peopleView = new PeopleView();
-    $("body").append( peopleView.render().$el );
-    
+    $("body").append(peopleView.render().$el);
+
     var findYourselfView = new FindYourselfView();
-    $("body").append( findYourselfView.render().$el );
-    
+    $("body").append(findYourselfView.render().$el);
+
+    $.scrollify({
+        section: ".slideContainer",
+        updateHash: false,
+    });
+
 });
