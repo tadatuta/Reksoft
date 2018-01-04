@@ -4,6 +4,7 @@ require( [
     "our-client-right/view",
     "spektr/view",
     "people/view",
+    "reksoft-academy/view",
     "find-yourself/view",
     'fabric',
     'scrollify',
@@ -13,6 +14,7 @@ require( [
          ClientRightView, 
          SpektrView,
          PeopleView,
+         ReksoftAcademyView,
          FindYourselfView,
          fabric,
          scrollify
@@ -37,6 +39,9 @@ require( [
 
     var peopleView = new PeopleView();
     $("body").append(peopleView.render().$el);
+
+    var reksoftAcademyView = new ReksoftAcademyView();
+    $("body").append(reksoftAcademyView.render().$el);
 
     var findYourselfView = new FindYourselfView();
     $("body").append(findYourselfView.render().$el);
