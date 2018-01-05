@@ -20,7 +20,7 @@ define([
             return this;
         },
 
-        swiperInit : function(){
+        /*swiperInit : function(){
             if(device.desktop() && unit3DocWidth > 1260) {
                 var swiper = new Swiper('.swiper-container', {
                     pagination: '.swiper-pagination',
@@ -54,7 +54,7 @@ define([
                     spaceBetween: 10
                 });
             }
-        },
+        },*/
 
     });
 
