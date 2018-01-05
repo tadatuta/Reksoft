@@ -29,7 +29,7 @@ require( [
 
     var clientRightView = new ClientRightView();
     $("body").append(clientRightView.render().$el);
-    clientRightView.swiperInit();
+    //clientRightView.swiperInit();
 
     var spektrView = new SpektrView();
     $("body").append(spektrView.render().$el);
