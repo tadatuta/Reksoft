@@ -150,7 +150,7 @@ p {
     background-position: center center;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 10em;
+    font-size: 10rem;
     font-weight: bold;
     color: #ffffff;
     text-align: center;
@@ -160,7 +160,7 @@ p {
     font-family: Roboto, sans-serif;
     font-weight: 300;
     font-style: normal;
-    font-size: 2em;
+    font-size: 2rem;
     color: #ffffff;
     text-align: center;
     margin-top: 1.2vh;
@@ -397,6 +397,10 @@ p {
     -moz-box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.35);
     box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.35);
 }
+.tablet .unit3 .wrapper .our-instruments .our-instruments-row .our-instruments-block {
+    width: 15%;
+    margin: 0 0.8%;
+}
 .tablet .unit3 .void-elements-left {
     display: none;
 }
@@ -439,7 +443,7 @@ p {
 .mobile .unit3 .wrapper .our-instruments .our-instruments-row .our-instruments-block {
     height: 100%;
     width: 15%;
-    margin: 0 0.45%;
+    margin: 0 0.8%;
     display: inline-block;
     background-image: url(../img/w_t_bg.png);
     background-repeat: repeat;
