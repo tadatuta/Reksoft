@@ -180,7 +180,7 @@ p {
     font-style: italic;
 }
 .unit6 .wrapper .feedback-block .feedback-texts .feedback-text ul {
-    list-style-image: url(../img/rec-lost.png);
+    list-style-image: url(../img/rec-lost.svg);
     font-size: 1.5rem;
     line-height: 1.5;
 }
