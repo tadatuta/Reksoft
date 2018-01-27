@@ -1,7 +1,10 @@
 define([
     "backbone",    
-    "text!../find-yourself/template.html"
-], function( Backbone, tpl ) {
+    "text!../find-yourself/template.html",
+    "assets/js/animation/commonAnimation.js",
+    "assets/js/reksoft-academy/arrow.js",
+    'fabric',
+], function( Backbone, tpl, CommonAnimation, Arrow, fabric  ) {
 
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
@@ -24,6 +27,62 @@ define([
                 $('#email').focus();
             });*/
             return this;
+        },
+
+        setAnimation: function(canvas){
+            this.canvas = canvas;
+            this.setNewCanvasSize();
+            this.scaleIndex = CommonAnimation.setScaleIndexOnLoad(this.width);
+            this.addArrows();
+        },
+
+        setNewCanvasSize: function () {
+            this.width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+            this.canvas.setDimensions({
+                width: this.width,
+            });
+        },
+
+        addArrows: function () {
+            var arrow1 = new Arrow({
+                canvas: this.canvas,
+                width: this.width,
+                url: '../assets/img/u12_arrow.svg',
+                imgScaleParam: 0.2,
+                imgLeft: this.width * 0.4,
+                imgTop: 65,
+                animationSpeed: 160000,
+                scaleIndex: this.scaleIndex,
+                easing: CommonAnimation.linear,
+                shouldCanvasRerenderOnChange: true,
+                opacity: 0.5,
+            });
+            var arrow2 = new Arrow({
+                canvas: this.canvas,
+                width: this.width,
+                url: '../assets/img/u12_arrow.svg',
+                imgScaleParam: 0.2,
+                imgLeft: this.width * 0.5,
+                imgTop: 90,
+                animationSpeed: 120000,
+                scaleIndex: this.scaleIndex,
+                easing: CommonAnimation.linear,
+                shouldCanvasRerenderOnChange: true,
+                opacity: 1,
+            });
+            var arrow3 = new Arrow({
+                canvas: this.canvas,
+                width: this.width,
+                url: '../assets/img/u12_arrow.svg',
+                imgScaleParam: 0.2,
+                imgLeft: this.width * 0.7,
+                imgTop: 75,
+                animationSpeed: 180000,
+                scaleIndex: this.scaleIndex,
+                easing: CommonAnimation.linear,
+                shouldCanvasRerenderOnChange: true,
+                opacity: 0.7,
+            });
         }
 
     });

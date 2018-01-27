@@ -42,13 +42,23 @@ require( [
 
     var reksoftAcademyView = new ReksoftAcademyView();
     $("body").append(reksoftAcademyView.render().$el);
+    var reksoftAcademyCanvas = new fabric.StaticCanvas('academyArrows', {
+        selection: false
+    });
+    reksoftAcademyView.setAnimation(reksoftAcademyCanvas);
 
     var findYourselfView = new FindYourselfView();
     $("body").append(findYourselfView.render().$el);
+    if($("html").hasClass("desktop")) {
+        var findYourselfCanvas = new fabric.StaticCanvas('findYourselfArrows', {
+            selection: false
+        });
+        findYourselfView.setAnimation(findYourselfCanvas);
+    }
 
     $.scrollify({
         section: ".slideContainer",
-        updateHash: false,
+        // updateHash: false,
     });
 
 });

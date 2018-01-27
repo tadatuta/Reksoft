@@ -53,7 +53,8 @@ define([], function () {
 
             return {
                 setScaleIndexOnLoad: setScaleIndexOnLoad,
-                getResolution: getResolution
+                getResolution: getResolution,
+                linear: linear,
             };
 
         })();
