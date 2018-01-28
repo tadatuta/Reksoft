@@ -1,10 +1,11 @@
 define([
-    "backbone",    
+    "backbone",
     "text!../find-yourself/template.html",
     "assets/js/animation/commonAnimation.js",
     "assets/js/reksoft-academy/arrow.js",
     'fabric',
-], function( Backbone, tpl, CommonAnimation, Arrow, fabric  ) {
+    "assets/js/find-yourself/zigzag.js",
+], function( Backbone, tpl, CommonAnimation, Arrow, fabric, Zigzag  ) {
 
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
@@ -26,26 +27,37 @@ define([
             $('#question').blur(function () {
                 $('#email').focus();
             });*/
+
+            setTimeout(function(){
+                $(".addFlashit5").addClass("flashit");
+            }, 5000);
+
             return this;
         },
 
-        setAnimation: function(canvas){
-            this.canvas = canvas;
+        setAnimation: function(arrowCanvas, zigzagCanvas){
+            this.arrowCanvas = arrowCanvas;
+            this.zigzagCanvas = zigzagCanvas;
             this.setNewCanvasSize();
             this.scaleIndex = CommonAnimation.setScaleIndexOnLoad(this.width);
             this.addArrows();
+            this.addZigzag();
         },
 
         setNewCanvasSize: function () {
             this.width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-            this.canvas.setDimensions({
+            this.arrowCanvas.setDimensions({
                 width: this.width,
             });
         },
 
+        addZigzag: function() {
+            var zigzag = new Zigzag(this.zigzagCanvas);
+        },
+
         addArrows: function () {
             var arrow1 = new Arrow({
-                canvas: this.canvas,
+                canvas: this.arrowCanvas,
                 width: this.width,
                 url: '../assets/img/u12_arrow.svg',
                 imgScaleParam: 0.2,
@@ -58,7 +70,7 @@ define([
                 opacity: 0.5,
             });
             var arrow2 = new Arrow({
-                canvas: this.canvas,
+                canvas: this.arrowCanvas,
                 width: this.width,
                 url: '../assets/img/u12_arrow.svg',
                 imgScaleParam: 0.2,
@@ -71,7 +83,7 @@ define([
                 opacity: 1,
             });
             var arrow3 = new Arrow({
-                canvas: this.canvas,
+                canvas: this.arrowCanvas,
                 width: this.width,
                 url: '../assets/img/u12_arrow.svg',
                 imgScaleParam: 0.2,

@@ -50,10 +50,13 @@ require( [
     var findYourselfView = new FindYourselfView();
     $("body").append(findYourselfView.render().$el);
     if($("html").hasClass("desktop")) {
-        var findYourselfCanvas = new fabric.StaticCanvas('findYourselfArrows', {
+        var arrowCanvas = new fabric.StaticCanvas('findYourselfArrows', {
             selection: false
         });
-        findYourselfView.setAnimation(findYourselfCanvas);
+        var zigzagCanvas = new fabric.StaticCanvas('findYourselfZigzag', {
+            selection: false
+        });
+        findYourselfView.setAnimation(arrowCanvas, zigzagCanvas);
     }
 
     $.scrollify({
