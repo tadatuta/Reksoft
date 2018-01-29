@@ -24,6 +24,6 @@
     "device.js": "devicejs#^0.2.7",
     "slick-carousel": "^1.8.1",
     "swiper": "^3.4.2",
-    "scrollify": "^1.0.19"
+    "Scrollify": "^1.0.19"
   }
 }
