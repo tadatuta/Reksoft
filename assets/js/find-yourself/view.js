@@ -102,7 +102,24 @@ define([
             });
         },
 
+        isValidEmail: function(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        },
+
         send: function() {
+            if($("#question").val().length < 10) {
+                $("#questionValidation").text("Обязательное поле");
+                return;
+            }
+            if(!$("#email").val().length || !this.isValidEmail("#email").val()) {
+                $("#emailValidation").text("Обязательное поле");
+                return;
+            }
+            if($("#form_field_checkbox").is(':checked')) {
+                $("#сheckboxValidation").text("Согласие обязательно");
+                return;
+            }
             $.ajax({
                 method: 'POST',
                 url: '/send.php',
@@ -113,7 +130,11 @@ define([
                     email: $("#email").val()
                 },
                 success: function(data) {
-                    // console.log(data)
+                    $("#name, #city, #question, #email").val('');
+                    $("#sendResult").text("Отправлено!");
+                },
+                error: function(){
+                    $("#sendResult").text("Сбой при отправке, повторите попытку позже");
                 }
             })
         }
