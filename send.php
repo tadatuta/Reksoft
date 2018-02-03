@@ -33,11 +33,16 @@ $mail->addAddress('vmityakova@reksoft.ru', '');
 //Set the subject line
 $mail->Subject = 'Recognition message';
 //Replace the plain text body with one created manually
-$mail->Body = 'This is a plain-text message body';
+$mail->Body = "
+Имя: $name
+Город: $city
+Вопрос: $question
+Email: $email
+";
 
-//if (!$mail->send()) {
-//    echo 'Mailer Error: ' . $mail->ErrorInfo;
-//} else {
-//    echo 'Message sent!';
-//}
+if (!$mail->send()) {
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message sent!';
+}
 ?>
