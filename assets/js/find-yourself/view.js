@@ -107,10 +107,10 @@ define([
                 method: 'POST',
                 url: '/send.php',
                 data: {
-                    name: $("#name"),
-                    city: $("#city"),
-                    question: $("#question"),
-                    email: $("#email")
+                    name: $("#name").val(),
+                    city: $("#city").val(),
+                    question: $("#question").val(),
+                    email: $("#email").val()
                 },
                 success: function(data) {
                     // console.log(data)
