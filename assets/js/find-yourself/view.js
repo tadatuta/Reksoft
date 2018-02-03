@@ -11,6 +11,11 @@ define([
         // Кэшируем html-шаблон
         template : _.template( tpl ),
         className: "unit slideContainer",
+
+        events: {
+            "click #send": "send"
+        },
+
         initialize : function( options ) {
         },
 
@@ -95,6 +100,43 @@ define([
                 shouldCanvasRerenderOnChange: true,
                 opacity: 0.7,
             });
+        },
+
+        isValidEmail: function(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        },
+
+        send: function() {
+            if($("#question").val().length < 10) {
+                $("#questionValidation").text("Обязательное поле");
+                return;
+            }
+            if(!$("#email").val().length || !this.isValidEmail($("#email").val())) {
+                $("#emailValidation").text("Обязательное поле");
+                return;
+            }
+            if(!$("#form_field_checkbox").is(':checked')) {
+                $("#сheckboxValidation").text("Согласие обязательно");
+                return;
+            }
+            $.ajax({
+                method: 'POST',
+                url: '/send.php',
+                data: {
+                    name: $("#name").val(),
+                    city: $("#city").val(),
+                    question: $("#question").val(),
+                    email: $("#email").val()
+                },
+                success: function(data) {
+                    $("#name, #city, #question, #email").val('');
+                    $("#sendResult").text("Отправлено!");
+                },
+                error: function(){
+                    $("#sendResult").text("Сбой при отправке, повторите попытку позже");
+                }
+            })
         }
 
     });
