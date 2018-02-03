@@ -10,7 +10,6 @@ $city = $_POST['city'];
 $question = $_POST['question'];
 $email = $_POST['email'];
 
-echo "$name;$city;$question;$email";
 //Create a new PHPMailer instance
 $mail = new PHPMailer;
 //Tell PHPMailer to use SMTP
@@ -40,9 +39,14 @@ $mail->Body = "
 Email: $email
 ";
 
+$response = [];
+$response["status"] = 0;
+
 if (!$mail->send()) {
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
+    $response["status"] = 1;
 } else {
-    echo 'Message sent!';
+    $response["status"] = 0;
 }
+
+echo json_encode($response);
 ?>
