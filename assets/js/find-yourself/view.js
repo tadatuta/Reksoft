@@ -112,7 +112,7 @@ define([
                 $("#questionValidation").text("Обязательное поле");
                 return;
             }
-            if(!$("#email").val().length || !this.isValidEmail(("#email").val())) {
+            if(!$("#email").val().length || !this.isValidEmail($("#email").val())) {
                 $("#emailValidation").text("Обязательное поле");
                 return;
             }
