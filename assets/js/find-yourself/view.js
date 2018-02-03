@@ -107,13 +107,13 @@ define([
                 method: 'POST',
                 url: '/send.php',
                 data: {
-                    name: '123',
-                    city: 'SPb',
-                    question: 'WTF?',
-                    email: 'avmityakov@gmail.com'
+                    name: $("#name"),
+                    city: $("#city"),
+                    question: $("#question"),
+                    email: $("#email")
                 },
                 success: function(data) {
-                    console.log(data)
+                    // console.log(data)
                 }
             })
         }
