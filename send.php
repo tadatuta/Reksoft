@@ -29,7 +29,7 @@ $mail->SMTPAuth = false;
 //Set who the message is to be sent from
 $mail->setFrom('recognition@reksoft.ru', 'Recognition');
 //Set who the message is to be sent to
-$mail->addAddress('vmityakova@reksoft.ru', '');
+$mail->addAddress('vnfoteyeva@gmail.com', '');
 //Set the subject line
 $mail->Subject = 'Recognition message';
 //Replace the plain text body with one created manually
