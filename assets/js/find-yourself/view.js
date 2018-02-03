@@ -11,6 +11,11 @@ define([
         // Кэшируем html-шаблон
         template : _.template( tpl ),
         className: "unit slideContainer",
+
+        events: {
+            "click #send": "send"
+        },
+
         initialize : function( options ) {
         },
 
@@ -95,6 +100,22 @@ define([
                 shouldCanvasRerenderOnChange: true,
                 opacity: 0.7,
             });
+        },
+
+        send: function() {
+            $.ajax({
+                method: 'POST',
+                url: '/send.php',
+                data: {
+                    name: '123',
+                    city: 'SPb',
+                    question: 'WTF?',
+                    email: 'avmityakov@gmail.com'
+                },
+                success: function(data) {
+                    console.log(data)
+                }
+            })
         }
 
     });
