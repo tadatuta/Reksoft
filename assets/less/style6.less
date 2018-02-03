@@ -229,13 +229,15 @@ p {
 						text-decoration: none;
 					}
 					&:after {
-						content: "►►";
+						content: "";
+						background-image: url(../img/rect2.svg);
+						background-repeat: no-repeat;
 						position: absolute;
 						width: 55px;
 						height: 20px;
 						font-size: 20px;
 						color: @color_2;
-						right: -17px;
+						right: -15px;
 						bottom: -1px;
 					}
 				}
@@ -268,9 +270,37 @@ p {
 		position: absolute;
 		display: table;
 		background: url(../img/void_big_circule.png) no-repeat;
-		bottom: 0;
+		bottom: -330px;
 		right: 50%;
-		margin-right: -45px;
+		margin-right: -10px;
+
+		.void-4-sq {
+			width: 72px;
+			height: 12px;
+			position: absolute;
+			display: table;
+			background: url(../img/sq4.png) no-repeat;
+			top: 358px;
+			right: 0;
+			margin-right: 45px;
+		}
+
+		.void-cr-1 {
+			width: 22px;
+			height: 22px;
+			position: absolute;
+			display: table;
+			background: url(../img/cr1.png) no-repeat;
+			top: 643px;
+			left: 142px;
+		}
+
+		.void-cr-2 {
+			top: initial;
+			left: initial;
+			right: 206px;
+			bottom: 263px;
+		}
 	}
 	.void-elements-left {
 		position: absolute;
@@ -290,14 +320,78 @@ p {
 	.void-big-right-circule {
 		position: absolute;
 		left: 50%;
-		bottom: 96px;
+		bottom: -160px;
 		margin-left: 137px;
 		width: 878px;
 		height: 587px;
 		display: table;
 		background: url(../img/big_right_circule.png) no-repeat;
+
+		.void-cr-3 {
+			width: 56px;
+			height: 56px;
+			position: absolute;
+			display: table;
+			background: url(../img/cr2.png) no-repeat;
+			top: 400px;
+			left: 22px;
+		}
+
+		.void-hr-1 {
+			width: 790px;
+			height: 104px;
+			position: absolute;
+			display: table;
+			background: url(../img/hr1.png) no-repeat;
+			top: 400px;
+			left: 22px;
+		}
 	}
 }
+@media screen and (max-width: 1310px) {
+	.desktop {
+		.unit6 .wrapper {
+			margin-left: -560px;
+
+			.feedback-block {
+
+				.feedback-cities p {
+					width: 100%;
+					padding-left: 25px;
+					padding-bottom: 35px;
+				}
+
+				.feedback-texts {
+					display: inline-table;
+					width: 100%;
+					float: left;
+					padding-left: 50px;
+				}
+			}
+		}
+
+		.feedback-block-img-container img {
+			width: 1200px;
+		}
+	}
+}
+@media screen and (max-width: 1140px) {
+	.desktop {
+		.unit6 .wrapper {
+			margin-left: -500px;
+		}
+
+		.feedback-block-img-container img {
+			width: 1035px;
+			margin-top: 40px;
+		}
+
+		.unit6 .void-big-circule {
+			margin-right: -35px;
+		}
+	}
+}
+
 @media screen and (max-width: 1024px) {
 	.desktop {
 		.unit6 {
