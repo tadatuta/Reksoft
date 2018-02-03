@@ -116,7 +116,7 @@ define([
                 $("#emailValidation").text("Обязательное поле");
                 return;
             }
-            if($("#form_field_checkbox").is(':checked')) {
+            if(!$("#form_field_checkbox").is(':checked')) {
                 $("#сheckboxValidation").text("Согласие обязательно");
                 return;
             }
