@@ -32,7 +32,7 @@ define([
 
         addRightCircle: function () {
             var circleRadius = 120;
-            var left = circleRadius + this.width - this.width / 3.5;
+            var left = circleRadius + this.width - this.width / 6;
             var top = circleRadius + 40;
             var scaleIndex = 1;
             var self = this;
@@ -43,7 +43,7 @@ define([
                 stroke: '#F1737A',
                 strokeWidth: 1,
                 top: circleRadius + 40,
-                left: circleRadius + this.width - this.width / 3.5,
+                left: left,
                 opacity: 0
             });
             this.canvas.add(rightCircle);
@@ -101,8 +101,8 @@ define([
         },
 
         addTriangleCrossCircles: function () {
-            var left = this.width - this.width / 3.3;
-            var top = this.height / 2.5;
+            var left = this.width - this.width / 4.5;
+            var top = this.height / 1.8;
             var triangleCrossCircles = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top, 0, 8000, true, this.scaleIndex*0.8);
             var triangleCrossCircles2 = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top + 30* this.scaleIndex, 1, 21000, false, this.scaleIndex*0.8);
             var triangleCrossCircles3 = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top + 60* this.scaleIndex, 2, 33000, true, this.scaleIndex*0.8);

@@ -55,9 +55,9 @@ define([
                 imgScaleParam: 0.2,
                 imgLeft: this.width*0.3,
                 imgTop: 20,
-                animationSpeed: 120000,
+                animationSpeed: 100000,
                 scaleIndex: this.scaleIndex,
-                easing: fabric.util.ease.easeInCirc,
+                easing: CommonAnimation.linear,
                 shouldCanvasRerenderOnChange: true,
                 opacity: 0.5,
             });
