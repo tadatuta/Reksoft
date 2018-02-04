@@ -29,13 +29,13 @@ require( [
     });
     weLikeView.setAnimation(weLikeCanvas);
 
-    var clientRightView = new ClientRightView();
-    $("body").append(clientRightView.render().$el);
-    //clientRightView.swiperInit();
-
     var spektrView = new SpektrView();
     $("body").append(spektrView.render().$el);
     spektrView.slickInit();
+
+    var clientRightView = new ClientRightView();
+    $("body").append(clientRightView.render().$el);
+    //clientRightView.swiperInit();
 
     var peopleView = new PeopleView();
     $("body").append(peopleView.render().$el);
