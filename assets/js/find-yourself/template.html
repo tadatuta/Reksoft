@@ -64,21 +64,22 @@
                         <input type="text" id="city" class="form_field form_field_city" tabindex="2" autocomplete="off"/>
                     </div>
                     <div class="form_row form_row_question">
-                        <label for="question" class="form_label ">Я хочу задать вопрос*:</label>
+                        <label for="question" class="form_label ">Я хочу задать вопрос*: <span id="questionValidation" class="error-text"></span></label>
                         <textarea id="question" rows="10" cols="45"  class="form_field form_field_question" tabindex="3" autocomplete="off"></textarea>
                     </div>
                     <div class="form_row">
-                        <label for="email" class="form_label">Пришлите мне ответ на*:</label>
+                        <label for="email" class="form_label">Пришлите мне ответ на*:<span id="emailValidation" class="error-text"></span></label>
                         <input type="text" id="email" class="form_field form_field_email" tabindex="4" autocomplete="off"/>
                     </div>
                     <div class="form_row">
 
                         <input type="checkbox" id="form_field_checkbox" class="form_field_checkbox" checked/>
                                                 <label for="form_field_checkbox"></label>
-                                                <p class="form_field_checkbox_text">Согласен с <a href="#">условиями</a> оферты</p>
+                                                <p class="form_field_checkbox_text">Согласен с <a href="#">условиями</a> оферты <span id="сheckboxValidation" class="error-text"></span></p>
                     </div>
                     <div class="form_row form_row_submit">
                         <button id="send" type="button" class="form_submit">Отправить</button>
+                        <p class="success-text" id="sendResult"></p>
                     </div>
                 </form>
             </div>
