@@ -120,7 +120,7 @@ define([
             } else {
                 $("#emailValidation").text("");
             }
-            if(!this.isValidEmail($("#email").trim().val())) {
+            if(!this.isValidEmail($("#email").val().trim())) {
                 $("#emailValidation").text("Email введен неверно");
                 return;
             } else {
