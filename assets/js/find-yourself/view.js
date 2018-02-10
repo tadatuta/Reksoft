@@ -111,14 +111,26 @@ define([
             if($("#question").val().length < 10) {
                 $("#questionValidation").text("Обязательное поле");
                 return;
+            } else {
+                $("#questionValidation").text("");
             }
-            if(!$("#email").val().length || !this.isValidEmail($("#email").val())) {
+            if(!$("#email").val().trim().length) {
                 $("#emailValidation").text("Обязательное поле");
                 return;
+            } else {
+                $("#emailValidation").text("");
+            }
+            if(!this.isValidEmail($("#email").trim().val())) {
+                $("#emailValidation").text("Email введен неверно");
+                return;
+            } else {
+                $("#emailValidation").text("");
             }
             if(!$("#form_field_checkbox").is(':checked')) {
                 $("#сheckboxValidation").text("Согласие обязательно");
                 return;
+            } else {
+                $("#сheckboxValidation").text("");
             }
             $.ajax({
                 method: 'POST',
@@ -127,7 +139,7 @@ define([
                     name: $("#name").val(),
                     city: $("#city").val(),
                     question: $("#question").val(),
-                    email: $("#email").val()
+                    email: $("#email").val().trim()
                 },
                 success: function(data) {
                     $("#name, #city, #question, #email").val('');

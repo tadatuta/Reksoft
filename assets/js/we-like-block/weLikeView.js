@@ -12,13 +12,22 @@ define([
         // Кэшируем html-шаблон
         template : _.template( tpl ),
         className: "unit slideContainer",
-        events : {},
+        events : {
+            'click #s7' : 'scrollToSection',
+            'click #s6' : 'scrollToSection',
+        },
         initialize : function( options ) {},
 
         render : function() {
             // Отключаем привязанные события, очищаем элемент и добавляем в верстку шаблон
             this.$el.empty().append( this.template() );
             return this;
+        },
+
+        scrollToSection: function(evt){
+            evt.preventDefault();
+            var sectionId = $(evt.currentTarget)[0].id.replace('s', '');
+            $.scrollify.move("#"+sectionId);
         },
 
         setAnimation: function(canvas){
