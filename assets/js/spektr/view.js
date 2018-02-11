@@ -35,7 +35,7 @@ define([
         },
 
         nextSlideClick : function(){
-            if ($('.sl1').hasClass('slick-active') || $('.sl3').hasClass('slick-active')) {
+            /*if ($('.sl1').hasClass('slick-active') || $('.sl3').hasClass('slick-active')) {
                 $('.bg-trans-animation-1').show();
                 $('.bg-trans-animation-2').hide();
                 $('.bg-trans-animation-3').hide();
@@ -61,6 +61,48 @@ define([
                         $('.bg-trans-animation-2').removeClass('about-active-right');
                     }, 300);
                 }, 300);
+            }*/
+
+            if ($('.sl1').hasClass('slick-active')) {
+                $('.sl1 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickNext');
+
+                    setTimeout(function() {
+                        $('.sl1 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
+            } else if ($('.sl2').hasClass('slick-active')) {
+                $('.sl2 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickNext');
+
+                    setTimeout(function() {
+                        $('.sl2 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
+            } else if ($('.sl3').hasClass('slick-active')) {
+                $('.sl3 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickNext');
+
+                    setTimeout(function() {
+                        $('.sl3 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
+            }  else if ($('.sl4').hasClass('slick-active')) {
+                $('.sl4 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickNext');
+
+                    setTimeout(function() {
+                        $('.sl4 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
             }
 
         },
@@ -68,7 +110,7 @@ define([
         prevSlideClick : function(){
             //this.$('.single-item').slick('slickPrev');
 
-            if ($('.sl2').hasClass('slick-active') || $('.sl4').hasClass('slick-active')) {
+            /*if ($('.sl2').hasClass('slick-active') || $('.sl4').hasClass('slick-active')) {
                 $('.bg-trans-animation-3').hide();
                 $('.bg-trans-animation-2').hide();
                 $('.bg-trans-animation-1').hide();
@@ -94,6 +136,48 @@ define([
                         $('.bg-trans-animation-3').removeClass('a-about-active-left');
                     }, 300);
                 }, 300);
+            }*/
+
+            if ($('.sl1').hasClass('slick-active')) {
+                $('.sl1 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickPrev');
+
+                    setTimeout(function() {
+                        $('.sl1 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
+            } else if ($('.sl2').hasClass('slick-active')) {
+                $('.sl2 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickPrev');
+
+                    setTimeout(function() {
+                        $('.sl2 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
+            } else if ($('.sl3').hasClass('slick-active')) {
+                $('.sl3 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickPrev');
+
+                    setTimeout(function() {
+                        $('.sl3 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
+            }  else if ($('.sl4').hasClass('slick-active')) {
+                $('.sl4 .white-bg').addClass('activated');
+
+                setTimeout(function() {
+                    this.$('.single-item').slick('slickPrev');
+
+                    setTimeout(function() {
+                        $('.sl4 .white-bg').removeClass('activated');
+                    }, 500);
+                }, 500);
             }
         }
 

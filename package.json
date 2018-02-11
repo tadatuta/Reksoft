@@ -15,6 +15,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-bower-requirejs": "^2.0.0",
-    "grunt-cli": "^1.2.0"
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-requirejs": "^1.0.0"
   }
 }
