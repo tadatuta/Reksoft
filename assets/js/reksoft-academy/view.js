@@ -1,8 +1,8 @@
 define([
     "backbone",    
     "text!../reksoft-academy/template.html",
-    "assets/js/animation/commonAnimation.js",
-    "assets/js/reksoft-academy/arrow.js",
+    "../animation/commonAnimation",
+    "../reksoft-academy/arrow",
     'fabric',
 ], function( Backbone, tpl, CommonAnimation, Arrow, fabric ) {
 

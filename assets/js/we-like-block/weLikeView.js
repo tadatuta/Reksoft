@@ -2,10 +2,10 @@ define([
     "backbone",    
     "text!../we-like-block/template.html",
     'fabric',
-    "assets/js/initial-block/circulatingImg.js",
-    "assets/js/initial-block/cloud.js",
-    "assets/js/initial-block/triangleCrossCircles.js",
-    "assets/js/animation/commonAnimation.js"
+    "../initial-block/circulatingImg",
+    "../initial-block/cloud",
+    "../initial-block/triangleCrossCircles",
+    "../animation/commonAnimation"
 ], function( Backbone, tpl, fabric, CirculatingImg, Cloud, TriangleCrossCircles, CommonAnimation ) {
 
     var view = Backbone.View.extend({

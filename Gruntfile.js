@@ -17,9 +17,9 @@ module.exports = function(grunt) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: "assets/js",
-                    mainConfigFile: "assets/js/requirejs-config.js",
-                    name: "app",
+                    baseUrl: "assets/js/",
+                    mainConfigFile: "./assets/js/requirejs-config.js",
+                    include: "app.js",
                     out: "assets/js/dist.js"
                 }
             }
@@ -28,9 +28,9 @@ module.exports = function(grunt) {
 
     // Загружаем задачу
     grunt.loadNpmTasks('grunt-bower-requirejs');
-    grunt.loadNpmTasks('requirejs');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     
     // Создаем другое имя задачи по которому мы будем ее вызывать
     grunt.registerTask('update-requirejs', ['bowerRequirejs']);
-    grunt.registerTask('requirejs', ['requirejs']);
+    grunt.registerTask('build', ['requirejs']);
 }

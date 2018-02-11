@@ -1,10 +1,10 @@
 define([
     "backbone",
     "text!../find-yourself/template.html",
-    "assets/js/animation/commonAnimation.js",
-    "assets/js/reksoft-academy/arrow.js",
+    "../animation/commonAnimation",
+    "../reksoft-academy/arrow",
     'fabric',
-    "assets/js/find-yourself/zigzag.js",
+    "../find-yourself/zigzag",
 ], function( Backbone, tpl, CommonAnimation, Arrow, fabric, Zigzag  ) {
 
     var view = Backbone.View.extend({
