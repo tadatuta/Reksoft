@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: "assets/js",
+    baseUrl: "/assets/js",
     paths: {
         bootstrap: "../../bower_components/bootstrap/dist/js/bootstrap",
         jquery: "../../bower_components/jquery/dist/jquery",
@@ -42,4 +42,4 @@ require.config({
 });
 
 // Загружаем наше приложение (главный скрипт)
-require( [ "app" ] );
+require( [ "app" ] ); // app for developing, dist for prod
