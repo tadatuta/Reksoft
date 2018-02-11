@@ -347,6 +347,50 @@ p {
 			left: 22px;
 		}
 	}
+
+	.squares {
+		position: absolute;
+		top: 358px;
+		right: 0;
+		margin-right: 45px;
+		height: 14px;
+		width: 72px;
+	}
+
+	.square {
+		width: 15px;
+		height: 15px;
+		display: inline-block;
+		background: url(../img/c3_square.svg) no-repeat;
+		transform: rotate(15deg);
+
+		&.animate {
+			-webkit-animation: ShiftSquares ease 10s infinite;
+			animation: ShiftSquares ease 10s infinite;
+		}
+	}
+
+	.square1 {
+		&.animate {
+			-webkit-animation: ShiftSquares1 ease 10s infinite;
+			animation: ShiftSquares1 ease 10s infinite;
+		}
+	}
+
+	.square2 {
+		&.animate {
+			-webkit-animation: ShiftSquares2 ease 10s infinite;
+			animation: ShiftSquares2 ease 10s infinite;
+		}
+	}
+
+	.square3 {
+		&.animate {
+			-webkit-animation: ShiftSquares3 ease 10s infinite;
+			animation: ShiftSquares3 ease 10s infinite;
+		}
+	}
+
 }
 @media screen and (max-width: 1310px) {
 	.desktop {
