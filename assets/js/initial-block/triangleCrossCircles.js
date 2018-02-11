@@ -90,7 +90,7 @@ define(['fabric'], function (fabric) {
                 }
             });
 
-            curObj.animate('scaleY', 0, {
+            curObj.animate({scaleY: 0, opacity: 0}, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {
