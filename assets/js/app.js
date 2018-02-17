@@ -32,6 +32,12 @@ require( [
     var spektrView = new SpektrView();
     $("body").append(spektrView.render().$el);
     spektrView.slickInit();
+    if($("html").hasClass("desktop")) {
+        var historyZigzagCanvas = new fabric.StaticCanvas('zigzag', {
+            selection: false
+        });
+        spektrView.setAnimation(historyZigzagCanvas);
+    }
 
     var clientRightView = new ClientRightView();
     $("body").append(clientRightView.render().$el);

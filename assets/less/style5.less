@@ -353,6 +353,7 @@ p {
 			background-position: center top;
 			position: absolute;
 			overflow-x: hidden;
+			z-index: 100;
 			.to-next-slide-text {
 				left: 50%;
 				margin-left: 310px;
@@ -407,22 +408,27 @@ p {
 		.void-elements-left-line {
 			width: 530px;
 			height: 103px;
-			background-image: url(../img/spectr_left_void.png);
+			background-image: url(../img/cloud_pale1.svg);
 			background-repeat: no-repeat;
 			position: absolute;
 			top: 170px;
-			left: 50%;
-			margin-left: -1280px;
+			right: 0;
+			/*margin-left: -1280px;*/
+			-webkit-animation: cloud1 linear 120s infinite;
+			animation: cloud1 linear 120s infinite;
 		}
 		.void-elements-right-line {
-			width: 709px;
+			width: 509px;
 			height: 93px;
-			background-image: url(../img/spectr_right_void.png);
+			background-image: url(../img/cloud_green3.svg);
 			background-repeat: no-repeat;
 			position: absolute;
 			top: 235px;
-			right: 50%;
-			margin-right: -1400px;
+			right: 0;
+			/*margin-right: -1400px;*/
+			-webkit-animation: cloud2 linear 150s infinite;
+			animation: cloud2 linear 150s infinite;
+			// opacity: 0.5;
 		}
 		.void-gr-line1 {
 			width: 71px;
@@ -431,8 +437,10 @@ p {
 			background-repeat: no-repeat;
 			position: absolute;
 			top: 220px;
-			right: 50%;
+			right: 53%;
 			margin-right: -859px;
+			-webkit-animation: line ease 10s infinite;
+			animation: line ease 10s infinite;
 		}
 		.void-gr-line2 {
 			width: 71px;
@@ -441,26 +449,28 @@ p {
 			background-repeat: no-repeat;
 			position: absolute;
 			top: 233px;
-			right: 50%;
+			right: 53%;
 			margin-right: -841px;
+			-webkit-animation: line2 ease 10s infinite;
+			animation: line2 ease 10s infinite;
 		}
 		.void-br-red-lines {
 			width: 11px;
 			height: 253px;
-			background-image: url(../img/br_red_lines.png);
-			background-repeat: no-repeat;
 			position: absolute;
 			top: 0;
 			right: 50%;
 			margin-right: 0;
 		}
 		.void-br-red-line1 {
-			top: 545px;
-			margin-right: 403px;
+			top: 645px;
+			margin-right: 413px;
 		}
 		.void-br-red-line2 {
-			top: 718px;
+			top: 818px;
 			margin-right: 439px;
+			background-image: url(../img/br_red_lines.png);
+			background-repeat: no-repeat;
 		}
 		.void-br-dif-fig {
 			width: 20px;

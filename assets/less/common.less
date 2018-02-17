@@ -140,3 +140,58 @@
     transform: translateX(0) rotate(15deg);
   }
 }
+
+@keyframes cloud1 {
+  0% {
+    transform: translateX(98%);
+  }
+
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+@keyframes cloud2 {
+  0%, 50% {
+    transform: translateX(98%);
+  }
+
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+// void-gr-line1 void-gr-line2
+@keyframes line {
+  0%, 45% {
+    transform: translateX(120%);
+  }
+
+  48% {
+    transform: translateX(0);
+  }
+
+  95% {
+    transform: translateX(0);
+  }
+
+  98%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes line2 {
+  0%, 10% {
+    transform: translateX(0%);
+  }
+
+  12%, 60% {
+    transform: translateX(120%);
+  }
+
+  63%, 100% {
+    transform: translateX(0%);
+  }
+
+
+}

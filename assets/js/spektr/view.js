@@ -1,7 +1,7 @@
 define([
     "backbone",    
-    "text!../spektr/template.html", "slick"
-], function( Backbone, tpl, slick ) {
+    "text!../spektr/template.html", "slick", "../animation/commonAnimation", "../find-yourself/zigzag"
+], function( Backbone, tpl, slick, CommonAnimation, Zigzag ) {
 
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
@@ -32,6 +32,16 @@ define([
                 slidesToShow: 1,
                 adaptiveHeight: true
             });
+        },
+
+        addZigzag: function() {
+            var zigzag = new Zigzag(this.zigzagCanvas);
+        },
+
+        setAnimation: function(zigzagCanvas){
+            this.zigzagCanvas = zigzagCanvas;
+            this.scaleIndex = CommonAnimation.setScaleIndexOnLoad(this.width);
+            this.addZigzag();
         },
 
         nextSlideClick : function(){
