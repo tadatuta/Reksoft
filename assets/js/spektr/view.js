@@ -19,6 +19,13 @@ define([
         render : function() {
             // Отключаем привязанные события, очищаем элемент и добавляем в верстку шаблон
             this.$el.empty().append( this.template() );
+
+            setTimeout(function(){ <!-- TODO Удалить -->
+                $(".proto1").addClass("slide1");
+                $(".proto2").addClass("slide2");
+                $(".proto3").addClass("slide3");
+            }, 4000);
+
             return this;
         },
 

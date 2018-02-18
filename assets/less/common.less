@@ -193,5 +193,51 @@
     transform: translateX(0%);
   }
 
-
 }
+/* TODO Удалить */
+@keyframes aslide1 {
+  0% {
+    transform: translateX(0) scale(1, 1);
+  }
+
+  15%, 100% {
+    transform: translateX(-50px) scale(3, 1);
+  }
+}
+
+.slide1 {
+  animation: aslide1 ease 20s;
+}
+
+@keyframes aslide2 {
+  0%, 10% {
+    transform: translateX(0) scale(1, 1);
+  }
+
+  20%, 65% {
+    transform: translateX(-23px) scale(50, 1);
+  }
+
+  70%, 100% {
+    transform:  translateX(-75px) scale(150, 1);
+  }
+}
+
+.slide2 {
+  animation: aslide2 ease 20s;
+}
+
+@keyframes aslide3 {
+  0%, 70% {
+    transform: translateX(0) scale(1, 1);
+  }
+
+  85%, 100% {
+    transform: translateX(-23px) scale(50, 1);
+  }
+}
+
+.slide3 {
+  animation: aslide3 ease 20s;
+}
+/* TODO Удалить */
