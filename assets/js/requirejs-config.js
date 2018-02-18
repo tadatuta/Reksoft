@@ -10,7 +10,6 @@ require.config({
         device: "../../bower_components/device.js/lib/device",
         fabric: "../../bower_components/fabric.js/dist/fabric.min",
         slick: "../../bower_components/slick-carousel/slick/slick.min",
-        swiper: "../../bower_components/swiper/dist/js/swiper.min",
         scrollify: "../../bower_components/Scrollify/jquery.scrollify"
     },
     shim: {
@@ -20,11 +19,6 @@ require.config({
             ]
         },
         slick: {
-            deps: [
-                "jquery"
-            ]
-        },
-        swiper: {
             deps: [
                 "jquery"
             ]

@@ -23,7 +23,6 @@
     "fabric.js": "fabric#^1.7.3",
     "device.js": "devicejs#^0.2.7",
     "slick-carousel": "^1.8.1",
-    "swiper": "^3.4.2",
     "Scrollify": "^1.0.19"
   }
 }

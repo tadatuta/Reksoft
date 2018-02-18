@@ -1,9 +1,7 @@
 define([
     "backbone",    
     "text!../our-client-right/template.html",
-    "swiper",
-    "device"
-], function( Backbone, tpl, Swiper, device ) {
+    ], function( Backbone, tpl ) {
 	
 	var unit3DocWidth = $( document ).width();
 

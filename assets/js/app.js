@@ -41,7 +41,6 @@ require( [
 
     var clientRightView = new ClientRightView();
     $("body").append(clientRightView.render().$el);
-    //clientRightView.swiperInit();
 
     var peopleView = new PeopleView();
     $("body").append(peopleView.render().$el);
