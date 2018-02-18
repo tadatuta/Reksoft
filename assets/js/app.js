@@ -8,6 +8,7 @@ require( [
     "find-yourself/view",
     'fabric',
     'scrollify',
+    "device"
 ], function(
          MainView, 
          WeLikeView, 
@@ -17,7 +18,8 @@ require( [
          ReksoftAcademyView,
          FindYourselfView,
          fabric,
-         scrollify
+         scrollify,
+         device
 ) {
     var mainView = new MainView();
     $("#firstSlide").append( mainView.render().$el );
