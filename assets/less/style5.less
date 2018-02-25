@@ -472,6 +472,20 @@ p {
 			margin-left: -13px;
 		}
 	}
+	.slide {
+		.right-info-block.activated {
+			transform: translate(-100%, 0px);
+			-webkit-transition: -webkit-transform .5s;
+			-moz-transition: -moz-transform .5s;
+			transition: transform 0.5s;
+		}
+		.left-info-block.activated {
+			transform: translate(100%, 0px);
+			-webkit-transition: -webkit-transform .5s;
+			-moz-transition: -moz-transform .5s;
+			transition: transform 0.5s;
+		}
+	}
 	.sl2 {
 		position: relative;
 		overflow-x: hidden;
