@@ -39,19 +39,28 @@ define(['fabric'], function (fabric) {
 
     };
 
+    TriangleCrossCircles.prototype.reinit = function (left, top, scaleIndex) {
+        this.left = left;
+        this.top = top;
+        this.scaleIndex = scaleIndex;
+        this.curObj.set({
+            left: left,
+            top: top,
+        });
+    };
+
     TriangleCrossCircles.prototype.setNextState = function () {
         var self = this;
-        var curObj;
         if (this.state == 0) {
-            curObj = this.cross;
+            this.curObj = this.cross;
         } else if (this.state == 1) {
-            curObj = this.triangle;
+            this.curObj = this.triangle;
         } else {
-            curObj = this.circle;
+            this.curObj = this.circle;
         }
 
-		curObj.scale(this.scaleIndex * 0.8);
-        this.canvas.add(curObj.set({
+        this.curObj.scale(this.scaleIndex * 0.8);
+        this.canvas.add(this.curObj.set({
             left: self.left,
             top: self.top,
             originX: "center",
@@ -63,18 +72,18 @@ define(['fabric'], function (fabric) {
         }));
 
         //плавное появление
-        curObj.animate('opacity', 1, {
+        this.curObj.animate('opacity', 1, {
             duration: 1000,
             easing: fabric.util.ease.easeInOutExpo,
             onComplete: function () { }
         });
 
         if(this.isBlinking) {
-            this.addBlinking(curObj);
+            this.addBlinking(this.curObj);
         }
 
         setTimeout(function () {
-            curObj.animate('angle', 360, {
+            self.curObj.animate('angle', 360, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {
@@ -82,7 +91,7 @@ define(['fabric'], function (fabric) {
                 }
             });
 
-            curObj.animate('scaleX', 0, {
+            self.curObj.animate('scaleX', 0, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {
@@ -90,7 +99,7 @@ define(['fabric'], function (fabric) {
                 }
             });
 
-            curObj.animate({scaleY: 0, opacity: 0}, {
+            self.curObj.animate({scaleY: 0, opacity: 0}, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {

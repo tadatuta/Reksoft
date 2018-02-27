@@ -5,8 +5,9 @@ define(['fabric', "../initial-block/blinkingSquare"], function (fabric, Blinking
         this.movePathLength = 100*scaleIndex;
         this.timeBeforeNextAnim = 500;
         this.numberOfItems = 4;
+        this.canvas = canvas;
         var baseLeftOffset = 150*scaleIndex;
-        var squares = [];
+        this.squares = [];
         var square;
         var self = this;
 
@@ -22,27 +23,39 @@ define(['fabric', "../initial-block/blinkingSquare"], function (fabric, Blinking
                 'opacity': 0
             });
             canvas.add(square);
-            squares.push(square);
+            this.squares.push(square);
 
             this.slideToPosition(square, width - baseLeftOffset + 20*j*scaleIndex);
         }
 
-        squares[0].intervalBeforeNextState = 7000;
-        squares[0].addBlinking();
-        squares[2].intervalBeforeNextState = 10000;
-        squares[2].addBlinking();
+        this.squares[0].intervalBeforeNextState = 7000;
+        this.squares[0].addBlinking();
+        this.squares[2].intervalBeforeNextState = 10000;
+        this.squares[2].addBlinking();
 
         //выполнять после появления сбоку
         setTimeout(function(){
-            self.animateGroup(squares);
+            self.animateGroup(self.squares);
         }, 1000);
 
         $("body").on("animation-end", function(){
             setTimeout(function(){
-                self.animateGroup(squares);
+                self.animateGroup(self.squares);
             }, 500);
         });
 
+    };
+
+    SquaresGroup.prototype.reinit = function (width, scaleIndex) {
+        var baseLeftOffset = 150*scaleIndex;
+        for(var j=0;j < this.numberOfItems; j++){
+            this.squares[j].set({
+                left: width - baseLeftOffset + 20*j*scaleIndex,
+                top: this.canvas.getHeight() / 2 - 8,
+                width: 10 * scaleIndex,
+                height: 10 * scaleIndex,
+            });
+        }
     };
 
     SquaresGroup.prototype.animateGroup = function (squares) {

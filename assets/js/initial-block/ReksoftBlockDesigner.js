@@ -21,7 +21,6 @@ define(['fabric', "../initial-block/MovingCircle",
 
         var ReksoftBlockDesigner = (function () {
 
-            //var settings = {};
             var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
             var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
             var scaleIndex;
@@ -34,6 +33,46 @@ define(['fabric', "../initial-block/MovingCircle",
             var reksoftImagePadding;
             var canvas;
 			var paddingFromLogoToHorLine = 25;
+            var logo;
+            var firstHorLine;
+            var firstDiagonalLine;
+            var secondDiagonalLine;
+            var orbits = [];
+            var planet0;
+            var planet1;
+            var planet2;
+            var movingArcBottom;
+            var movingArcBottom2;
+            var movingArcBottom3;
+            var sticksAroundCircle0;
+            var sticksAroundCircle1;
+            var sticksAroundCircle2;
+            var circlesAr;
+            var topImg;
+            var noise;
+            var leftCirclesImg;
+            var leftCircles;
+            var rightCircle;
+            var circulatingImgs;
+            var movingCircle1;
+            var movingCircle2;
+            var movingCircle3;
+            var movingCircle4;
+            var mouse;
+            var movingMouseCircle;
+            var ieroglifsRightImg;
+            var blinkingIeroglif;
+            var ieroglifsLeftImg;
+            var blinkingIeroglifLeft;
+            var blinkingIeroglifLeft1;
+            var blinkingIeroglifLeft2;
+            var triangleCrossCircles;
+            var triangleCrossCircles2;
+            var triangleCrossCircles3;
+            var triangleCrossCircles4;
+            var triangleCrossCircles5;
+            var squaresGroup;
+            var zigzags;
 
             var init = function () {
                 fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
@@ -52,14 +91,28 @@ define(['fabric', "../initial-block/MovingCircle",
             };
 
             var _reinit = function () {
-                if (!$("html").hasClass("tablet") && !$("html").hasClass("mobile")) return;
-                canvas.clear();
+                /*if (!$("html").hasClass("tablet") && !$("html").hasClass("mobile")) return;*/
                 scaleIndex = CommonAnimation.setScaleIndexOnLoad(width);
                 setNewCanvasSize();
                 evaluateScaleDependedVars();
-                addLines();
-                addlogo();
-                addClounds();
+                reinitLogo();
+                reinitLines();
+                redrawCircles();
+                reinitPlanets();
+                reinitArcs();
+                reinitSticksAroundCenterCircle();
+                reinitLittleCirclesInCenter();
+                reinitLittleTopImg();
+                reinitNoise();
+                reinitLeftCircles();
+                reinitRightCircle();
+                reinitMountainCircles();
+                reinitMouse();
+                reinitIeroglifsRight();
+                reinitIeroglifsLeft();
+                reinitTriangleCrossCircles();
+                reinitSquaresGroup();
+                reinitZigzags();
             };
 
             var _bindUIEvents = function () {
@@ -120,8 +173,8 @@ define(['fabric', "../initial-block/MovingCircle",
             var addLines = function () {
                 var length = 900;
                 var angle;
-                var x1;
-                var y1;
+                var x1 = width / 2;
+                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex;
                 var xIntersectionWithScreenTop;
                 var duration = 450;
 
@@ -132,26 +185,50 @@ define(['fabric', "../initial-block/MovingCircle",
                     duration: duration
                 });
 
-                fullScreenLines.drawAnimatedHorizontalLine(0, width, height / 2);
+                firstHorLine = fullScreenLines.drawAnimatedHorizontalLine(0, width, height / 2);
 
                 setTimeout(function () {
                     angle = 125;
-                    x1 = width / 2;
-                    y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex;
                     xIntersectionWithScreenTop = getLinesIntersectionByTwoCoord(x1, y1, x1 + length * Math.cos(Math.PI * angle / 180.0),
                         y1 + length * Math.sin(Math.PI * angle / 180.0), 0);
-                    fullScreenLines.drawAnimatedDiagonalLine(angle, xIntersectionWithScreenTop, 0);
+                    firstDiagonalLine = fullScreenLines.drawAnimatedDiagonalLine(angle, xIntersectionWithScreenTop, 0);
                 }, duration - 200);
 
                 setTimeout(function () {
                     angle = 57;
-                    x1 = width / 2;
-                    y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex; // 10: paddings
                     xIntersectionWithScreenTop = getLinesIntersectionByTwoCoord(x1, y1, x1 + length * Math.cos(Math.PI * angle / 180.0),
                         y1 + length * Math.sin(Math.PI * angle / 180.0), 0);
-                    fullScreenLines.drawAnimatedDiagonalLine(angle, xIntersectionWithScreenTop, 0);
+                    secondDiagonalLine = fullScreenLines.drawAnimatedDiagonalLine(angle, xIntersectionWithScreenTop, 0);
                 }, (duration - 200) * 2);
 
+            };
+
+            var reinitLines = function() {
+                var value = 4000;
+                var length = 900;
+                firstHorLine.set({ x1: width, y1: height / 2, x2: 0, y2: height / 2  });
+                var angle = 57;
+                var x1 = width / 2;
+                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex; // 10: paddings
+
+                var xIntersectionWithScreenTop = getLinesIntersectionByTwoCoord(x1, y1, x1 + length * Math.cos(Math.PI * angle / 180.0),
+                    y1 + length * Math.sin(Math.PI * angle / 180.0), 0);
+                secondDiagonalLine.set({
+                    x1: xIntersectionWithScreenTop,
+                    y1: 0,
+                    x2: xIntersectionWithScreenTop + value * Math.cos(Math.PI * angle / 180.0),
+                    y2: value * Math.sin(Math.PI * angle / 180.0)
+                });
+
+                angle = 125;
+                xIntersectionWithScreenTop = getLinesIntersectionByTwoCoord(x1, y1, x1 + length * Math.cos(Math.PI * angle / 180.0),
+                    y1 + length * Math.sin(Math.PI * angle / 180.0), 0);
+                firstDiagonalLine.set({
+                    x1: xIntersectionWithScreenTop,
+                    y1: 0,
+                    x2: xIntersectionWithScreenTop + value * Math.cos(Math.PI * angle / 180.0),
+                    y2: value * Math.sin(Math.PI * angle / 180.0)
+                });
             };
 
             var addlogo = function () {
@@ -159,7 +236,7 @@ define(['fabric', "../initial-block/MovingCircle",
 
                     fabric.loadSVGFromURL('../assets/img/Reksoft-logo.svg', function (objects, options) {
                         var logoScaleIndex = 0.65;
-                        var logo = fabric.util.groupSVGElements(objects, options);
+                        logo = fabric.util.groupSVGElements(objects, options);
                         logo.scale(logoScaleIndex * scaleIndex);
                         var imgWidth = logo.width * logoScaleIndex * scaleIndex;
                         var imgHeight = logo.height * logoScaleIndex * scaleIndex;
@@ -186,9 +263,24 @@ define(['fabric', "../initial-block/MovingCircle",
                 }, 1000);
             };
 
+            var reinitLogo = function () {
+                var logoScaleIndex = 0.65;
+                var imgWidth = logo.width * logoScaleIndex * scaleIndex;
+                var imgHeight = logo.height * logoScaleIndex * scaleIndex;
+                var logoTop = height / 2 - reksoftImagePadding - imgHeight;
+                logo.scale(logoScaleIndex * scaleIndex);
+                logo.set({
+                    left: width / 2 - imgWidth / 2 - 2, //-2, тк неотцентрована немного картинка
+                    top: logoTop,
+                    originX: "left",
+                    originY: "top",
+                    opacity: 1
+                });
+            };
+
             var addNoise = function () {
                 fabric.loadSVGFromURL('../assets/img/noise.svg', function (objects, options) {
-                    var noise = fabric.util.groupSVGElements(objects, options);
+                    noise = fabric.util.groupSVGElements(objects, options);
                     var imgHeight = noise.height * 0.8 * scaleIndex;
                     noise.scale(0.8 * scaleIndex);
                     canvas.add(noise.set({
@@ -209,10 +301,19 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
             };
 
+            var reinitNoise = function () {
+                var imgHeight = noise.height * 0.8 * scaleIndex;
+                noise.scale(0.8 * scaleIndex);
+                noise.set({
+                    left: width / 2 - 400 * scaleIndex,
+                    top: height / 2 - imgHeight / 2,
+                });
+            };
+
             var addLittleTopImg = function () {
                 fabric.loadSVGFromURL('../assets/img/top-thing.svg', function (objects, options) {
 
-                    var topImg = fabric.util.groupSVGElements(objects, options);
+                    topImg = fabric.util.groupSVGElements(objects, options);
                     var imgHeight = topImg.height * 0.55 * scaleIndex;
                     topImg.scale(0.5 * scaleIndex);
                     canvas.add(topImg.set({
@@ -236,11 +337,16 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
             };
 
+            var reinitLittleTopImg = function () {
+                topImg.scale(0.5 * scaleIndex);
+                topImg.set({
+                    left: width / 2,
+                });
+            };
+
             var addMouse = function () {
                 fabric.loadSVGFromURL('../assets/img/mouse.svg', function (objects, options) {
-                    var mouse = fabric.util.groupSVGElements(objects, options);
-                    var imgHeight = mouse.height;
-                    //mouse.scale(0.55);
+                    mouse = fabric.util.groupSVGElements(objects, options);
                     canvas.add(mouse.set({
                         left: width / 2,
                         top: height - 160 * scaleIndex,
@@ -249,7 +355,7 @@ define(['fabric', "../initial-block/MovingCircle",
                     }));
                 });
 
-                var movingMouseCircle = new MovingMouseCircle({
+                movingMouseCircle = new MovingMouseCircle({
                     left: width / 2,
                     top: height - 155 * scaleIndex,
                     radius: 2,
@@ -262,6 +368,18 @@ define(['fabric', "../initial-block/MovingCircle",
                 setTimeout(function () {
                     movingMouseCircle.animateTopAndBack();
                 }, 2000);
+            };
+
+            var reinitMouse = function () {
+                if(!mouse) return;
+                mouse.set({
+                    left: width / 2,
+                    top: height - 160 * scaleIndex,
+                });
+                movingMouseCircle.set({
+                    left: width / 2,
+                    top: height - 155 * scaleIndex,
+                });
             };
 
             var addLittleCirclesInCenter = function () {
@@ -278,7 +396,7 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
 
                 $.when(def).done(function () {
-                    var circlesAr = [];
+                    circlesAr = [];
                     circlesAr.push(circle);
                     for (var i = 0; i < 4; i++) {
                         circlesAr.push(fabric.util.object.clone(circle));
@@ -290,8 +408,7 @@ define(['fabric', "../initial-block/MovingCircle",
                     var mLCircle4 = new MovingLittleCircle(canvas, width, height, circlesAr[3], 32, 3000, baseDelay + 6000, baseDelay, reksoftImgHeight);
                     var mLCircle5 = new MovingLittleCircle(canvas, width, height, circlesAr[4], 40, 4000, baseDelay + 5000, baseDelay, reksoftImgHeight);
 
-                    var mLCirclesAr = [];
-                    mLCirclesAr.push(mLCircle, mLCircle2, mLCircle3, mLCircle4, mLCircle5);
+                    var mLCirclesAr = [mLCircle, mLCircle2, mLCircle3, mLCircle4, mLCircle5];
 
                     setTimeout(function () {
                         animateLittleCircles(mLCirclesAr);
@@ -312,6 +429,16 @@ define(['fabric', "../initial-block/MovingCircle",
 
             };
 
+            var reinitLittleCirclesInCenter = function () {
+                for (var i = 0; i <= 4; i++) {
+                    circlesAr[i].scale(1.53 * scaleIndex);
+                    circlesAr[i].set({
+                        left: width / 2,
+                        top: height / 2 - reksoftImgHeight / 2,
+                    });
+                }
+            };
+
             var addIeroglifsLeft = function () {
                 //x1,y1,x2,y2,yLine2
                 var angle = 125;
@@ -326,9 +453,9 @@ define(['fabric', "../initial-block/MovingCircle",
 
                 //fabric.Image.fromURL('../assets/img/ieroglifsBase.svg', function (img) {
                 fabric.loadSVGFromURL('../assets/img/ieroglifsBase.svg', function(objects, options) {
-                    var img = fabric.util.groupSVGElements(objects, options);
-                    img.scale(0.8 * scaleIndex);
-                    canvas.add(img.set({
+                    ieroglifsLeftImg = fabric.util.groupSVGElements(objects, options);
+                    ieroglifsLeftImg.scale(0.8 * scaleIndex);
+                    canvas.add(ieroglifsLeftImg.set({
                         left: ierLeft ,
                         top: ierTop,
                         originX: "left",
@@ -337,7 +464,7 @@ define(['fabric', "../initial-block/MovingCircle",
 						angle: (angle-90)
                     }));
                     //плавное появление
-                    img.animate('opacity', 100, {
+                    ieroglifsLeftImg.animate('opacity', 100, {
                         duration: 1000,
                         easing: fabric.util.ease.easeInOutExpo,
                         onComplete: function () {
@@ -346,9 +473,29 @@ define(['fabric', "../initial-block/MovingCircle",
 
                 });
 
-                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs1.svg', 4000, ierLeft, ierTop, scaleIndex, angle);
-                var blinkingImg1 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs3.svg', 5000, ierLeft, ierTop, scaleIndex, angle);
-                var blinkingImg2 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs4.svg', 7000, ierLeft, ierTop, scaleIndex, angle);
+                blinkingIeroglifLeft = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs1.svg', 4000, ierLeft, ierTop, scaleIndex, angle);
+                blinkingIeroglifLeft1 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs3.svg', 5000, ierLeft, ierTop, scaleIndex, angle);
+                blinkingIeroglifLeft2 = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs4.svg', 7000, ierLeft, ierTop, scaleIndex, angle);
+            };
+
+            var reinitIeroglifsLeft = function () {
+                var angle = 125;
+                var length = 1;
+                var x1 = width / 2;
+                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex;
+                var x2 = x1 + length * Math.cos(Math.PI * angle / 180.0);
+                var y2 = y1 + length * Math.sin(Math.PI * angle / 180.0);
+                var xIntersection = getLinesIntersectionByTwoCoord(x1, y1, x2, y2, height - height / 3.3);
+                var ierLeft = xIntersection + 10 * scaleIndex;
+                var ierTop = height - height / 3.3;
+                ieroglifsLeftImg.set({
+                    left: ierLeft,
+                    top: ierTop,
+                    angle: (angle-90)
+                });
+                blinkingIeroglifLeft.reinit(ierLeft, ierTop);
+                blinkingIeroglifLeft1.reinit(ierLeft, ierTop);
+                blinkingIeroglifLeft2.reinit(ierLeft, ierTop);
             };
 
             var addIeroglifsRight = function () {
@@ -365,9 +512,9 @@ define(['fabric', "../initial-block/MovingCircle",
 
                 //fabric.Image.fromURL('../assets/img/ieroglifs2Base.svg', function (img) {
                 fabric.loadSVGFromURL('../assets/img/ieroglifs2Base.svg', function(objects, options) {
-                    var img = fabric.util.groupSVGElements(objects, options);
-                    img.scale(0.8 * scaleIndex);
-                    canvas.add(img.set({
+                    ieroglifsRightImg = fabric.util.groupSVGElements(objects, options);
+                    ieroglifsRightImg.scale(0.8 * scaleIndex);
+                    canvas.add(ieroglifsRightImg.set({
                         left: ierLeft,
                         top: ierTop,
 						originX: "left",
@@ -376,7 +523,7 @@ define(['fabric', "../initial-block/MovingCircle",
 						angle: (angle-90)
                     }));
                     //плавное появление
-                    img.animate('opacity', 100, {
+                    ieroglifsRightImg.animate('opacity', 100, {
                         duration: 1000,
                         easing: fabric.util.ease.easeInOutExpo,
                         onComplete: function () {
@@ -385,7 +532,25 @@ define(['fabric', "../initial-block/MovingCircle",
 
                 });
 
-                var blinkingImg = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs21.svg', 6000, ierLeft, ierTop, scaleIndex, angle);
+                blinkingIeroglif = new BlinkingImg(canvas, width, height, '../assets/img/ieroglifs21.svg', 6000, ierLeft, ierTop, scaleIndex, angle);
+            };
+
+            var reinitIeroglifsRight = function () {
+                var angle = 55;
+                var length = 1;
+                var x1 = width / 2;
+                var y1 = height / 2 - reksoftImagePadding - reksoftImgHeight - paddingFromLogoToHorLine * scaleIndex;
+                var x2 = x1 + length * Math.cos(Math.PI * angle / 180.0);
+                var y2 = y1 + length * Math.sin(Math.PI * angle / 180.0);
+                var xIntersection = getLinesIntersectionByTwoCoord(x1, y1, x2, y2, height - height / 3.4);
+                var ierLeft = xIntersection - 15 * scaleIndex;
+                var ierTop = height - height / 3.4;
+                ieroglifsRightImg.set({
+                    left: ierLeft,
+                    top: ierTop,
+                    angle: (angle-90)
+                });
+                blinkingIeroglif.reinit(ierLeft, ierTop);
             };
 
             var addMountainCircles = function () {
@@ -393,7 +558,7 @@ define(['fabric', "../initial-block/MovingCircle",
                 var proportionalHeight = 322 * proportiponalParam;
                 var showTop = height - proportionalHeight / 2.5;
 
-                var movingCircle1 = new MovingCircle({
+                movingCircle1 = new MovingCircle({
                     left: width / 6.3,
                     top: height,
                     radius: 10 * scaleIndex,
@@ -407,7 +572,7 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
 
                 showTop = height - proportionalHeight / 4;
-                var movingCircle2 = new MovingCircle({
+                movingCircle2 = new MovingCircle({
                     left: width / 2.35,
                     top: height,
                     radius: 10 * scaleIndex,
@@ -420,7 +585,7 @@ define(['fabric', "../initial-block/MovingCircle",
                     movingCircle2.moveBack();
                 });
 
-                var movingCircle3 = new MovingCircle({
+                movingCircle3 = new MovingCircle({
                     left: width / 1.7,
                     top: height,
                     radius: 30 * scaleIndex,
@@ -433,7 +598,7 @@ define(['fabric', "../initial-block/MovingCircle",
                     movingCircle3.moveTop();
                 });
 
-                var movingCircle4 = new MovingCircle({
+                movingCircle4 = new MovingCircle({
                     left: width - width / 8,
                     top: height,
                     radius: 10 * scaleIndex,
@@ -447,14 +612,46 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
             };
 
+            var reinitMountainCircles = function () {
+                var proportiponalParam = width / 1920;//1920 - ширина гор
+                var proportionalHeight = 322 * proportiponalParam;
+                var showTop = height - proportionalHeight / 2.5;
+                movingCircle1.reinit(showTop, scaleIndex);
+                movingCircle1.set({
+                    left: width / 6.3,
+                    top: showTop,
+                    radius: 10 * scaleIndex,
+                });
+
+                showTop = height - proportionalHeight / 4;
+                movingCircle2.reinit(showTop, scaleIndex);
+                movingCircle2.set({
+                    left: width / 2.35,
+                    top: showTop,
+                    radius: 10 * scaleIndex,
+                });
+
+                movingCircle3.set({
+                    left: width / 1.7,
+                    top: showTop,
+                    radius: 30 * scaleIndex,
+                });
+                movingCircle3.reinit(showTop, scaleIndex);
+
+                movingCircle4.set({
+                    left: width - width / 8,
+                    top: showTop,
+                    radius: 10 * scaleIndex,
+                });
+                movingCircle4.reinit(showTop, scaleIndex);
+            };
+
             var addSticksAroundCenterCircle = function () {
                 var mscaleIndex = 0.65 * scaleIndex;
                 fabric.loadSVGFromURL('../assets/img/aroundCircle0.svg', function(objects, options) {
-                    var img = fabric.util.groupSVGElements(objects, options);
-                    var imgWidth = img.width * mscaleIndex;
-                    var imgHeight = img.height * mscaleIndex;
-                    img.scale(mscaleIndex);
-                    canvas.add(img.set({
+                    sticksAroundCircle0 = fabric.util.groupSVGElements(objects, options);
+                    sticksAroundCircle0.scale(mscaleIndex);
+                    canvas.add(sticksAroundCircle0.set({
                         left: width / 2,
                         top: height / 2 - reksoftImgHeight / 2,
                         originX: "center",
@@ -462,35 +659,91 @@ define(['fabric', "../initial-block/MovingCircle",
                         opacity: 1
                     }));
                 });
-                var sticksAroundCircle = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle.svg', -15, 10, 15, 2000, mscaleIndex, reksoftImgHeight);
-                var sticksAroundCircle2 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle2.svg', 12, -5, -12, 2000, mscaleIndex, reksoftImgHeight);
+                var sticksAroundCircleObj1 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle.svg', -15, 10, 15, 2000, mscaleIndex, reksoftImgHeight);
+                $.when(sticksAroundCircleObj1.loadImg()).done(function () {
+                    sticksAroundCircle1 = sticksAroundCircleObj1.getImg();
+                });
+
+                var sticksAroundCircleObj2 = new SticksAroundCircle(canvas, width, height, '../assets/img/aroundCircle2.svg', 12, -5, -12, 2000, mscaleIndex, reksoftImgHeight);
+                $.when(sticksAroundCircleObj2.loadImg()).done(function () {
+                    sticksAroundCircle2 = sticksAroundCircleObj2.getImg();
+                });
 
                 setTimeout(function () {
-                    sticksAroundCircle.animateTwoDirection();
+                    sticksAroundCircleObj1.animateTwoDirection();
                     setTimeout(function () {
-                        sticksAroundCircle2.animateTwoDirection();
+                        sticksAroundCircleObj2.animateTwoDirection();
                     }, 350);
                 }, 6000);
 
             };
 
+            var reinitSticksAroundCenterCircle = function(){
+                var mscaleIndex = 0.65 * scaleIndex;
+                sticksAroundCircle0.scale(mscaleIndex);
+                sticksAroundCircle0.set({
+                    left: width / 2,
+                    top: height / 2 - reksoftImgHeight / 2,
+                });
+                sticksAroundCircle1.scale(mscaleIndex);
+                sticksAroundCircle1.set({
+                    left: width / 2 ,
+                    top: height / 2 - reksoftImgHeight/2,
+                });
+                sticksAroundCircle2.scale(mscaleIndex);
+                sticksAroundCircle2.set({
+                    left: width / 2 ,
+                    top: height / 2 - reksoftImgHeight/2,
+                });
+            };
+
             var addTriangleCrossCircles = function () {
 				var left = width / 2 + 390 * scaleIndex;
 				var top = height / 2 + 20 * scaleIndex;
-                var triangleCrossCircles = new TriangleCrossCircles(canvas, width, height, left, top, 0, 8000, true, scaleIndex);
-                var triangleCrossCircles2 = new TriangleCrossCircles(canvas, width, height, left, top + 30* scaleIndex, 1, 21000, false, scaleIndex);
-                var triangleCrossCircles3 = new TriangleCrossCircles(canvas, width, height, left, top + 60* scaleIndex, 2, 33000, true, scaleIndex);
-                var triangleCrossCircles4 = new TriangleCrossCircles(canvas, width, height, left, top + 90* scaleIndex, 0, 25000, false, scaleIndex);
-                var triangleCrossCircles5 = new TriangleCrossCircles(canvas, width, height, left, top + 120* scaleIndex, 1, 30000, true, scaleIndex);
+                triangleCrossCircles = new TriangleCrossCircles(canvas, width, height, left, top, 0, 8000, true, scaleIndex);
+                triangleCrossCircles2 = new TriangleCrossCircles(canvas, width, height, left, top + 30* scaleIndex, 1, 21000, false, scaleIndex);
+                triangleCrossCircles3 = new TriangleCrossCircles(canvas, width, height, left, top + 60* scaleIndex, 2, 33000, true, scaleIndex);
+                triangleCrossCircles4 = new TriangleCrossCircles(canvas, width, height, left, top + 90* scaleIndex, 0, 25000, false, scaleIndex);
+                triangleCrossCircles5 = new TriangleCrossCircles(canvas, width, height, left, top + 120* scaleIndex, 1, 30000, true, scaleIndex);
+            };
+
+            var reinitTriangleCrossCircles = function () {
+                var left = width / 2 + 390 * scaleIndex;
+                var top = height / 2 + 20 * scaleIndex;
+                triangleCrossCircles.reinit(left, top, scaleIndex);
+                triangleCrossCircles2.reinit(left, top + 30* scaleIndex, scaleIndex);
+                triangleCrossCircles3.reinit(left, top + 60* scaleIndex, scaleIndex);
+                triangleCrossCircles4.reinit(left, top + 90* scaleIndex, scaleIndex);
+                triangleCrossCircles5.reinit(left, top + 120* scaleIndex, scaleIndex);
             };
 
             var addSquaresGroup = function () {
-                var squaresGroup = new SquaresGroup(canvas, width, height, scaleIndex);
+                squaresGroup = new SquaresGroup(canvas, width, height, scaleIndex);
+            };
+
+            var reinitSquaresGroup = function () {
+                squaresGroup.reinit(width, scaleIndex);
             };
 
             var addLeftCircles = function () {
                 var left = width / 20;
-                var leftCircles = new LeftCircles(canvas, width, height, '../assets/img/circles-left.svg', left, scaleIndex);
+                leftCircles = new LeftCircles(canvas, width, height, '../assets/img/circles-left.svg', left, scaleIndex, 0.7);
+                $.when(leftCircles.loadImg()).done(function () {
+                    leftCirclesImg = leftCircles.getImg();
+                });
+            };
+
+            var reinitLeftCircles = function () {
+                var left = width / 20;
+                var curImgScale = 0.7;
+                var imgHeight = leftCirclesImg.height * scaleIndex;
+                leftCirclesImg.scale(curImgScale * scaleIndex);
+                leftCirclesImg.set({
+                    left: left,
+                    top: height / 2 - imgHeight * curImgScale / 2 - 20 * scaleIndex,
+                });
+                leftCircles.reinit(height, scaleIndex);
+                leftCircles.reinitLinesToLeftCircles();
             };
 
             var addRightCircle = function () {
@@ -500,7 +753,7 @@ define(['fabric', "../initial-block/MovingCircle",
 				}
                 var top = height / 2 + 100 * scaleIndex;
 
-                var rightCircle = new fabric.Circle({
+                rightCircle = new fabric.Circle({
                     radius: 120 * scaleIndex,
                     fill: '',
                     stroke: '#F1737A',
@@ -517,18 +770,51 @@ define(['fabric', "../initial-block/MovingCircle",
                     duration: 1000,
                     easing: fabric.util.ease.easeOutBounce,
                     onComplete: function () {
-                       var circulatingImgs = new CirculatingImg(canvas, '../assets/img/arcRightCircle.svg',
+                       circulatingImgs = new CirculatingImg(canvas, '../assets/img/arcRightCircle.svg',
                             '../assets/img/circleRightCircle.svg', left, top, scaleIndex);
-                        setTimeout(function () {
-                            circulatingImgs.animateCircle();
-                        }, 4000);
+
+                        $.when(circulatingImgs.loadCircle(), circulatingImgs.loadArc()).done(function () {
+                            setTimeout(function () {
+                                circulatingImgs.animateCircle();
+                            }, 4000);
+                        });
+
                     }
                 });
 
             };
 
+            var reinitRightCircle = function () {
+                var left = width / 1.26;
+                if(CommonAnimation.getResolution() != "desktop_sm1") {
+                    left = width / 1.23;
+                }
+                var top = height / 2 + 100 * scaleIndex;
+                rightCircle.set({
+                    radius: 120 * scaleIndex,
+                    top: top,
+                    left: left,
+                });
+                var circle = circulatingImgs.getCircle();
+                var arc = circulatingImgs.getArc();
+                circle.scale(0.6 * scaleIndex);
+                circle.set({
+                    left: left,
+                    top: top,
+                });
+                arc.scale(0.6 * scaleIndex);
+                arc.set({
+                    left: left,
+                    top: top,
+                });
+            };
+
             var addZigzags = function () {
-                var zigzags = new Zigzags(canvas, width);
+                zigzags = new Zigzags(canvas, width, scaleIndex);
+            };
+
+            var reinitZigzags = function () {
+                zigzags.reinit(width, scaleIndex);
             };
 
             //lines intersection with y=0 (desktop top)
@@ -620,7 +906,7 @@ define(['fabric', "../initial-block/MovingCircle",
             };
 
             var drawArcs = function () {
-                var movingArcBottom = new MovingArc({
+                movingArcBottom = new MovingArc({
                     radius: radiusPlus - 25,
                     left: canvas.getWidth() / 2,
                     top: canvas.getHeight() / 2 - reksoftImgHeight / 2,
@@ -644,7 +930,7 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
                 movingArcBottom.animateTwoDirections();
 
-                var movingArcBottom2 = new MovingArc({
+                movingArcBottom2 = new MovingArc({
                     radius: radiusPlus - 25,
                     left: canvas.getWidth() / 2,
                     top: canvas.getHeight() / 2 - reksoftImgHeight / 2,
@@ -668,7 +954,7 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
                 movingArcBottom2.animateTwoDirections();
 
-                var movingArcBottom3 = new MovingArc({
+                movingArcBottom3 = new MovingArc({
                     radius: radiusPlus - 25,
                     left: canvas.getWidth() / 2,
                     top: canvas.getHeight() / 2 - reksoftImgHeight / 2,
@@ -694,6 +980,26 @@ define(['fabric', "../initial-block/MovingCircle",
 
             };
 
+            var reinitArcs = function() {
+                movingArcBottom.set({
+                    radius: radiusPlus - 25,
+                    left: canvas.getWidth() / 2,
+                    top: canvas.getHeight() / 2 - reksoftImgHeight / 2,
+                });
+
+                movingArcBottom2.set({
+                    radius: radiusPlus - 25,
+                    left: canvas.getWidth() / 2,
+                    top: canvas.getHeight() / 2 - reksoftImgHeight / 2,
+                });
+
+                movingArcBottom3.set({
+                    radius: radiusPlus - 25,
+                    left: canvas.getWidth() / 2,
+                    top: canvas.getHeight() / 2 - reksoftImgHeight / 2,
+                });
+            };
+
             var drawCircles = function () {
                 //рисуем 4 орбиты
                 for (var i = 1; i < 4; i++) {
@@ -706,7 +1012,7 @@ define(['fabric', "../initial-block/MovingCircle",
             var createOrbit = function (i) {
                 var opacityL = [0, 0.5, 0.7, 1];
                 //radiusPlus = 0;
-                var orbit = new fabric.Circle({
+                orbits[i] = new fabric.Circle({
                     radius: orbitRadiusBase * ( i * 0.5) + radiusPlus,
                     left: canvas.getWidth() / 2,
                     top: canvas.getHeight() / 2 - reksoftImgHeight / 2 - (orbitRadiusBase * (i * 0.5) + radiusPlus),
@@ -721,9 +1027,9 @@ define(['fabric', "../initial-block/MovingCircle",
                     // originX: 'left',
                     originY: 'top'
                 });
-                canvas.add(orbit);
+                canvas.add(orbits[i]);
 
-                orbit.animate('opacity', opacityL[i], {
+                orbits[i].animate('opacity', opacityL[i], {
                     duration: 1000,
                     easing: CommonAnimation.linear,
                     onComplete: function () {
@@ -731,43 +1037,29 @@ define(['fabric', "../initial-block/MovingCircle",
                 });
             };
 
-            var addPlanets = function () {
-                //var planet0;
-                //var def = new $.Deferred;
-
-                /*fabric.loadSVGFromURL('../assets/img/Reksoft-logo.svg', function (img, options) {
-                    canvas.add(img.set({
-                        left: left,
-                        top: top,
-                        originX: "center",
-                        originY: "center",
-                        opacity: 0
-                    }));
-
-                    //плавное появление
-                    img.animate('opacity', 1, {
-                        duration: 500,
-                        easing: linear,
-                        onComplete: function () {
-                        }
+            var redrawCircles = function(){
+                for (var i = 1; i < 4; i++) {
+                    orbits[i].set({
+                        radius: orbitRadiusBase * ( i * 0.5) + radiusPlus,
+                        left: canvas.getWidth() / 2,
+                        top: canvas.getHeight() / 2 - reksoftImgHeight / 2 - (orbitRadiusBase * (i * 0.5) + radiusPlus),
                     });
+                }
+            };
 
-                    self.rotate();
-                });*/
-
+            var addPlanets = function () {
                 var planetLoader = new RotatingImg(
                     canvas,
                     (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
                     canvas.getHeight() / 2,
                     CommonAnimation.linear, 3000);
 
-
-
                 $.when(planetLoader.loadImg()).done(function () {
-                    animatePlanet(planetLoader.getImg(), 1);
+                    planet0 = planetLoader.getImg();
+                    animatePlanet(planet0, 1);
                 });
 
-                var planet1 = new fabric.Circle({
+                planet1 = new fabric.Circle({
                     left: (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
                     top: canvas.getHeight() / 2,
                     radius: 5,
@@ -785,7 +1077,7 @@ define(['fabric', "../initial-block/MovingCircle",
                     }
                 });
 
-                var planet2 = new RotatingObject({
+                planet2 = new RotatingObject({
                     left: (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
                     top: canvas.getHeight() / 2,
                     width: 14,
@@ -808,16 +1100,20 @@ define(['fabric', "../initial-block/MovingCircle",
                 animatePlanet(planet2, 3);
             };
 
+            var reinitPlanets = function(){
+                planet0.set({
+                    left: (canvas.getWidth() / 2) - radiusPlus - (planetSize * 1),
+                    top: canvas.getHeight() / 2
+                });
+            };
+
             var animatePlanet = function (oImg, planetIndex) {
-                var radius = (0.5 * planetIndex) * orbitRadiusBase + radiusPlus,
-                // rotate around reksoft image center
-                    cx = canvas.getWidth() / 2,
-                    cy = canvas.getHeight() / 2 - reksoftImgHeight / 2,
-                // speed of rotation slows down for further planets
-                    duration = (planetIndex + 1) * rotationSpeed,
                 // randomize starting angle to avoid planets starting on one line
-                    startAngle = fabric.util.getRandomInt(-180, 0),
-                    endAngle = startAngle + 359;
+                var startAngle = fabric.util.getRandomInt(-180, 0);
+                var endAngle = startAngle + 359;
+                // speed of rotation slows down for further planets
+                var duration = (planetIndex + 1) * rotationSpeed;
+
                 (function animate() {
                     fabric.util.animate({
                         startValue: startAngle,
@@ -828,6 +1124,11 @@ define(['fabric', "../initial-block/MovingCircle",
                             return c * t / d + b;
                         },
                         onChange: function (angle) {
+                            var radius = (0.5 * planetIndex) * orbitRadiusBase + radiusPlus;
+                            // rotate around reksoft image center
+                            var cx = canvas.getWidth() / 2;
+                            var cy = canvas.getHeight() / 2 - reksoftImgHeight / 2;
+
                             angle = fabric.util.degreesToRadians(angle);
                             var x = cx + radius * Math.cos(angle);
                             var y = cy + radius * Math.sin(angle);

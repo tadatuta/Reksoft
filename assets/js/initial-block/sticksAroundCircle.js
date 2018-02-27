@@ -1,36 +1,38 @@
 define(['fabric'], function (fabric) {
 
     var SticksAroundCircle = function (canvas, width, height, imgSrc, startAngle, angleTo, angleBack, duration, mscaleIndex, reksoftImgHeight) {
-        var self = this;
-        //var def1 = new $.Deferred;
+        this.width = width;
+        this.height = height;
+        this.canvas = canvas;
         this.imgSrc = imgSrc;
         this.duration = duration;
 		this.startAngle = startAngle;
 		this.angleTo = angleTo;
 		this.angleBack = angleBack;
+		this.mscaleIndex = mscaleIndex;
+        this.reksoftImgHeight = reksoftImgHeight;
+    };
+
+    SticksAroundCircle.prototype.loadImg = function () {
+        var self = this;
+        var def = new $.Deferred;
 
         fabric.loadSVGFromURL(this.imgSrc, function(objects, options) {
             var img = fabric.util.groupSVGElements(objects, options);
-            var imgWidth = img.width * mscaleIndex;
-            var imgHeight = img.height * mscaleIndex;
-            img.scale(mscaleIndex);
-            canvas.add(img.set({
-                left: width / 2 ,
-                top: height / 2 - reksoftImgHeight/2,
+            img.scale(self.mscaleIndex);
+            self.canvas.add(img.set({
+                left: self.width / 2 ,
+                top: self.height / 2 - self.reksoftImgHeight/2,
                 originX: "center",
                 originY: "center",
                 opacity: 1,
-				angle: startAngle
+                angle: self.startAngle
             }));
 
             self.img = img;
-            //def1.resolve();
+            def.resolve();
         });
-
-        /*$.when(def1).done(function () {
-            self.animateTwoDirection();
-        });*/
-
+        return def;
     };
 
     SticksAroundCircle.prototype.animateTwoDirection = function () {
@@ -55,6 +57,10 @@ define(['fabric'], function (fabric) {
                 self.animateTwoDirection();
             }
         });
+    };
+
+    SticksAroundCircle.prototype.getImg = function () {
+        return this.img;
     };
 
     return SticksAroundCircle;

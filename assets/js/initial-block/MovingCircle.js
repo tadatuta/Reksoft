@@ -9,13 +9,18 @@ define(['fabric'], function (fabric) {
 			this.opacity = opacity;
         },
 
+        reinit: function (top, scaleIndex) {
+            this.showTop = top;
+            this.scaleIndex = scaleIndex;
+        },
+
         toString: function () {
             //return this.callSuper('toString') + ' (color: ' + this.color + ')';
         },
 
         moveTop: function () {
             var self = this;
-            this.animate('top', self.getTop() - 50 * self.scaleIndex, {
+            this.animate('top', self.showTop - 50 * self.scaleIndex, {
                 duration: 5000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {
@@ -26,7 +31,7 @@ define(['fabric'], function (fabric) {
 
         moveBack: function () {
             var self = this;
-            this.animate('top', self.getTop() + 50 * self.scaleIndex, {
+            this.animate('top', self.showTop + 50 * self.scaleIndex, {
                 duration: 5000,
                 easing: fabric.util.ease.easeInOutExpo,
                 onComplete: function () {

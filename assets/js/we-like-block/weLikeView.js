@@ -65,9 +65,11 @@ define([
                 onComplete: function () {
                     var circulatingImgs = new CirculatingImg(self.canvas, '../assets/img/arcRightCircle.svg',
                         '../assets/img/circleRightCircle.svg', left, top, scaleIndex);
-                    setTimeout(function () {
-                        circulatingImgs.animateCircle();
-                    }, 4000);
+                    $.when(circulatingImgs.loadCircle(), circulatingImgs.loadArc()).done(function () {
+                        setTimeout(function () {
+                            circulatingImgs.animateCircle();
+                        }, 4000);
+                    });
                 }
             });
         },

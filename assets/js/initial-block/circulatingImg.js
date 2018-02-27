@@ -5,38 +5,37 @@ define(['fabric'], function (fabric) {
         var self = this;
         this.scaleIndex = scaleIndex;
         this.canvas = canvas;
+        this.srcArc = srcArc;
+        this.srcCirc = srcCirc;
+        this.left = left;
+        this.top = top;
+    };
 
-        //fabric.Image.fromURL(srcArc, function (circle) {
-        fabric.loadSVGFromURL(srcArc, function(objects, options) {
-            var arc = fabric.util.groupSVGElements(objects, options);
-            self.arc = arc;
-            arc.scale(0.6 * scaleIndex);
-            //def.resolve();
+    CirculatingImg.prototype.loadArc = function () {
+        return this.loadImg(this.srcArc, 'arc');
+    };
 
-            canvas.add(arc.set({
-                left: left,
-                top: top,
+    CirculatingImg.prototype.loadCircle = function () {
+        return this.loadImg(this.srcCirc, 'circle');
+    };
+
+    CirculatingImg.prototype.loadImg = function (src, key) {
+        var self = this;
+        var def = new $.Deferred;
+        fabric.loadSVGFromURL(src, function(objects, options) {
+            var img = fabric.util.groupSVGElements(objects, options);
+            self[key] = img;
+            img.scale(0.6 * self.scaleIndex);
+            self.canvas.add(img.set({
+                left: self.left,
+                top: self.top,
                 originX: "center",
                 originY: "center",
                 opacity: 100
             }));
-
+            def.resolve();
         });
-
-        //fabric.Image.fromURL(srcCirc, function (arc) {
-        fabric.loadSVGFromURL(srcCirc, function(objects, options) {
-            var circle = fabric.util.groupSVGElements(objects, options);
-            self.circle = circle;
-            circle.scale(0.6 * scaleIndex);
-            canvas.add(circle.set({
-                left: left,
-                top: top,
-                originX: "center",
-                originY: "center",
-                opacity: 100
-            }));
-        });
-
+        return def;
     };
 
     CirculatingImg.prototype.animateCircle = function () {
@@ -67,6 +66,14 @@ define(['fabric'], function (fabric) {
                 }, 10000)
             }
         });
+    };
+
+    CirculatingImg.prototype.getCircle = function () {
+        return this.circle;
+    };
+
+    CirculatingImg.prototype.getArc = function () {
+        return this.arc;
     };
 
     return CirculatingImg;
