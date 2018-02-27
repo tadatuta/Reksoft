@@ -1,12 +1,13 @@
 define(['fabric'], function (fabric) {
 
-    var Zigzags = function (canvas, width) {
+    var Zigzags = function (canvas, width, scaleIndex) {
         var self = this;
         var def1=new $.Deferred();
         var def2=new $.Deferred();
         this.canvas = canvas;
         this.width = width;
         this.myY = -40;
+        this.scaleIndex = scaleIndex;
 
         fabric.loadSVGFromURL('../assets/img/zigzag_1.svg', function(objects, options) {
             self.zigzag1 = fabric.util.groupSVGElements(objects, options);
@@ -32,10 +33,10 @@ define(['fabric'], function (fabric) {
     };
 
     Zigzags.prototype.zigzag1SlideToPosition = function () {
-        this.zigzag1.scale(0.7);
+        this.zigzag1.scale(0.7 * this.scaleIndex);
 
         this.canvas.add(this.zigzag1.set({
-            left: this.width / 2 + 350,
+            left: this.width / 2 + 350 * this.scaleIndex,
             top: 0,
             originX: "left",
             originY: "top",
@@ -55,11 +56,11 @@ define(['fabric'], function (fabric) {
 
     Zigzags.prototype.zigzag2SlideToPosition  = function () {
         var imgHeight = this.zigzag2.height * 0.7;
-        this.zigzag2.scale(0.7);
+        this.zigzag2.scale(0.7 * this.scaleIndex);
         var self=this;
 
         this.canvas.add(this.zigzag2.set({
-            left: this.width / 2 + 380,
+            left: this.width / 2 + 380 * this.scaleIndex,
             top: 0,
             originX: "left",
             originY: "top",
@@ -83,9 +84,9 @@ define(['fabric'], function (fabric) {
     Zigzags.prototype.zigzag3SlideToPosition = function () {
         var self=this;
         var imgHeight = this.zigzag3.height * 0.7;
-        this.zigzag3.scale(0.7);
+        this.zigzag3.scale(0.7 * this.scaleIndex);
         this.canvas.add(this.zigzag3.set({
-            left: this.width / 2 + 410,
+            left: this.width / 2 + 410 * this.scaleIndex,
             top: 0,
             originX: "left",
             originY: "top",
@@ -133,6 +134,28 @@ define(['fabric'], function (fabric) {
             duration: 1000,
             easing: fabric.util.ease.easeOutBounce,
             onComplete: function () { }
+        });
+    };
+
+    Zigzags.prototype.reinit = function (width, scaleIndex) {
+        if(!this.zigzag1 || !this.zigzag2 || !this.zigzag3) return;
+        this.zigzag1.scale(0.7 * scaleIndex);
+        this.zigzag2.scale(0.7 * scaleIndex);
+        this.zigzag3.scale(0.7 * scaleIndex);
+
+        this.zigzag1.set({
+            left: width / 2 + 350 * scaleIndex,
+            top: 100 * scaleIndex,
+        });
+
+        this.zigzag2.set({
+            left: width / 2 + 380 * scaleIndex,
+            top: 80 * scaleIndex,
+        });
+
+        this.zigzag3.set({
+            left: width / 2 + 410 * scaleIndex,
+            top: 120 * scaleIndex,
         });
     };
 

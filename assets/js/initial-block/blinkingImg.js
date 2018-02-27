@@ -7,7 +7,6 @@ define(['fabric'], function (fabric) {
 		var self = this;
 		if(!specScale) specScale = 0.8;
 
-		//fabric.Image.fromURL(src, function (img) {
 		fabric.loadSVGFromURL(src, function(objects, options) {
 			var img = fabric.util.groupSVGElements(objects, options);
 			self.img = img;
@@ -34,6 +33,13 @@ define(['fabric'], function (fabric) {
 
 		$.when(def).done(function () {
 			self.addBlinking();
+		});
+	};
+
+    BlinkingImg.prototype.reinit = function (left, top) {
+        this.img && this.img.set({
+            left: left,
+            top: top,
 		});
 	};
 
