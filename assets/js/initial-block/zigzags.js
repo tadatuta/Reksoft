@@ -138,6 +138,7 @@ define(['fabric'], function (fabric) {
     };
 
     Zigzags.prototype.reinit = function (width, scaleIndex) {
+        if(!this.zigzag1 || !this.zigzag2 || !this.zigzag3) return;
         this.zigzag1.scale(0.7 * scaleIndex);
         this.zigzag2.scale(0.7 * scaleIndex);
         this.zigzag3.scale(0.7 * scaleIndex);

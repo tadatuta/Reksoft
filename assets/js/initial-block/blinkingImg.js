@@ -37,7 +37,7 @@ define(['fabric'], function (fabric) {
 	};
 
     BlinkingImg.prototype.reinit = function (left, top) {
-        this.img.set({
+        this.img && this.img.set({
             left: left,
             top: top,
 		});

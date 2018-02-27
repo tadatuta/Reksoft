@@ -92,7 +92,7 @@ define(["fabric", "../initial-block/movingLine"], function (fabric, MovingLine) 
         var y = this.height / 2 + 30 * this.scaleIndex;
         var x1 = 100 * this.scaleIndex;
         var x2 = 170 * this.scaleIndex;
-        this.movingLine1.set({
+        this.movingLine1 && this.movingLine1.set({
             x1: x1,
             y1: y,
             x2: x2,
@@ -102,7 +102,7 @@ define(["fabric", "../initial-block/movingLine"], function (fabric, MovingLine) 
         x1 = 90 * this.scaleIndex;
         x2 = 160 * this.scaleIndex;
         var y1 = y + 10 * this.scaleIndex, y2 = y + 10 * this.scaleIndex;
-        this.movingLine2.set({
+        this.movingLine2 && this.movingLine2.set({
             x1: x1,
             y1: y1,
             x2: x2,

@@ -43,7 +43,7 @@ define(['fabric'], function (fabric) {
         this.left = left;
         this.top = top;
         this.scaleIndex = scaleIndex;
-        this.curObj.set({
+        this.curObj && this.curObj.set({
             left: left,
             top: top,
         });

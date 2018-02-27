@@ -41,7 +41,7 @@ define(['fabric', "../initial-block/blinkingSquare"], function (fabric, Blinking
         $("body").on("animation-end", function(){
             setTimeout(function(){
                 self.animateGroup(self.squares);
-            }, 500);
+            }, 10000);
         });
 
     };
