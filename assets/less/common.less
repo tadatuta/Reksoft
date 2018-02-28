@@ -66,6 +66,10 @@ p {
   outline: none !important;
 }
 
+.absolute{
+  position: absolute;
+}
+
 @keyframes flash {
   0% {
     opacity: 1;
@@ -216,6 +220,36 @@ p {
 
   100% {
     transform: translateX(-100vw);
+  }
+}
+
+@keyframes arrow1 {
+  0% {
+    transform: translateX(15vw);
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes arrow {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes arrow2 {
+  0% {
+    transform: translateX(25vw);
+  }
+
+  100% {
+    transform: translateX(100vw);
   }
 }
 

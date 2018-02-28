@@ -49,26 +49,18 @@ require( [
 
     var reksoftAcademyView = new ReksoftAcademyView();
     $("body").append(reksoftAcademyView.render().$el);
-    var reksoftAcademyCanvas = new fabric.StaticCanvas('academyArrows', {
-        selection: false
-    });
-    reksoftAcademyView.setAnimation(reksoftAcademyCanvas);
 
     var findYourselfView = new FindYourselfView();
     $("body").append(findYourselfView.render().$el);
     if($("html").hasClass("desktop")) {
-        var arrowCanvas = new fabric.StaticCanvas('findYourselfArrows', {
-            selection: false
-        });
         var zigzagCanvas = new fabric.StaticCanvas('findYourselfZigzag', {
             selection: false
         });
-        findYourselfView.setAnimation(arrowCanvas, zigzagCanvas);
+        findYourselfView.setAnimation(zigzagCanvas);
     }
 
     $.scrollify({
         section: ".slideContainer",
-        // updateHash: false,
     });
 
 });
