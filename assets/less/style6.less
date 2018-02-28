@@ -1,11 +1,4 @@
-@color_1: #fff;
-@color_2: #2b2523;
-@color_3: #e20c18;
-@color_4: #1d1d1b;
-@font_family_1: 'Open Sans',sans-serif;
-@font_family_2: Roboto,sans-serif;
-@background_color_1: #efefef;
-@background_color_2: #2b2523;
+@import "variables";
 
 * {
 	margin: 0;
@@ -103,7 +96,7 @@ p {
 				background-position: center center;
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
-				background-color: @background_color_2;
+				background-color: @color_2;
 				font-size: 33px;
 			}
 		}
@@ -148,7 +141,7 @@ p {
 						}
 					}
 					li.active-link {
-						color: @color_3;
+						color: @color_red;
 						text-decoration: underline;
 						cursor: pointer;
 						&:hover {
@@ -212,7 +205,7 @@ p {
 				a.to_prev_feedback {
 					position: relative;
 					float: left;
-					color: @color_3;
+					color: @color_red;
 					text-decoration: underline;
 					font-size: 16px;
 					font-family: @font_family_2;
@@ -235,7 +228,7 @@ p {
 				a.to_next_feedback {
 					position: relative;
 					float: right;
-					color: @color_3;
+					color: @color_red;
 					text-decoration: underline;
 					font-size: 16px;
 					font-family: @font_family_2;
