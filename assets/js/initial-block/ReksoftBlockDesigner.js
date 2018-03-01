@@ -23,6 +23,7 @@ define(['fabric', "../initial-block/MovingCircle",
 
             var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
             var height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+            var resolution;
             var scaleIndex;
             var reksoftImgHeight;
             var planetSize = 26,
@@ -93,6 +94,7 @@ define(['fabric', "../initial-block/MovingCircle",
             var _reinit = function () {
                 setNewCanvasSize();
                 scaleIndex = CommonAnimation.setScaleIndexOnLoad(width);
+                resolution = CommonAnimation.getResolution(width);
                 evaluateScaleDependedVars();
                 reinitLogo();
                 reinitLines();
@@ -103,15 +105,20 @@ define(['fabric', "../initial-block/MovingCircle",
                 reinitLittleCirclesInCenter();
                 reinitLittleTopImg();
                 reinitNoise();
-                reinitLeftCircles();
-                reinitRightCircle();
                 reinitMountainCircles();
                 reinitMouse();
                 reinitIeroglifsRight();
                 reinitIeroglifsLeft();
                 reinitTriangleCrossCircles();
-                reinitSquaresGroup();
                 reinitZigzags();
+
+                if (resolution != "mobile_vert") {
+                    reinitLeftCircles();
+                    reinitRightCircle();
+                    reinitSquaresGroup();
+                } else {
+                    removeLeftCircle();
+                }
             };
 
             var _bindUIEvents = function () {
@@ -121,7 +128,7 @@ define(['fabric', "../initial-block/MovingCircle",
 
                 $(window).on("logo-loaded", function () {
                     setTimeout(function () {
-                        var resolution = CommonAnimation.getResolution(width);
+                        resolution = CommonAnimation.getResolution(width);
                         drawCircles();
                         addLittleCirclesInCenter();
                         addSticksAroundCenterCircle();
@@ -773,6 +780,18 @@ define(['fabric', "../initial-block/MovingCircle",
                     leftCircles.reinit(height, scaleIndex);
                     leftCircles.reinitLinesToLeftCircles();
                 }
+            };
+
+            var removeLeftCircle = function () {
+                leftCirclesImg.set({
+                    top: height * 2,
+                });
+                leftCircles.movingLine1.set({
+                    top: height * 2,
+                });
+                leftCircles.movingLine2.set({
+                    top: height * 2,
+                });
             };
 
             var addRightCircle = function () {
