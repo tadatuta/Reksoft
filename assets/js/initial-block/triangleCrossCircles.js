@@ -1,6 +1,6 @@
 define(['fabric'], function (fabric) {
 
-    var TriangleCrossCircles = function (canvas, width, height, left, top, firstState, intervalBeforeNextState, isBlinking, scaleIndex) {
+    var TriangleCrossCircles = function (canvas, width, height, left, top, firstState, intervalBeforeNextState, isBlinking, scaleIndex, shouldRender) {
         var self = this;
         this.width = width;
         this.height = height;
@@ -11,6 +11,7 @@ define(['fabric'], function (fabric) {
         this.top = top;
         this.isBlinking = isBlinking;
 		this.scaleIndex = scaleIndex;
+		this.shouldRender = shouldRender;
         var def1 = new $.Deferred;
         var def2 = new $.Deferred;
         var def3 = new $.Deferred;
@@ -75,6 +76,11 @@ define(['fabric'], function (fabric) {
         this.curObj.animate('opacity', 1, {
             duration: 1000,
             easing: fabric.util.ease.easeInOutExpo,
+            onChange: function(){
+                if(self.shouldRender) {
+                    self.canvas.renderAll();
+                }
+            },
             onComplete: function () { }
         });
 
@@ -86,6 +92,11 @@ define(['fabric'], function (fabric) {
             self.curObj.animate('angle', 360, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
+                onChange: function(){
+                    if(self.shouldRender) {
+                        self.canvas.renderAll();
+                    }
+                },
                 onComplete: function () {
 
                 }
@@ -94,6 +105,11 @@ define(['fabric'], function (fabric) {
             self.curObj.animate('scaleX', 0, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
+                onChange: function(){
+                    if(self.shouldRender) {
+                        self.canvas.renderAll();
+                    }
+                },
                 onComplete: function () {
 
                 }
@@ -102,6 +118,11 @@ define(['fabric'], function (fabric) {
             self.curObj.animate({scaleY: 0, opacity: 0}, {
                 duration: 1000,
                 easing: fabric.util.ease.easeInOutExpo,
+                onChange: function(){
+                    if(self.shouldRender) {
+                        self.canvas.renderAll();
+                    }
+                },
                 onComplete: function () {
                     self.state++;
                     if (self.state == 3) self.state = 0;
@@ -129,10 +150,16 @@ define(['fabric'], function (fabric) {
     };
 
     TriangleCrossCircles.prototype.addOneBlink = function (curObj) {
+        var self = this;
         var blinkDuration = 40;
         curObj.animate('opacity', 0, {
             duration: blinkDuration,
             easing: fabric.util.ease.easeInOutQuad(),
+            onChange: function(){
+                if(self.shouldRender) {
+                    self.canvas.renderAll();
+                }
+            },
             onComplete: function () {
 
             }
@@ -142,6 +169,11 @@ define(['fabric'], function (fabric) {
             curObj.animate('opacity', 1, {
                 duration: blinkDuration,
                 easing: fabric.util.ease.easeInOutQuad,
+                onChange: function(){
+                    if(self.shouldRender) {
+                        self.canvas.renderAll();
+                    }
+                },
                 onComplete: function () {
 
                 }

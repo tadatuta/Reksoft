@@ -26,10 +26,14 @@ require( [
 
     var weLikeView = new WeLikeView();
     $("body").append(weLikeView.render().$el);
-    var weLikeCanvas = new fabric.StaticCanvas('weLikeCircle', {
+    var weLikeCanvas = new fabric.StaticCanvas('arcRightCircle', {
         selection: false
     });
-    weLikeView.setAnimation(weLikeCanvas);
+    weLikeView.setCircleAnimation(weLikeCanvas);
+    var weLikeCanvas2 = new fabric.StaticCanvas('triangleCrossCircle', {
+        selection: false
+    });
+    weLikeView.setTriangleCrossCircleAnimation(weLikeCanvas2);
 
     var spektrView = new SpektrView();
     $("body").append(spektrView.render().$el);

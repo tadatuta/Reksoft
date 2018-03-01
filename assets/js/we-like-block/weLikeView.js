@@ -30,18 +30,21 @@ define([
             $.scrollify.move("#"+sectionId);
         },
 
-        setAnimation: function(canvas){
+        setCircleAnimation: function(canvas){
             this.canvas = canvas;
-            this.setNewCanvasSize();
-            this.scaleIndex = CommonAnimation.setScaleIndexOnLoad(this.width);
-            this.addClounds();
+            // this.setNewCanvasSize();
+            this.scaleIndex = CommonAnimation.setScaleIndexOnLoad($("body").width());
             this.addRightCircle();
+        },
+
+        setTriangleCrossCircleAnimation: function(canvas){
+            this.triangleCrossCirclesCanvas = canvas;
             this.addTriangleCrossCircles();
         },
 
         addRightCircle: function () {
             var circleRadius = 120;
-            var left = circleRadius + this.width - this.width / 6;
+            var left = circleRadius + 2;
             var top = circleRadius + 40;
             var scaleIndex = 1;
             var self = this;
@@ -51,7 +54,7 @@ define([
                 fill: '',
                 stroke: '#F1737A',
                 strokeWidth: 1,
-                top: circleRadius + 40,
+                top: top,
                 left: left,
                 opacity: 0
             });
@@ -64,7 +67,7 @@ define([
                 easing: fabric.util.ease.easeOutBounce,
                 onComplete: function () {
                     var circulatingImgs = new CirculatingImg(self.canvas, '../assets/img/arcRightCircle.svg',
-                        '../assets/img/circleRightCircle.svg', left, top, scaleIndex);
+                        '../assets/img/circleRightCircle.svg', left, top, scaleIndex, true);
                     $.when(circulatingImgs.loadCircle(), circulatingImgs.loadArc()).done(function () {
                         setTimeout(function () {
                             circulatingImgs.animateCircle();
@@ -112,13 +115,18 @@ define([
         },
 
         addTriangleCrossCircles: function () {
-            var left = this.width - this.width / 4.5;
-            var top = this.height / 1.8;
-            var triangleCrossCircles = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top, 0, 8000, true, this.scaleIndex*0.8);
-            var triangleCrossCircles2 = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top + 30* this.scaleIndex, 1, 21000, false, this.scaleIndex*0.8);
-            var triangleCrossCircles3 = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top + 60* this.scaleIndex, 2, 33000, true, this.scaleIndex*0.8);
-            var triangleCrossCircles4 = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top + 90* this.scaleIndex, 0, 25000, false, this.scaleIndex*0.8);
-            var triangleCrossCircles5 = new TriangleCrossCircles(this.canvas, this.width, this.height, left, top + 120* this.scaleIndex, 1, 30000, true, this.scaleIndex*0.8);
+            var left = 10;
+            var top = 10;
+            var triangleCrossCircles = new TriangleCrossCircles(this.triangleCrossCirclesCanvas, this.width, this.height,
+                left, top, 0, 8000, true, this.scaleIndex, true);
+            var triangleCrossCircles2 = new TriangleCrossCircles(this.triangleCrossCirclesCanvas, this.width, this.height,
+                left, top + 30* this.scaleIndex, 1, 21000, false, this.scaleIndex, true);
+            var triangleCrossCircles3 = new TriangleCrossCircles(this.triangleCrossCirclesCanvas, this.width, this.height,
+                left, top + 60* this.scaleIndex, 2, 33000, true, this.scaleIndex, true);
+            var triangleCrossCircles4 = new TriangleCrossCircles(this.triangleCrossCirclesCanvas, this.width, this.height,
+                left, top + 90* this.scaleIndex, 0, 25000, false, this.scaleIndex, true);
+            var triangleCrossCircles5 = new TriangleCrossCircles(this.triangleCrossCirclesCanvas, this.width, this.height,
+                left, top + 120* this.scaleIndex, 1, 30000, true, this.scaleIndex, true);
         },
 
     });

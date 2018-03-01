@@ -1,6 +1,6 @@
 define(['fabric'], function (fabric) {
 
-    var CirculatingImg = function (canvas, srcArc, srcCirc, left, top, scaleIndex) {
+    var CirculatingImg = function (canvas, srcArc, srcCirc, left, top, scaleIndex, shouldRender) {
        // var def = new $.Deferred;
         var self = this;
         this.scaleIndex = scaleIndex;
@@ -9,6 +9,7 @@ define(['fabric'], function (fabric) {
         this.srcCirc = srcCirc;
         this.left = left;
         this.top = top;
+        this.shouldRender = shouldRender;
     };
 
     CirculatingImg.prototype.loadArc = function () {
@@ -43,7 +44,12 @@ define(['fabric'], function (fabric) {
 
         this.circle.animate('angle', "=360", {
             duration: 2000,
-            // onChange: this.canvas.renderAll.bind(this.canvas),
+            onChange: function(){
+                if(self.shouldRender) {
+                    self.canvas.renderAll();
+                }
+            },
+            // onChange: self.canvas.renderAll.bind(self.canvas),
             easing: fabric.util.ease.easeInOutExpo,
             onComplete: function () {
                 setTimeout(function () {
@@ -58,7 +64,11 @@ define(['fabric'], function (fabric) {
 
         this.arc.animate('angle', "=360", {
             duration: 2000,
-            // onChange: this.canvas.renderAll.bind(this.canvas),
+            onChange: function(){
+                if(self.shouldRender) {
+                    self.canvas.renderAll();
+                }
+            },
             easing: fabric.util.ease.easeInOutExpo,
             onComplete: function () {
                 setTimeout(function () {
