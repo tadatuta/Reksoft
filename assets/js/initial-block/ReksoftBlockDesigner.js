@@ -121,15 +121,17 @@ define(['fabric', "../initial-block/MovingCircle",
 
                 $(window).on("logo-loaded", function () {
                     setTimeout(function () {
-                        var resolution = CommonAnimation.getResolution();
+                        var resolution = CommonAnimation.getResolution(width);
                         drawCircles();
                         addLittleCirclesInCenter();
                         addSticksAroundCenterCircle();
                         addNoise();
-                        addSquaresGroup();
-                        if (resolution != "mobile_vert" && resolution != "mobile_hor") {
+                        if (resolution != "mobile_vert") {
                             addLeftCircles();
                             addRightCircle();
+                            addSquaresGroup();
+                        }
+                        if (resolution != "mobile_hor" ) {
                             addZigzags();
                         }
                         addLittleTopImg();
@@ -137,7 +139,8 @@ define(['fabric', "../initial-block/MovingCircle",
                         addIeroglifsLeft();
                         addIeroglifsRight();
                         addMouse();
-                        if (resolution != "desktop_sm1" &&
+                        if (resolution != "mobile_hor" &&
+                            resolution != "desktop_sm1" &&
                             resolution != "tablet_hor"
                             && resolution != "tablet_vert") {
                             addTriangleCrossCircles();
@@ -774,7 +777,7 @@ define(['fabric', "../initial-block/MovingCircle",
 
             var addRightCircle = function () {
                 var left = width / 1.26;
-				if(CommonAnimation.getResolution() != "desktop_sm1") {
+				if(CommonAnimation.getResolution(width) != "desktop_sm1") {
 					left = width / 1.23;
 				}
                 var top = height / 2 + 100 * scaleIndex;
@@ -812,7 +815,7 @@ define(['fabric', "../initial-block/MovingCircle",
 
             var reinitRightCircle = function () {
                 var left = width / 1.26;
-                if(CommonAnimation.getResolution() != "desktop_sm1") {
+                if(CommonAnimation.getResolution(width) != "desktop_sm1") {
                     left = width / 1.23;
                 }
                 var top = height / 2 + 100 * scaleIndex;

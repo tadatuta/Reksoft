@@ -62,6 +62,9 @@ require( [
         });
         findYourselfView.setAnimation(zigzagCanvas);
     }
+    if($("html").hasClass("mobile")) {
+        $(".unit7 .void-arrow-1, .unit7 .void-arrow-2, .unit7 .void-arrow-3").hide();
+    }
 
     $.scrollify({
         section: ".slideContainer",
