@@ -91,9 +91,8 @@ define(['fabric', "../initial-block/MovingCircle",
             };
 
             var _reinit = function () {
-                /*if (!$("html").hasClass("tablet") && !$("html").hasClass("mobile")) return;*/
-                scaleIndex = CommonAnimation.setScaleIndexOnLoad(width);
                 setNewCanvasSize();
+                scaleIndex = CommonAnimation.setScaleIndexOnLoad(width);
                 evaluateScaleDependedVars();
                 reinitLogo();
                 reinitLines();
@@ -385,6 +384,7 @@ define(['fabric', "../initial-block/MovingCircle",
                 movingMouseCircle.set({
                     left: width / 2,
                     top: height - 155 * scaleIndex,
+                    showTop: height - 155 * scaleIndex,
                 });
             };
 
