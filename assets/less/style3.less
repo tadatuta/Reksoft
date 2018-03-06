@@ -463,6 +463,11 @@ p {
 		}
 	}
 }
+.tablet.landscape {
+	.unit3 .wrapper .our-instruments .our-instruments-row {
+		padding: 0 1%;
+	}
+}
 .mobile {
 	.unit3 {
 		.wrapper {
@@ -491,7 +496,7 @@ p {
 
 				.our-instruments-row {
 					height: 15%;
-					width: 97%;
+					width: 100%;
 					margin: 8px auto;
 
 					.our-instruments-block {
@@ -542,5 +547,22 @@ p {
 		.void-lines {
 			display: none;
 		}
+	}
+}
+.mobile.landscape {
+	.unit3 .wrapper .our-instruments .our-instruments-row {
+		padding: 0 1%;
+	}
+}
+
+@media only screen and (min-device-width : 1024px) and (orientation : landscape) {
+	.mobile .unit3 .wrapper p.header_undertext {
+		width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 2rem;
+		line-height: 1.4em;
+		margin-top: 40px;
+		font-weight: normal;
 	}
 }

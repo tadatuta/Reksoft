@@ -745,13 +745,13 @@ p {
 			.to-next-slide {
 				height: 25vh;
 				background: #e20c18;
+				min-height: 40%;
+				display: table;
 				.to-next-slide-text {
-					right: initial;
-					margin-left: 0;
-					margin-right: 0;
 					left: 20px;
-					margin-top: 40px;
-					height: auto;
+					display: table-cell;
+					vertical-align: middle;
+					position: relative;
 					.year {
 						font-size: 52px;
 					}
@@ -1036,4 +1036,26 @@ p {
     -webkit-animation: line2 ease 10s infinite;
     animation: line2 ease 10s infinite;
   }
+}
+
+@media only screen and (min-device-width : 1024px) and (orientation : landscape) {
+	.mobile .unit5 .slide .wrapper p.header_undertext {
+		width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 2rem;
+		line-height: 1.4em;
+		margin-top: 40px;
+		font-weight: normal;
+	}
+}
+
+@media only screen and (min-device-height : 1024px) and (orientation : portrait) {
+	.mobile .unit5 .slide .wrapper p.header_undertext {
+		width: auto;
+		margin-top: 1.2vh;
+		font-size: 1.4em;
+		line-height: 1.15em;
+		padding: 0 10px;
+	}
 }
