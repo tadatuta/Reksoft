@@ -616,3 +616,37 @@
     animation: arrow linear 160s infinite;
   }
 }
+
+@media only screen and (min-device-width : 1024px) and (orientation : landscape) {
+    .unit.unit7 h1 {
+        font-size: 3.2rem;
+    }
+
+    .mobile .unit7 .header_subtitle {
+        width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 2rem;
+        line-height: 1.4em;
+        margin-top: 40px;
+        font-weight: normal;
+    }
+}
+
+@media only screen and (min-device-height : 1024px) and (orientation : portrait) {
+    .unit.unit7 h1 {
+        font-size: 3.2rem;
+    }
+
+    .mobile .unit7 .header_subtitle {
+        font-size: 1.96rem;
+        width: auto;
+        margin-top: 1.2vh;
+        line-height: 1.15em;
+        padding: 0 10px;
+    }
+
+    .mobile .unit7 .contact_info {
+        padding: 4vh 0 3vh 0;
+    }
+}
