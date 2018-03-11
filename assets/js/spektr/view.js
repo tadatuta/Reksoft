@@ -19,6 +19,22 @@ define([
         render : function() {
             // Отключаем привязанные события, очищаем элемент и добавляем в верстку шаблон
             this.$el.empty().append( this.template() );
+
+            window.addEventListener('orientationchange', function () {
+                setTimeout(function () {
+                    var windowHeight = $(window).height();
+                    this.$('.unit5').height(windowHeight);
+                    this.$('.single-item').slick('unslick');
+                    this.$('.single-item').slick({
+                        dots: false,
+                        infinite: false,
+                        arrows: false,
+                        slidesToShow: 1,
+                        adaptiveHeight: true
+                    });
+                }, 300);
+            });
+
             return this;
         },
 

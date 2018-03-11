@@ -7,7 +7,7 @@ define([
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
         template : _.template( tpl ),
-        className: "unit slideContainer",
+        className: "unit unit7Block slideContainer",
 
         events: {
             "click #send": "send"

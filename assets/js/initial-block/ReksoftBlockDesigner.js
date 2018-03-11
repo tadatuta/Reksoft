@@ -123,7 +123,15 @@ define(['fabric', "../initial-block/MovingCircle",
 
             var _bindUIEvents = function () {
                 window.addEventListener('resize', function () {
-                    _reinit();
+                    if( $("html").hasClass("desktop") ) {
+                        _reinit();
+                    }
+                });
+
+                window.addEventListener('orientationchange', function () {
+                    setTimeout(function () {
+                        _reinit();
+                    }, 300);
                 });
 
                 $(window).on("logo-loaded", function () {
@@ -783,15 +791,21 @@ define(['fabric', "../initial-block/MovingCircle",
             };
 
             var removeLeftCircle = function () {
-                leftCirclesImg.set({
-                    top: height * 2,
-                });
-                leftCircles.movingLine1.set({
-                    top: height * 2,
-                });
-                leftCircles.movingLine2.set({
-                    top: height * 2,
-                });
+                if(leftCirclesImg) {
+                    leftCirclesImg.set({
+                        top: height * 2,
+                    });
+                }
+                if(leftCircles.movingLine1) {
+                    leftCircles.movingLine1.set({
+                        top: height * 2,
+                    });
+                }
+                if(leftCircles.movingLine2) {
+                    leftCircles.movingLine2.set({
+                        top: height * 2,
+                    });
+                }
             };
 
             var addRightCircle = function () {

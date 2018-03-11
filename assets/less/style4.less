@@ -5,7 +5,16 @@
      background-size:auto 68%;
      background-position:left bottom;
      font-family: Roboto, sans-serif;
+
+  .helloClouds {
+    width: 100%;
+  }
 }
+
+.desktop .unit4Block {
+  overflow: hidden;
+}
+
  .unit4 .content{
      width:550px;
      margin: 4vh auto 0;
@@ -45,6 +54,7 @@
      cursor: pointer;
      -webkit-transition: all 0.3s ease-in;
      transition: all 0.3s ease-in;
+   background-color: #fff;
 }
  .unit4 .join_link:hover{
      color: #fff;
@@ -190,7 +200,7 @@
      width:auto;
      position:absolute;
      top:40.7vh;
-   right: -90vw;
+   right: 0vw;
 }
 
 .void-vr-img1 {
@@ -198,7 +208,7 @@
   width:auto;
   position:absolute;
   top:25.7vh;
-  right: -99vw;
+  right: 0vw;
 }
 
  @media(max-height:769px){
@@ -258,12 +268,33 @@
     }
 }
 
+.desktop {
+  .void-vr-img2 {
+    -webkit-animation: cloud1 linear 150s infinite;
+    animation: cloud1 linear 150s infinite;
+  }
+
+  .void-vr-img1 {
+    -webkit-animation: cloud2 linear 150s infinite;
+    animation: cloud2 linear 150s infinite;
+  }
+
+  .void-vr-img2 {
+    right: 0vw;
+  }
+
+  .void-vr-img1 {
+    right: 0vw;
+  }
+}
+
 .void-vr-img2 {
-  -webkit-animation: cloud1 linear 150s infinite;
-  animation: cloud1 linear 150s infinite;
+  -webkit-animation: cloudHello1 linear 150s infinite;
+  animation: cloudHello1 linear 150s infinite;
 }
 
 .void-vr-img1 {
-  -webkit-animation: cloud2 linear 150s infinite;
-  animation: cloud2 linear 150s infinite;
+  -webkit-animation: cloudHello linear 150s infinite;
+  animation: cloudHello linear 150s infinite;
 }
+
