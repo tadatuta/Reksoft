@@ -6,7 +6,7 @@ define([
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
         template : _.template( tpl ),
-        className: "unit slideContainer",
+        className: "unit unit8Block slideContainer",
         initialize : function( options ) {
 
         },
