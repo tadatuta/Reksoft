@@ -227,10 +227,25 @@ p {
 						font-style: normal;
 						float: left;
 						width: 100%;
+						display: table;
 
 						span {
 							font-size: 2rem;
 							color: @color_3;
+						}
+
+						span.l_ar_img {
+							display: none;
+							vertical-align: bottom;
+							padding-bottom: 0.7rem;
+
+							img {
+								-webkit-transform: rotate(180deg);
+								-moz-transform: rotate(180deg);
+								-o-transform: rotate(180deg);
+								-ms-transform: rotate(180deg);
+								transform: rotate(180deg);
+							}
 						}
 					}
 					.year {
@@ -300,10 +315,16 @@ p {
 						font-style: normal;
 						float: left;
 						width: 100%;
+						display: table;
 
 						span {
 							font-size: 2rem;
 							color: @color_3;
+						}
+
+						span.r_ar_img {
+							display: none;
+							margin-bottom: -3px;
 						}
 					}
 					.year_name {
@@ -325,6 +346,9 @@ p {
 							color: @color_3;
 							margin-left: 10px;
 							font-size: 25px;
+							display: inline-block;
+							margin-bottom: 0.3rem;
+							vertical-align: bottom;
 						}
 					}
 				}
@@ -385,6 +409,9 @@ p {
 						color: @color_3;
 						margin-left: 10px;
 						font-size: 25px;
+						display: inline-block;
+						margin-bottom: 0.3rem;
+						vertical-align: bottom;
 					}
 				}
 				.year_name_next {
@@ -836,6 +863,41 @@ p {
 	}
 }
 
+.mobile .unit5 .sl1 .to-next-slide .to-next-slide-text .year_name2 span {
+	display: inline-block;
+	height: 15px;
+
+	img {
+		height: 14px;
+		margin-top: 4px;
+	}
+}
+
+.tablet .unit5 .sl1 .to-next-slide .to-next-slide-text .year_name2 span {
+	display: inline-block;
+	height: 18px;
+
+	img {
+		height: 14px;
+		margin-top: 4px;
+	}
+}
+
+.mobile .unit5 .sl1 .to-next-slide .to-next-slide-text .year_name_next, .tablet .unit5 .sl1 .to-next-slide .to-next-slide-text .year_name_next {
+	margin-left: 13.1rem;
+}
+
+.mobile .unit5 .slide .right-info-block .wrapper .next_slide_text .year_big span.r_ar_img {
+	display: inline-block;
+}
+
+.mobile .unit5 .slide .left-info-block .wrapper .prev_slide_text .year_big span.l_ar_img {
+	display: table-cell;
+}
+
+.mobile .unit5 .slide .right-info-block .wrapper .next_slide_text .year_big span.r_ar, .mobile .unit5 .slide .left-info-block .wrapper .prev_slide_text .year_big span.l_ar {
+	display: none;
+}
 
 @media screen and (max-width:1900px) {
 	.unit5 {
