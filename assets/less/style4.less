@@ -1,14 +1,21 @@
 .unit4{
-     background-color:#fff;
-     background-image:url(/assets/img/unit4/bg.png);
+     /*background-color:#fff;*/
+     background-image: url(/assets/img/unit4/reksoftBg.svg);
      background-repeat:no-repeat;
-     background-size:auto 68%;
-     background-position:left bottom;
+     background-size:auto 26%;
+     background-position: left 82%;
      font-family: Roboto, sans-serif;
 
   .helloClouds {
     width: 100%;
   }
+}
+
+.unit4Block {
+  background-image: url(/assets/img/unit4/reksoftBitmap.png) ;
+  background-size:auto 55%;
+  background-repeat:no-repeat;
+  background-position:left bottom;
 }
 
 .desktop .unit4Block {
@@ -213,11 +220,11 @@
 
  @media(max-height:769px){
      .unit4{
-         background-size:auto 60% 
+         background-size:auto 26%
     }
-}
+  }
  .tablet .unit4{
-     background-size:auto 48% 
+     background-size:auto 25%
 }
  .tablet .unit4 h1 {
      font-size: 8.5rem;
@@ -234,26 +241,38 @@
      font-size: 3.2rem;
 }
  .mobile .unit4{
-     background-size:auto 30% 
+   background-size:auto 12%;
+   background-position: left 90%;
+}
+.mobile .unit4Block{
+  background-size:auto 30%
 }
  @media(max-width:340px){
      .mobile .unit4{
-         background-size:auto 20% 
+       background-size:auto 12%;
+       background-position: left 96%;
     }
+   .mobile .unit4Block{
+     background-size:auto 22%
+   }
 }
  .mobile.landscape .unit4{
      background-image:none 
 }
- @media(min-height:769px) and (max-height:1024px){
-     .unit4{
-         background-size:auto 55% 
-    }
+
+.mobile.landscape .unit4Block{
+  background-image:none
 }
- @media(min-width:769px) and (max-width:1024px){
+ /*@media(min-height:769px) and (max-height:1024px){
      .unit4{
-         background-size:auto 48% 
+         background-size:auto 26%
     }
-}
+}*/
+ /*@media(min-width:769px) and (max-width:1024px){
+     .unit4{
+         background-size:auto 26%
+    }
+}*/
  @media(max-width:769px){
      .unit4 .header_subtitle {
          width: auto;
