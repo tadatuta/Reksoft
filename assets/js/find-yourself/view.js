@@ -10,7 +10,8 @@ define([
         className: "unit unit7Block slideContainer",
 
         events: {
-            "click #send": "send"
+            "click #send": "send",
+            "click .privat-checkbox": "allowSend"
         },
 
         initialize : function( options ) {
@@ -39,6 +40,14 @@ define([
         isValidEmail: function(email) {
             var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
+        },
+
+        allowSend: function() {
+            if ($("#form_field_checkbox:checked").length > 0) {
+                $(".form_submit").addClass('disabled').prop('disabled', true);
+            } else {
+                $(".form_submit").removeClass('disabled').prop('disabled', false);
+            }
         },
 
         send: function() {
