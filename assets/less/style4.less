@@ -2,8 +2,8 @@
      /*background-color:#fff;*/
      background-image: url(/assets/img/unit4/reksoftBg.svg);
      background-repeat:no-repeat;
-     background-size:auto 26%;
-     background-position: left 82%;
+     background-size:auto 42%;
+     background-position: left 98%;
      font-family: Roboto, sans-serif;
 
   .helloClouds {
@@ -13,7 +13,7 @@
 
 .unit4Block {
   background-image: url(/assets/img/unit4/reksoftBitmap.png) ;
-  background-size:auto 55%;
+  background-size:auto 52%;
   background-repeat:no-repeat;
   background-position:left bottom;
 }
@@ -223,12 +223,23 @@
          background-size:auto 26%
     }
   }
- .tablet .unit4{
+ .tablet.landscape .unit4{
      background-size:auto 25%
+ }
+ .tablet.portrait .unit4{
+     background-size:auto 16%
 }
+
+.tablet.portrait {
+  .unit4Block {
+    background-size: auto 35%;
+  }
+}
+
  .tablet .unit4 h1 {
      font-size: 8.5rem;
 }
+
  .mobile .unit4 .content{
      width:auto;
      padding:0 15px 
@@ -242,7 +253,7 @@
 }
  .mobile .unit4{
    background-size:auto 12%;
-   background-position: left 90%;
+   background-position: left 98%;
 }
 .mobile .unit4Block{
   background-size:auto 30%
@@ -250,7 +261,7 @@
  @media(max-width:340px){
      .mobile .unit4{
        background-size:auto 12%;
-       background-position: left 96%;
+       background-position: left 98%;
     }
    .mobile .unit4Block{
      background-size:auto 22%
