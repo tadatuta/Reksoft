@@ -11,7 +11,6 @@
 }
 
  .unit8Block {
-  overflow: hidden;
   display: block;
  }
 
@@ -293,6 +292,51 @@
 .academyAnimation {
   position: absolute;
   bottom: 0;
+}
+
+.unit8 {
+  ul {
+    list-style: none;
+    font-size: 1.5rem;
+    line-height: 1.5;
+
+    li {
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding: 5px 0 5px 25px;
+      line-height: 16px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 17px;
+        height: 16px;
+        background: url(../img/rec-lost.svg) no-repeat;
+        left: 0;
+        margin-top: -8px;
+        top: 50%;
+      }
+    }
+  }
+  .bold {
+    font-weight: 700;
+  }
+}
+
+.mobile .unit8 {
+  ul {
+    font-size: 1.2rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (max-device-width : 320px) {
+  .join-img {
+    display: none;
+  }
 }
 
  @media(max-width:1025px){
