@@ -66,10 +66,14 @@ require( [
         $(".unit7 .void-arrow-1, .unit7 .void-arrow-2, .unit7 .void-arrow-3").hide();
     }
 
+    var scrollifyTimeout = 0;
+    if($("html").hasClass("mobile")) {
+        scrollifyTimeout = 300;
+    }
     setTimeout(function() {
         $.scrollify({
             section: ".slideContainer",
         });
-    }, 100)
+    }, scrollifyTimeout)
 
 });
