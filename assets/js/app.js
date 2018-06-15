@@ -66,8 +66,10 @@ require( [
         $(".unit7 .void-arrow-1, .unit7 .void-arrow-2, .unit7 .void-arrow-3").hide();
     }
 
-    $.scrollify({
-        section: ".slideContainer",
-    });
+    setTimeout(function() {
+        $.scrollify({
+            section: ".slideContainer",
+        });
+    }, 300)
 
 });
