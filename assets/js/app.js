@@ -70,6 +70,6 @@ require( [
         $.scrollify({
             section: ".slideContainer",
         });
-    }, 300)
+    }, 100)
 
 });
