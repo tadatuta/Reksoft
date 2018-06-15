@@ -11,7 +11,20 @@
 }
 
  .unit8Block {
+  overflow: hidden; /* нужно тк при мелком разрешении вылезаeт иначе */
   display: block;
+ }
+
+ .desktop {
+   .unit8Block {
+     min-height: 615px;
+   }
+ }
+
+ .mobile {
+   .unit8Block {
+     overflow: visible;
+   }
  }
 
  .unit8 .header_subtitle{
@@ -363,6 +376,19 @@
          font-size: 1.4em;
     }
 }
+
+@media(max-height:650px){
+  .unit8 {
+    .join-link {
+      margin-top: 0;
+    }
+
+    .join-text {
+      padding: 0 0 15px 0;
+    }
+  }
+}
+
  @media(max-width:767px){
      .unit.unit8 h1 {
          font-size: 2.5em;

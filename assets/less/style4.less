@@ -1,6 +1,6 @@
 .unit4{
      /*background-color:#fff;*/
-     background-image: url(/assets/img/bg.png);
+     /*background-image: url(/assets/img/bg.png);*/
      // background-image: url(/assets/img/unit4/reksoftBg.svg);
      background-repeat:no-repeat;
      background-size: 100% auto;
@@ -12,19 +12,43 @@
   }
 }
 
+.bgImage {
+  background-image: url(/assets/img/bg.png);
+  /*background-size: cover;*/
+  background-position-y: bottom;
+  background-size: contain;
+  background-position-x: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  height: 100%;
+}
+
+.mobile.landscape .bgImage {
+  background-image: none;
+}
+
+.unit4.unit {
+  display: flex;
+  flex-flow: column;
+}
+
 /* .unit4Block { // TODO все убрать
   background-image: url(/assets/img/unit4/reksoftBitmap.png) ;
   background-size: 100% auto;
   background-repeat:no-repeat;
   background-position :left bottom;
 } */
+.unit4Block {
+  background-color: #fff;
+}
 
 .desktop .unit4Block {
   overflow: hidden;
 }
 
  .unit4 .content{
-     width:550px;
+     max-width:550px;
      margin: 4vh auto 0;
      text-align:left;
      font-size: 1em;
@@ -219,11 +243,12 @@
   right: 0vw;
 }
 
- @media(max-height:769px){
+ /* @media(max-height:769px){
      .unit4{
          background-size: 100% auto;
+       background-position: 0 135%;
     }
-  }
+  } */
  .tablet.landscape .unit4{
      background-size: 100% auto;
  }

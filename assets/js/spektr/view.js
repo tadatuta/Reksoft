@@ -16,23 +16,32 @@ define([
 
         },
 
+        reinitSlider: function(){
+            setTimeout(function () {
+                var windowHeight = $(window).height();
+                this.$('.unit5').height(windowHeight);
+                this.$('.single-item').slick('unslick');
+                this.$('.single-item').slick({
+                    dots: false,
+                    infinite: false,
+                    arrows: false,
+                    slidesToShow: 1,
+                    adaptiveHeight: true
+                });
+            }, 300);
+        },
+
         render : function() {
             // Отключаем привязанные события, очищаем элемент и добавляем в верстку шаблон
             this.$el.empty().append( this.template() );
+            var self = this;
 
             window.addEventListener('orientationchange', function () {
-                setTimeout(function () {
-                    var windowHeight = $(window).height();
-                    this.$('.unit5').height(windowHeight);
-                    this.$('.single-item').slick('unslick');
-                    this.$('.single-item').slick({
-                        dots: false,
-                        infinite: false,
-                        arrows: false,
-                        slidesToShow: 1,
-                        adaptiveHeight: true
-                    });
-                }, 300);
+                self.reinitSlider();
+            });
+
+            $(window).resize(function() {
+                self.reinitSlider();
             });
 
             return this;
@@ -110,7 +119,7 @@ define([
                 } else if ($('.sl3').hasClass('slick-active')) {
                     var sl4RightBlockWidth = $('.sl4 .right-info-block').width();
                     this.$('.single-item').slick('slickNext');
-                    $('.sl4').css('background','#e20c18');
+                    // $('.sl4').css('background','#80e267');
                     $('.sl4 .right-info-block').css('margin-right','-' + sl4RightBlockWidth+'px');
                     setTimeout(function() {
                         $('.sl4 .right-info-block').addClass('activated');

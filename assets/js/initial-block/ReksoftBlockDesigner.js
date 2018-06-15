@@ -177,12 +177,11 @@ define(['fabric', "../initial-block/MovingCircle",
             };
 
             var setNewCanvasSize = function () {
-                width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                var scrollWidth = $("body").prop("scrollWidth");
+                width = (scrollWidth > 0) ? scrollWidth : screen.width;
                 height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
-                /*var widthn = width;
-                 var heightn = height;*/
                 canvas.setDimensions({
-                    width: width,
+                    width: scrollWidth,
                     height: height
                 });
             };
