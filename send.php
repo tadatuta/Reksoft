@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 require 'php/PHPMailer.php';
 require 'php/Exception.php';
 require 'php/SMTP.php';
+require 'php/recaptchalib.php';
 
 $name = $_POST['name'];
 $city = $_POST['city'];
@@ -42,10 +43,27 @@ Email: $email
 $response = [];
 $response["status"] = 0;
 
-if (!$mail->send()) {
+// https://github.com/google/recaptcha. Как мне вывести сообщение, чтоб заполнили капчу?
+// recaptcha secret code
+$secret = "6Le_dmMUAAAAAF8QO0GQ_qPsDE1Uz-Mvtw2fQdo4";
+$cResponse = null;
+// проверка секретного ключа
+$reCaptcha = new ReCaptcha($secret);
+if ($_POST["g-recaptcha-response"]) {
+$cResponse = $reCaptcha->verify(
+        $_POST["g-recaptcha-response"],
+        $_SERVER["REMOTE_ADDR"]
+    );
+}
+
+if ($cResponse != null && $cResponse->isSuccess()) {
+    if (!$mail->send()) {
+        $response["status"] = 1;
+    } else {
+        $response["status"] = 0;
+    }
+} else { // error
     $response["status"] = 1;
-} else {
-    $response["status"] = 0;
 }
 
 echo json_encode($response);
