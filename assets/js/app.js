@@ -74,6 +74,14 @@ require( [
         $.scrollify({
             section: ".slideContainer",
         });
+
+      grecaptcha.render("recaptcha", {
+        sitekey: '6Le_dmMUAAAAAOXUeBl2RNw0ZsYRm4hVfUclm9VT',
+        callback: function() {
+          // console.log('recaptcha initialized');
+        }
+      });
+
     }, scrollifyTimeout)
 
 });
