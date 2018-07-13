@@ -64,6 +64,7 @@ if ($cResponse != null && $cResponse->isSuccess()) {
     }
 } else { // error
     $response["status"] = 1;
+    $response["cResponse"] = $cResponse;
 }
 
 echo json_encode($response);
