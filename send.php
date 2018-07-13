@@ -4,7 +4,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 require 'php/PHPMailer.php';
 require 'php/Exception.php';
 require 'php/SMTP.php';
-require 'php/recaptchalib.php';
 
 $name = $_POST['name'];
 $city = $_POST['city'];
@@ -47,16 +46,23 @@ $response["status"] = 0;
 // recaptcha secret code
 $secret = "6Le_dmMUAAAAAF8QO0GQ_qPsDE1Uz-Mvtw2fQdo4";
 $cResponse = null;
-// проверка секретного ключа
-$reCaptcha = new ReCaptcha($secret);
-if ($_POST["g-recaptcha-response"]) {
-$cResponse = $reCaptcha->verify(
-        $_POST["g-recaptcha-response"],
-        $_SERVER["REMOTE_ADDR"]
-    );
-}
 
-if ($cResponse != null && $cResponse->isSuccess()) {
+$url = 'https://www.google.com/recaptcha/api/siteverify';
+	$data = array(
+		'secret' => $secret,
+		'response' => $_POST["g-recaptcha-response"]
+	);
+	$options = array(
+		'http' => array (
+			'method' => 'POST',
+			'content' => http_build_query($data)
+		)
+	);
+	$context  = stream_context_create($options);
+	$verify = file_get_contents($url, false, $context);
+	$captcha_success=json_decode($verify);
+
+if ($cResponse != null && $captcha_success->success==true) {
     if (!$mail->send()) {
         $response["status"] = 1;
     } else {
