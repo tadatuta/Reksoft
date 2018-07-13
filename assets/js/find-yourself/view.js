@@ -86,8 +86,9 @@ define([
                     "g-recaptcha-response": grecaptcha.getResponse(),
                 },
                 success: function(data) {
+                    var dataObj = JSON.parse(data);
                     $("#name, #city, #question, #email").val('');
-                    if(data.status === 'success') {
+                    if(dataObj.status === 'success') {
                       $("#sendResult").text("Отправлено!");
                       grecaptcha.reset();
                     } else {
