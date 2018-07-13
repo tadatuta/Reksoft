@@ -70,7 +70,7 @@ if ($cResponse != null && $captcha_success->success==true) {
     }
 } else { // error
     $response["status"] = 1;
-    $response["cResponse"] = $cResponse;
+    $response["cResponse"] = $captcha_success->success;
     $response["capcha"]=$_POST["g-recaptcha-response"];
 }
 
