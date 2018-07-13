@@ -45,7 +45,6 @@ $response["status"] = 0;
 // https://github.com/google/recaptcha. Как мне вывести сообщение, чтоб заполнили капчу?
 // recaptcha secret code
 $secret = "6Le_dmMUAAAAAF8QO0GQ_qPsDE1Uz-Mvtw2fQdo4";
-$cResponse = null;
 
 $url = 'https://www.google.com/recaptcha/api/siteverify';
 	$data = array(
@@ -62,7 +61,7 @@ $url = 'https://www.google.com/recaptcha/api/siteverify';
 	$verify = file_get_contents($url, false, $context);
 	$captcha_success=json_decode($verify);
 
-if ($cResponse != null && $captcha_success->success==true) {
+if ($captcha_success->success==true) {
     if (!$mail->send()) {
         $response["status"] = 1;
     } else {
