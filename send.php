@@ -65,6 +65,7 @@ if ($cResponse != null && $cResponse->isSuccess()) {
 } else { // error
     $response["status"] = 1;
     $response["cResponse"] = $cResponse;
+    $response["capcha"]=$_POST["g-recaptcha-response"];
 }
 
 echo json_encode($response);
