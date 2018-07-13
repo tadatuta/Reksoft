@@ -87,7 +87,12 @@ define([
                 },
                 success: function(data) {
                     $("#name, #city, #question, #email").val('');
-                    $("#sendResult").text("Отправлено!");
+                    if(data.status === 'success') {
+                      $("#sendResult").text("Отправлено!");
+                      grecaptcha.reset();
+                    } else {
+                      $("#sendResult").text("Подтвердите, что вы не робот");
+                    }
                 },
                 error: function(){
                     $("#sendResult").text("Сбой при отправке, повторите попытку позже");

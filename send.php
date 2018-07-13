@@ -69,6 +69,7 @@ if ($captcha_success->success==true) {
     }
 } else { // error
     $response["status"] = "error";
+    $response["message"] = "error";
 }
 
 echo json_encode($response);
