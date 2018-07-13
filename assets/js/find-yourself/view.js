@@ -82,7 +82,8 @@ define([
                     name: $("#name").val(),
                     city: $("#city").val(),
                     question: $("#question").val(),
-                    email: $("#email").val().trim()
+                    email: $("#email").val().trim(),
+                    "g-recaptcha-response": grecaptcha.getResponse(),
                 },
                 success: function(data) {
                     $("#name, #city, #question, #email").val('');
