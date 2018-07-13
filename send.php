@@ -63,14 +63,12 @@ $url = 'https://www.google.com/recaptcha/api/siteverify';
 
 if ($captcha_success->success==true) {
     if (!$mail->send()) {
-        $response["status"] = 1;
+        $response["status"] = "error";
     } else {
-        $response["status"] = 0;
+        $response["status"] = "success";
     }
 } else { // error
-    $response["status"] = 1;
-    $response["cResponse"] = $captcha_success->success;
-    $response["capcha"]=$_POST["g-recaptcha-response"];
+    $response["status"] = "error";
 }
 
 echo json_encode($response);

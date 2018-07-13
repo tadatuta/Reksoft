@@ -3,8 +3,6 @@ define([
     "text!../our-client-right/template.html",
     ], function( Backbone, tpl ) {
 	
-	var unit3DocWidth = $( document ).width();
-
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
         template : _.template( tpl ),
