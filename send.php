@@ -28,7 +28,7 @@ $mail->SMTPAuth = false;
 //Set who the message is to be sent from
 $mail->setFrom('recognition@reksoft.ru', 'Recognition');
 //Set who the message is to be sent to
-$mail->addAddress('khalupko@reksoft.ru', 'vnfoteyeva@gmail.com');
+$mail->addAddress('vnfoteyeva@gmail.com', ''); // 'khalupko@reksoft.ru'
 //Set the subject line
 $mail->Subject = 'Recognition message';
 //Replace the plain text body with one created manually
@@ -40,9 +40,8 @@ Email: $email
 ";
 
 $response = [];
-$response["status"] = 0;
+$response["status"] = null;
 
-// https://github.com/google/recaptcha. Как мне вывести сообщение, чтоб заполнили капчу?
 // recaptcha secret code
 $secret = "6Le_dmMUAAAAAF8QO0GQ_qPsDE1Uz-Mvtw2fQdo4";
 
@@ -67,7 +66,7 @@ if ($captcha_success->success==true) {
     } else {
         $response["status"] = "success";
     }
-} else { // error
+} else {
     $response["status"] = "error";
     $response["message"] = "error";
 }
