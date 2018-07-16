@@ -25,6 +25,7 @@ $mail->Host = 'mail.reksoft.ru';
 $mail->Port = 25;
 //Whether to use SMTP authentication
 $mail->SMTPAuth = false;
+$mail->CharSet = "UTF-8";
 //Set who the message is to be sent from
 $mail->setFrom('recognition@reksoft.ru', 'Recognition');
 //Set who the message is to be sent to
