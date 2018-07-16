@@ -70,7 +70,7 @@ require( [
     if($("html").hasClass("mobile")) {
         scrollifyTimeout = 0;
     }
-    setTimeout(function() { // чтоб не было "лишней высоты"
+    //setTimeout(function() { // чтоб не было "лишней высоты"
         $.scrollify({
             section: ".slideContainer",
         });
@@ -82,6 +82,6 @@ require( [
         }
       });
 
-    }, scrollifyTimeout)
+    //}, scrollifyTimeout)
 
 });
