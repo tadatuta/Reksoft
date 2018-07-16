@@ -68,9 +68,9 @@ require( [
 
     var scrollifyTimeout = 0;
     if($("html").hasClass("mobile")) {
-        scrollifyTimeout = 300;
+        scrollifyTimeout = 0;
     }
-    setTimeout(function() {
+    setTimeout(function() { // чтоб не было "лишней высоты"
         $.scrollify({
             section: ".slideContainer",
         });
