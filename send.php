@@ -31,7 +31,7 @@ $mail->setFrom('recognition@reksoft.ru', 'Recognition');
 //Set who the message is to be sent to
 $mail->addAddress('mityakova@reksoft.ru', ''); // 'khalupko@reksoft.ru'
 //Set the subject line
-$mail->Subject = 'Recognition message';
+$mail->Subject = 'Reksoft PRO сообщение';
 //Replace the plain text body with one created manually
 $mail->Body = "
 Имя: $name
