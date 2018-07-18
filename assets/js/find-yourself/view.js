@@ -51,6 +51,7 @@ define([
         },
 
         send: function() {
+            $("#sendResult, #emailValidation, #сheckboxValidation, #questionValidation").text("");
             if($("#question").val().length < 10) {
                 $("#questionValidation").text("Обязательное поле");
                 return;
@@ -87,8 +88,8 @@ define([
                 },
                 success: function(data) {
                     var dataObj = JSON.parse(data);
-                    $("#name, #city, #question, #email").val('');
                     if(dataObj.status === 'success') {
+                      $("#name, #city, #question, #email").val('');
                       $("#sendResult").text("Отправлено!");
                       grecaptcha.reset();
                     } else {
