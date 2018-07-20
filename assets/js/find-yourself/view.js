@@ -45,8 +45,14 @@ define([
         allowSend: function() {
             if ($("#form_field_checkbox:checked").length > 0) {
                 $(".form_submit").addClass('disabled').prop('disabled', true);
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top
+                }, 1000);
             } else {
                 $(".form_submit").removeClass('disabled').prop('disabled', false);
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top
+                }, 1000);
             }
         },
 
@@ -54,24 +60,36 @@ define([
             $("#sendResult, #emailValidation, #сheckboxValidation, #questionValidation").text("");
             if($("#question").val().length < 10) {
                 $("#questionValidation").text("Обязательное поле");
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top
+                }, 1000);
                 return;
             } else {
                 $("#questionValidation").text("");
             }
             if(!$("#email").val().trim().length) {
                 $("#emailValidation").text("Обязательное поле");
+                $('html, body').animate({
+                    scrollTop: $("#email").offset().top
+                }, 1000);
                 return;
             } else {
                 $("#emailValidation").text("");
             }
             if(!this.isValidEmail($("#email").val().trim())) {
                 $("#emailValidation").text("Email введен неверно");
+                $('html, body').animate({
+                    scrollTop: $("#email").offset().top
+                }, 1000);
                 return;
             } else {
                 $("#emailValidation").text("");
             }
             if(!$("#form_field_checkbox").is(':checked')) {
                 $("#сheckboxValidation").text("Согласие обязательно");
+                $('html, body').animate({
+                    scrollTop: $("#email").offset().top
+                }, 1000);
                 return;
             } else {
                 $("#сheckboxValidation").text("");
