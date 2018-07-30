@@ -177,7 +177,7 @@ define(['fabric', "../initial-block/MovingCircle",
             };
 
             var setNewCanvasSize = function () {
-                var scrollWidth = $("body").prop("scrollWidth");
+                var scrollWidth = $("body")[0].clientWidth;
                 width = (scrollWidth > 0) ? scrollWidth : screen.width;
                 height = (window.innerHeight > 0) ? window.innerHeight : screen.height;
                 canvas.setDimensions({

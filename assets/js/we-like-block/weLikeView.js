@@ -11,7 +11,7 @@ define([
     var view = Backbone.View.extend({
         // Кэшируем html-шаблон
         template : _.template( tpl ),
-        className: "unit unit4Block slideContainer",
+        className: "unitSp unit4Block slideContainer",
         events : {
             'click #s7' : 'scrollToSection',
             'click #s6' : 'scrollToSection',
