@@ -1,7 +1,6 @@
 require.config({
     baseUrl: "/assets/js",
     paths: {
-        bootstrap: "../../bower_components/bootstrap/dist/js/bootstrap",
         jquery: "../../bower_components/jquery/dist/jquery",
         backbone: "../../bower_components/backbone/backbone",
         underscore: "../../bower_components/underscore/underscore",
@@ -13,11 +12,6 @@ require.config({
         scrollify: "../../bower_components/Scrollify/jquery.scrollify"
     },
     shim: {
-        bootstrap: {
-            deps: [
-                "jquery"
-            ]
-        },
         slick: {
             deps: [
                 "jquery"
