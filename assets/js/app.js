@@ -76,14 +76,12 @@ require( [
             after:function() {
                 var curslide = $.scrollify.current();
                 curslide = curslide[0].baseURI;
-                if (typeof(dataLayer) != 'undefined') {
-                    dataLayer.push({
-                        'event': 'GAevent',
-                        'eventCategory': 'Recognition',
-                        'eventAction': 'Move_To_Slide',
-                        'eventLabel': 'CURRENT_SLIDE_NUMBER:' + curslide.slice(-1)
-                    });
-                }
+                ga('send', {
+                    hitType: 'event',
+                    'eventCategory': 'Recognition',
+                    'eventAction': 'Move_To_Slide',
+                    'eventLabel': 'CURRENT_SLIDE_NUMBER:' + curslide.slice(-1)
+                });
             }
         });
 
