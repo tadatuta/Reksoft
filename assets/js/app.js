@@ -77,10 +77,10 @@ require( [
                 var curslide = $.scrollify.current();
                 curslide = curslide[0].baseURI;
                 ga('send', {
-                    hitType: 'event',
-                    'eventCategory': 'Recognition',
-                    'eventAction': 'Move_To_Slide',
-                    'eventLabel': 'CURRENT_SLIDE_NUMBER:' + curslide.slice(-1)
+                  hitType: 'event',
+                  eventCategory: 'Recognition',
+                  eventAction: 'Move_To_Slide',
+                  eventLabel: 'CURRENT_SLIDE_NUMBER:' + curslide.slice(-1)
                 });
             }
         });
