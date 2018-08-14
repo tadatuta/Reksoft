@@ -110,7 +110,7 @@ define([
                         ga('send', {
                             hitType: 'event',
                             'eventCategory': 'Recognition',
-                            'eventAction': 'Form_Successed_Sended',
+                            'eventAction': 'Form_Successed_Sent',
                             'eventLabel': 'NAME:' + $("#name").val() + ';CITY:' + $("#city").val() + ';QUESTION:' + $("#question").val() + ';EMAIL:' + $("#email").val().trim()
                         });
                       $("#name, #city, #question, #email").val('');
@@ -120,7 +120,7 @@ define([
                         ga('send', {
                             hitType: 'event',
                             'eventCategory': 'Recognition',
-                            'eventAction': 'Form_Failed_Sended',
+                            'eventAction': 'Form_Failed_Sent',
                             'eventLabel': 'ERROR_REASON:CAPTCHA'
                         });
                       $("#sendResult").text("Подтвердите, что вы не робот");
@@ -130,7 +130,7 @@ define([
                     ga('send', {
                         hitType: 'event',
                         'eventCategory': 'Recognition',
-                        'eventAction': 'Form_Failed_Sended',
+                        'eventAction': 'Form_Failed_Sent',
                         'eventLabel': 'ERROR_REASON:SERVER'
                     });
                     $("#sendResult").text("Сбой при отправке, повторите попытку позже");

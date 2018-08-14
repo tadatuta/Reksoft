@@ -29,7 +29,7 @@ $mail->CharSet = "UTF-8";
 //Set who the message is to be sent from
 $mail->setFrom('recognition@reksoft.ru', 'Recognition');
 //Set who the message is to be sent to
-$mail->addAddress('khalupko@reksoft.ru', ''); //
+$mail->addAddress('hr@reksoft.ru', ''); //
 //Set the subject line
 $mail->Subject = 'Reksoft PRO сообщение';
 //Replace the plain text body with one created manually
