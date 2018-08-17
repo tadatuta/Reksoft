@@ -30,4 +30,4 @@ require.config({
 });
 
 // Загружаем наше приложение (главный скрипт)
-require( [ "app" ] ); // app for developing, dist for prod
+require( [ "dist" ] ); // app for developing, dist for prod
