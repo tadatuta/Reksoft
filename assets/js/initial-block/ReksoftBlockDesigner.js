@@ -1201,7 +1201,7 @@ define(['fabric', "../initial-block/MovingCircle",
                             }).setCoords();
                             // only render once
                             if (planetIndex === totalPlanets) {
-                                if(window.curslide === "0" || window.curslide === "1") {
+                                if(window.curslide === 0) {
                                   canvas.renderAll();
                                 }
                             }
