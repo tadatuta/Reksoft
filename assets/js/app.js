@@ -70,17 +70,18 @@ require( [
     if($("html").hasClass("mobile")) {
         scrollifyTimeout = 0;
     }
+    window.curslide = "0";
     //setTimeout(function() { // чтоб не было "лишней высоты"
         $.scrollify({
             section: ".slideContainer",
             after:function() {
-                var curslide = $.scrollify.current();
-                curslide = curslide[0].baseURI;
+                window.curslide = $.scrollify.current();
+                window.curslide = window.curslide.length && window.curslide[0].baseURI && window.curslide[0].baseURI.slice(-1);
                 ga('send', {
                   hitType: 'event',
                   eventCategory: 'Recognition',
                   eventAction: 'Move_To_Slide',
-                  eventLabel: 'CURRENT_SLIDE_NUMBER:' + curslide.slice(-1)
+                  eventLabel: 'CURRENT_SLIDE_NUMBER:' + window.curslide
                 });
             }
         });
