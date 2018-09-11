@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                     baseUrl: "assets/js/",
                     mainConfigFile: "./assets/js/requirejs-config.js",
                     include: "app.js",
-                    out: "assets/js/dist.v2.js"
+                    out: "assets/js/dist.v3.js"
                 }
             }
         }
